@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FIDUCA</title>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&display=swap" rel="stylesheet"><link rel="stylesheet" href="Estilos/styles.css">
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal()">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modal-content"></div>
+  </div>
+</div>
+<script src="Estilos/scripts.js"></script>
 </head>
 <body>
 
@@ -90,22 +97,22 @@ indígenas con acciones enfocadas
 en el Emprendimiento Juvenil.</p>
     </div>
     <div class="about-pillars">
-      <div class="pillar">
-        <span class="pillar-icon">🔬</span>
-        <h4>Investigación</h4>
-        <p>Análisis longitudinal con grupos de control en 6 países.</p>
+    <div class="pillar" onclick="openModal('Problemática')">
+        <span class="pillar-icon">💡</span>
+        <h4>Problemática</h4>
+        <p>Necesidad de incluir la cultura empresarial y fomento al emprendimiento</p>
       </div>
-      <div class="pillar">
+    <div class="pillar" onclick="openModal('formacion')">
         <span class="pillar-icon">🎓</span>
         <h4>Formación</h4>
         <p>Programas de capacitación docente adaptados y escalables.</p>
       </div>
-      <div class="pillar">
+    <div class="pillar" onclick="openModal('inclusion')">
         <span class="pillar-icon">♀️</span>
         <h4>Inclusión</h4>
         <p>Foco especial en género y colectivos subrepresentados.</p>
       </div>
-      <div class="pillar">
+    <div class="pillar" onclick="openModal('diseminacion')">
         <span class="pillar-icon">🌐</span>
         <h4>Diseminación</h4>
         <p>Recursos abiertos y policy briefs para instituciones.</p>
