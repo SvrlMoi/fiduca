@@ -243,13 +243,13 @@ nav {
 .objectives-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 50px; }
 .obj-card {
   border: 1px solid rgba(255,255,255,0.1); border-radius: 10px;
-  padding: 36px 28px; background: rgba(255,255,255,0.04);
+  padding: 36px 28px; background: rgba(255,255,255,0.08);
   transition: border-color .3s, background .3s;
 }
 .obj-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,204,0,0.4); }
-.obj-number { font-size: 42px; font-weight: 700; color: rgba(255,204,0,0.2); margin-bottom: 16px; }
+.obj-number { font-size: 42px; font-weight: 700; color: rgba(255,204,0,0.45); margin-bottom: 16px; }
 .obj-card h3 { font-size: 19px; font-weight: 700; color: var(--white); margin-bottom: 12px; }
-.obj-card p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.75; }
+.obj-card p { font-size: 14px; color: rgba(255,255,255,0.85); line-height: 1.75; }
 
 /* ── NOTICIAS ── */
 .news-section { padding: 90px 60px; background: var(--light); }
