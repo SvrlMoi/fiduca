@@ -528,6 +528,9 @@ body.page-enter { animation: pageFadeIn .4s ease forwards; }
   .news-card.destacada { grid-column: span 1; }
 }
 
-
+.page-wrapper {
+  opacity: 0.5;
+  animation: pageFadeIn 0.5s ease 0.05s forwards;
+}
 
 
