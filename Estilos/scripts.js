@@ -10,10 +10,8 @@ const modalData = {
         <li>Falta de formación de investigadores y docentes universitarios en metodologías para la intervención en comunidades en vulnerabilidad</li>
         <li>Transformaciones en el capital humano a partir del conocimiento y la investigación</li>
       </ul>
-
-            <br>
+      <br>
       <p>En los pueblos indígenas y comunidades rurales en distintos países:</p>
-
       <ul>
         <li>Falta de oportunidades para la generación de ingresos y empleos</li>
         <li>Migración de la población, sobre todo en edad productiva, a otros lugares</li>
@@ -22,13 +20,11 @@ const modalData = {
       </ul>
     `
   },
-
   Impacto: {
     icon: '🤝',
     title: 'Impacto',
     body: `
       <p>Para la región Centroamericana:</p>
-
       <ul>
         <li>El proyecto es un catalizador de cambios significativos y multidimensional</li>
         <li>Fortalece el tejido social, económico y académico en comunidades indígenas centroamericanas</li>
@@ -39,7 +35,6 @@ const modalData = {
       </ul>
       <br>
       <p>Para Universidades y otros socios:</p>
-
       <ul>
         <li>Nueva oportunidad de innovar en la educación superior contribuyendo a la transformación social</li>
         <li>Generación de capacidades en docentes, investigadores y estudiantes</li>
@@ -53,7 +48,6 @@ const modalData = {
       </ul>
       <br>
       <p>Para Comunidades Indígenas:</p>
-
       <ul>
         <li>Empoderamiento personal, liderazgo y visibilidad de la juventud indígena</li>
         <li>Refuerzo de la identidad cultural</li>
@@ -67,69 +61,70 @@ const modalData = {
       </ul>
     `
   },
-
   Emprendimiento: {
-  icon:'🚀',
-  title:'Emprendimiento',
-  body:`
-  <p>El proyecto promueve el emprendimiento juvenil en comunidades indígenas mediante la colaboración entre universidades, estudiantes y organizaciones locales.</p>
-
-  <ul>
-    <li>Formación en habilidades de emprendimiento, innovación y gestión de proyectos.</li>
-    <li>Desarrollo de iniciativas productivas basadas en conocimientos locales y recursos del territorio.</li>
-    <li>Acompañamiento universitario para transformar ideas en proyectos sostenibles.</li>
-    <li>Creación de espacios de intercambio donde jóvenes emprendedores pueden presentar y desarrollar sus iniciativas.</li>
-    <li>Acceso a mentoría, herramientas de innovación y metodologías de emprendimiento.</li>
-  </ul>
-
-  <p>Estas acciones buscan fortalecer la autonomía económica de las comunidades y generar oportunidades para que los jóvenes desarrollen proyectos productivos que contribuyan al desarrollo local sostenible.</p>
-  `
-},
+    icon: '🚀',
+    title: 'Emprendimiento',
+    body: `
+      <p>El proyecto promueve el emprendimiento juvenil en comunidades indígenas mediante la colaboración entre universidades, estudiantes y organizaciones locales.</p>
+      <ul>
+        <li>Formación en habilidades de emprendimiento, innovación y gestión de proyectos.</li>
+        <li>Desarrollo de iniciativas productivas basadas en conocimientos locales y recursos del territorio.</li>
+        <li>Acompañamiento universitario para transformar ideas en proyectos sostenibles.</li>
+        <li>Creación de espacios de intercambio donde jóvenes emprendedores pueden presentar y desarrollar sus iniciativas.</li>
+        <li>Acceso a mentoría, herramientas de innovación y metodologías de emprendimiento.</li>
+      </ul>
+      <p>Estas acciones buscan fortalecer la autonomía económica de las comunidades y generar oportunidades para que los jóvenes desarrollen proyectos productivos que contribuyan al desarrollo local sostenible.</p>
+    `
+  },
   Difusion: {
-  icon:'🌐',
-  title:'Difusión y Transferencia',
-  body:`
-  <p>El proyecto contempla diversas estrategias para compartir los resultados obtenidos y ampliar su impacto en la región centroamericana.</p>
-
-  <ul>
-    <li>Publicación de materiales, informes y recursos educativos desarrollados durante el proyecto.</li>
-    <li>Organización de talleres, encuentros académicos y actividades de intercambio entre universidades y comunidades.</li>
-    <li>Difusión de resultados a través de medios institucionales, plataformas digitales y redes académicas.</li>
-    <li>Creación de espacios de diálogo entre investigadores, estudiantes y actores comunitarios.</li>
-    <li>Promoción de buenas prácticas para que otras instituciones puedan replicar las experiencias del proyecto.</li>
-  </ul>
-
-  <p>Estas acciones permiten que el conocimiento generado tenga un alcance más amplio y contribuya al fortalecimiento de iniciativas de innovación social y emprendimiento en la región.</p>
-  `
-}
+    icon: '🌐',
+    title: 'Difusión y Transferencia',
+    body: `
+      <p>El proyecto contempla diversas estrategias para compartir los resultados obtenidos y ampliar su impacto en la región centroamericana.</p>
+      <ul>
+        <li>Publicación de materiales, informes y recursos educativos desarrollados durante el proyecto.</li>
+        <li>Organización de talleres, encuentros académicos y actividades de intercambio entre universidades y comunidades.</li>
+        <li>Difusión de resultados a través de medios institucionales, plataformas digitales y redes académicas.</li>
+        <li>Creación de espacios de diálogo entre investigadores, estudiantes y actores comunitarios.</li>
+        <li>Promoción de buenas prácticas para que otras instituciones puedan replicar las experiencias del proyecto.</li>
+      </ul>
+      <p>Estas acciones permiten que el conocimiento generado tenga un alcance más amplio y contribuya al fortalecimiento de iniciativas de innovación social y emprendimiento en la región.</p>
+    `
+  }
 };
 
+/* ── MODAL ── */
 function openModal(id) {
   const data = modalData[id];
-
   if (!data) return;
-
-  const modalContent = document.getElementById('modal-content');
-  const modalOverlay = document.getElementById('modal-overlay');
-
-  modalContent.innerHTML = `
+  document.getElementById('modal-content').innerHTML = `
     <span class="modal-icon">${data.icon}</span>
     <h2 class="modal-title">${data.title}</h2>
     <div class="modal-body">${data.body}</div>
   `;
-
-  modalOverlay.classList.add('active');
+  document.getElementById('modal-overlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
 }
 
 function closeModal() {
-  const modalOverlay = document.getElementById('modal-overlay');
-  modalOverlay.classList.remove('active');
+  document.getElementById('modal-overlay').classList.remove('active');
+  document.body.style.overflow = '';
 }
 
-/* cerrar con tecla ESC */
-
-document.addEventListener("keydown", function (event) {
-  if (event.key === "Escape") {
-    closeModal();
-  }
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
 });
+
+/* ── EQUIPO: expandir / colapsar miembros ── */
+function toggleMembers(btn) {
+  const list = btn.nextElementSibling;
+  const isOpen = list.classList.contains('open');
+  list.classList.toggle('open');
+  btn.textContent = isOpen ? '▼ Ver equipo' : '▲ Ocultar equipo';
+}
+
+
+
+
+
+
