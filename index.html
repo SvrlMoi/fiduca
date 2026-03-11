@@ -5,16 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FIDUCA</title>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&display=swap" rel="stylesheet"><link rel="stylesheet" href="Estilos/styles.css">
-<div class="modal-overlay" id="modal-overlay" onclick="closeModal()">
+<script src="Estilos/scripts.js"></script>
+</head>
+<body>
+  <div class="modal-overlay" id="modal-overlay" onclick="closeModal()">
   <div class="modal-box" onclick="event.stopPropagation()">
     <button class="modal-close" onclick="closeModal()">✕</button>
     <div id="modal-content"></div>
   </div>
 </div>
-<script src="Estilos/scripts.js"></script>
-</head>
-<body>
-
 <!-- NAVBAR -->
 <nav>
   <div class="logo-wrap">
@@ -107,15 +106,15 @@ en el Emprendimiento Juvenil.</p>
         <h4>Impacto</h4>
         <p>Para la región Centroamericana, Universidades, Socios y Comunidades Indígenas</p>
       </div>
-    <div class="pillar" onclick="openModal('inclusion')">
-        <span class="pillar-icon">♀️</span>
-        <h4>Inclusión</h4>
-        <p>Foco especial en género y colectivos subrepresentados.</p>
+    <div class="pillar" onclick="openModal('Emprendimiento')">
+        <span class="pillar-icon">🚀</span>
+        <h4>Emprendimiento</h4>
+        <p>El proyecto promueve el emprendimiento juvenil en comunidades indígenas mediante la colaboración entre universidades, estudiantes y organizaciones locales</p>
       </div>
-    <div class="pillar" onclick="openModal('diseminacion')">
+    <div class="pillar" onclick="openModal('Difusion')">
         <span class="pillar-icon">🌐</span>
-        <h4>Diseminación</h4>
-        <p>Recursos abiertos y policy briefs para instituciones.</p>
+        <h4>Difusión</h4>
+        <p>El proyecto contempla diversas estrategias para compartir los resultados obtenidos y ampliar su impacto en la región centroamericana</p>
       </div>
     </div>
   </div>
