@@ -23,6 +23,11 @@ body {
   line-height: 1.7;
 }
 
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 /* ── NAVBAR ── */
 nav {
   background: var(--white);
@@ -221,7 +226,6 @@ nav {
 .objectives-section .section-title,
 .team-section .section-title,
 .contact-section .section-title { color: var(--white); }
-
 .objectives-section .section-label { color: var(--gold); }
 .team-section .section-label       { color: rgba(255,255,255,0.6); }
 .contact-section .section-label    { color: var(--gold); opacity: 0.8; }
@@ -334,21 +338,26 @@ footer { background: var(--navy); padding: 50px 60px 30px; }
 
 /* ── MODAL ── */
 .modal-overlay {
-  position: fixed; inset: 0; z-index: 999;
+  display: none;
+  position: fixed;
+  inset: 0;
   background: rgba(0,0,0,0.5);
-  display: flex; align-items: center; justify-content: center;
-  opacity: 0; pointer-events: none;
-  transition: opacity .3s;
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
 }
-.modal-overlay.active { opacity: 1; pointer-events: all; }
+.modal-overlay.active {
+  display: flex;
+}
 .modal-box {
-  background: var(--white); border-radius: 12px;
-  padding: 48px; max-width: 800px; width: 90%;
-  max-height: 80vh;
-  overflow-y: auto;
+  background: white;
+  border-radius: 12px;
+  padding: 32px;
+  max-width: 700px;
+  width: 90%;
   position: relative;
-  transform: translateY(20px);
-  transition: transform .3s;
+  max-height: 80vh; 
+  overflow-y: auto
 }
 .modal-overlay.active .modal-box { transform: translateY(0); }
 .modal-close {
@@ -452,7 +461,6 @@ footer { background: var(--navy); padding: 50px 60px 30px; }
 /* ── TRANSICIONES DE PÁGINA ── */
 body {
   opacity: 1;
-  transition: opacity .35s ease;
 }
 body.page-exit  { opacity: 0; }
 body.page-enter { animation: pageFadeIn .4s ease forwards; }

@@ -94,35 +94,37 @@ const modalData = {
 };
 
 /* ── MODAL ── */
-function openModal(id) {
-  const data = modalData[id];
+function openModal(key) {
+  const data = modalData[key];
   if (!data) return;
-  document.getElementById('modal-content').innerHTML = `
-    <span class="modal-icon">${data.icon}</span>
-    <h2 class="modal-title">${data.title}</h2>
-    <div class="modal-body">${data.body}</div>
-  `;
+  document.getElementById('modal-content').innerHTML =
+    `<h2>${data.title}</h2><p style="margin-top:12px; line-height:1.7; color:var(--slate)">${data.body}</p>`;
   document.getElementById('modal-overlay').classList.add('active');
-  document.body.style.overflow = 'hidden';
 }
 
 function closeModal() {
   document.getElementById('modal-overlay').classList.remove('active');
-  document.body.style.overflow = '';
 }
-
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeModal();
 });
 
 /* ── EQUIPO: expandir / colapsar miembros ── */
 function toggleMembers(btn) {
-  const list = btn.nextElementSibling;
-  const isOpen = list.classList.contains('open');
-  list.classList.toggle('open');
-  btn.textContent = isOpen ? '▼ Ver equipo' : '▲ Ocultar equipo';
-}
+  const thisCard = btn.closest('.socio-card');
+  const thisList = thisCard.querySelector('.members-list');
+  const isOpen   = thisList.classList.contains('open');
 
+  document.querySelectorAll('.members-list.open').forEach(list => {
+    list.classList.remove('open');
+    list.closest('.socio-card').querySelector('.expand-btn').textContent = '▼ Ver equipo';
+  });
+
+  if (!isOpen) {
+    thisList.classList.add('open');
+    btn.textContent = '▲ Ocultar equipo';
+  }
+}
 
 
 
