@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Noticias — FIDUCA</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="Estilos/styles.css">
+<style>
+.noticias-section { padding: 50px 60px 80px; }
+
+/* Grid principal: 3 columnas */
+.noticias-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 32px;
+}
+
+/* Card destacada ocupa 2 columnas */
+.news-card.destacada {
+  grid-column: span 2;
+}
+.news-card.destacada .news-thumb {
+  height: 260px;
+  font-size: 72px;
+}
+.news-card.destacada .news-body h3 {
+  font-size: 22px;
+}
+
+/* Sin noticias */
+.empty-state {
+  text-align: center;
+  padding: 80px 20px;
+  color: var(--slate);
+  grid-column: 1 / -1;
+}
+.empty-state span { font-size: 48px; display: block; margin-bottom: 16px; }
+
+@media (max-width: 768px) {
+  .noticias-section { padding: 40px 20px 60px; }
+  .noticias-grid { grid-template-columns: 1fr; }
+  .news-card.destacada { grid-column: span 1; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo-wrap">
+    <img src="Estilos/img/LOGO-UE-Full_color.png" alt="UE_logo" style="height:50px; width:auto;">
+    <img src="Estilos/img/logo-fiduca-full-color.png" alt="FIDUCA_logo" style="height:50px; width:auto;">
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html">Proyecto</a></li>
+    <li><a href="index.html#objetivos">Objetivos</a></li>
+    <li><a href="#">Resultados</a></li>
+    <li><a href="equipo.html">Socios</a></li>
+    <li><a href="noticias.html" class="nav-active">Noticias</a></li>
+    <li><a href="equipo.html">Equipo</a></li>
+    <li><a href="#" class="nav-cta">Contacto</a></li>
+  </ul>
+</nav>
+
+<div class="breadcrumb">
+  <a href="index.html">Inicio</a>
+  <span>›</span>
+  <span>Noticias</span>
+</div>
+
+<section class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-inner">
+    <span class="section-label">¿Qué se ha realizado hasta ahora?</span>
+    <h1>Noticias del Proyecto</h1>
+    <p>Mantente al día con los avances, eventos y publicaciones del consorcio FIDUCA en toda la región centroamericana.</p>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="stat-item"><div class="num">3</div><div class="lbl">Noticias publicadas</div></div>
+  <div class="stat-item"><div class="num">2</div><div class="lbl">Categorías</div></div>
+  <div class="stat-item"><div class="num">2026</div><div class="lbl">Año de inicio</div></div>
+  <div class="stat-item"><div class="num">7</div><div class="lbl">Países del consorcio</div></div>
+</div>
+
+<!-- FILTROS -->
+<div class="filter-bar">
+  <span class="filter-label">Filtrar por</span>
+  <button class="filter-btn active" onclick="filtrar(this, 'todas')">Todas</button>
+  <button class="filter-btn" onclick="filtrar(this, 'publicacion')">Publicaciones</button>
+  <button class="filter-btn" onclick="filtrar(this, 'nota')">Notas</button>
+  <button class="filter-btn" onclick="filtrar(this, 'recursos')">Recursos</button>
+  <button class="filter-btn" onclick="filtrar(this, 'evento')">Eventos</button>
+</div>
+<section class="noticias-section">
+  <div class="noticias-grid" id="noticias-grid">
+    <a href="https://cinemi.utp.ac.pa/ver-noticias/utp-lidera-proyecto-internacional-fiduca-para-fortalecer-la-innovacion-y-la-investigacion"
+       class="news-card destacada"
+       data-cat="publicacion"
+       style="text-decoration:none; color:inherit;"
+       target="_blank">
+      <div class="news-thumb">🔭</div>
+      <div class="news-body">
+        <span class="news-tag">Publicación</span>
+        <h3>UTP lidera proyecto internacional FIDUCA para fortalecer la innovación y la investigación transdisciplinaria</h3>
+        <p>La Universidad Tecnológica de Panamá encabeza este consorcio de 12 instituciones de 7 países con el objetivo de reducir brechas de desigualdad en comunidades indígenas centroamericanas.</p>
+        <span class="news-date">11 de febrero 2026</span>
+      </div>
+    </a>
+
+    <a href="https://www.tec.ac.cr/tec-impulsa-emprendimientos-indigenas-limon-cartago-apoyo-union-europea"
+       class="news-card"
+       data-cat="nota"
+       style="text-decoration:none; color:inherit;"
+       target="_blank">
+      <div class="news-thumb" style="height:130px; font-size:40px;">🏛️</div>
+      <div class="news-body">
+        <span class="news-tag">Nota</span>
+        <h3>Nota realizada por el TEC</h3>
+        <p>Información sobre el proyecto por parte del Tecnológico de Costa Rica</p>
+        <span class="news-date">11 Feb 2026</span>
+      </div>
+    </a>
+
+    <a href="https://www.linkedin.com/posts/albertotejero_fiduca-comunidadesabrrurales-pueblosabrindaedgenas-ugcPost-7430671937976233984-ikml?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAL2bgwBlnvNWvAZ7ohYQnQfjeNZv0ueQPE"
+       class="news-card"
+       data-cat="Publicación"
+       style="text-decoration:none; color:inherit;"
+       target="_blank">
+      <div class="news-thumb" style="height:130px; font-size:40px;">📚</div>
+      <div class="news-body">
+        <span class="news-tag">Publicación</span>
+        <h3>Post realizado por la UPM en Linkedin</h3>
+        <p>La Universidad Politécnica de Madrid (UPM) participa en el proyecto FIDUCA impulsando la cooperación internacional en educación superior para fortalecer la innovación y la transformación digital</p>
+        <span class="news-date">11 Feb 2026</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- FOOTER  -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-about">
+      <h3>Proyecto FIDUCA</h3>
+      <p>Proyecto de investigación financiado por la Unión Europea a través del programa Erasmus+ (2026–2028). El contenido de esta página es responsabilidad exclusiva del consorcio y no representa la posición oficial de la UE.</p>
+      <div style="margin-top:16px;" class="eu-flag">
+        <span>★ ★ ★ ★ ★ ★</span>
+        <span style="color:rgba(255,255,255,0.3); margin-left:10px; font-size:12px;">Cofinanciado por la UE</span>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Proyecto</h4>
+      <ul>
+        <li><a href="#">Acerca de</a></li>
+        <li><a href="index.html#objetivos">Objetivos</a></li>
+        <li><a href="#">Metodología</a></li>
+        <li><a href="equipo.html">Socios</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Recursos</h4>
+      <ul>
+        <li><a href="#">Publicaciones</a></li>
+        <li><a href="#">Informes</a></li>
+        <li><a href="#">Materiales</a></li>
+        <li><a href="#">Repositorio</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#">Política de privacidad</a></li>
+        <li><a href="#">Aviso legal</a></li>
+        <li><a href="#">Accesibilidad</a></li>
+        <li><a href="#">Cookies</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 FIDUCA Consortium · Grant Agreement 101094522</span>
+  </div>
+</footer>
+
+<script src="Estilos/scripts.js"></script>
+<script>
+
+/* ── FILTRO DE NOTICIAS ──*/
+function filtrar(btn, categoria) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  document.querySelectorAll('#noticias-grid .news-card').forEach(card => {
+    const mostrar = categoria === 'todas' || card.dataset.cat === categoria;
+    card.style.display = mostrar ? '' : 'none';
+  });
+}
+</script>
+
+</body>
+</html>

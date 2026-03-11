@@ -125,7 +125,15 @@ function toggleMembers(btn) {
     btn.textContent = '▲ Ocultar equipo';
   }
 }
+function filtrar(btn, categoria) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
 
+  document.querySelectorAll('#noticias-grid .news-card').forEach(card => {
+    const mostrar = categoria === 'todas' || card.dataset.cat === categoria;
+    card.style.display = mostrar ? '' : 'none';
+  });
+}
 
 
 
