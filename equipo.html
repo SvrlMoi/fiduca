@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Equipo & Socios — FIDUCA</title>
+<link rel="stylesheet" href="Estilos/styles.css">
+<style>
+/* CSS EXCLUSIVO de equipo.html, esto porque seria sobredefinir el archivo CSS */
+
+/* ── LAYOUT ── */
+.socios-section { padding: 50px 60px 20px; }
+.coord-section  { padding: 60px 60px 80px; background: var(--light); }
+.map-section    { padding: 60px 60px 80px; }
+.socios-section h2 { font-size: 26px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+
+/* ── GRID DE SOCIOS ── */
+.socios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* ── SOCIO CARD ── */
+.socio-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 28px 24px 24px;
+  transition: box-shadow .25s, border-color .25s, transform .2s;
+  position: relative;
+  overflow: hidden;
+}
+.socio-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 4px;
+  background: var(--gold);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .3s;
+}
+.socio-card:hover::before { transform: scaleX(1); }
+.socio-card:hover {
+  box-shadow: 0 8px 36px rgba(0,0,0,0.1);
+  border-color: rgba(145,17,126,0.2);
+  transform: translateY(-3px);
+}
+.socio-header { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+.socio-abbr {
+  width: 52px; height: 52px; border-radius: 10px;
+  background: linear-gradient(135deg, var(--navy), var(--purple));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 800; color: white;
+  letter-spacing: 0.5px; flex-shrink: 0;
+}
+.socio-info h3 { font-size: 15px; font-weight: 700; color: var(--navy); line-height: 1.3; margin-bottom: 3px; }
+.socio-meta    { display: flex; gap: 8px; align-items: center; }
+.partner-num   { font-size: 11px; color: var(--slate); opacity: 0.5; }
+
+/* ── PREVIEW DE MIEMBROS ── */
+.socio-members-preview { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 14px; }
+.members-count {
+  font-size: 12px; color: var(--slate); margin-bottom: 10px;
+  display: flex; align-items: center; gap: 6px;
+}
+.members-count::before {
+  content: ''; display: inline-block;
+  width: 6px; height: 6px; border-radius: 50%; background: var(--teal);
+}
+.mini-avatars { display: flex; }
+.mini-av {
+  width: 30px; height: 30px; border-radius: 50%;
+  background: var(--purple); border: 2px solid white;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 700; color: white;
+  margin-left: -6px; transition: transform .2s;
+}
+.mini-av:first-child    { margin-left: 0; }
+.mini-av:hover          { transform: translateY(-3px); z-index: 5; }
+.mini-av:nth-child(2)   { background: #197a74; }
+.mini-av:nth-child(3)   { background: var(--gold); }
+.mini-av:nth-child(4)   { background: var(--green); }
+.mini-av.more           { background: var(--light); color: var(--slate); border-color: var(--line); font-size: 9px; }
+
+/* ── BOTÓN EXPANDIR ── */
+.expand-btn {
+  margin-top: 14px; width: 100%; padding: 8px;
+  border: 1px dashed rgba(145,17,126,0.25); border-radius: 6px;
+  background: transparent; color: var(--purple);
+  /* font-family necesario en <button> */
+  font-family: 'Baloo 2', sans-serif;
+  font-size: 12px; cursor: pointer; transition: all .2s;
+}
+.expand-btn:hover { background: rgba(145,17,126,0.05); border-style: solid; }
+
+/* ── LISTA DE MIEMBROS ── */
+.members-list { display: none; margin-top: 14px; border-top: 1px solid var(--line); padding-top: 14px; flex-direction: column; gap: 10px; }
+.members-list.open { display: flex; }
+.member-row    { display: flex; align-items: center; gap: 12px; }
+.member-av {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--purple), var(--navy));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; color: white; flex-shrink: 0;
+}
+.member-detail { flex: 1; min-width: 0; }
+.member-name   { font-size: 13.5px; font-weight: 700; color: var(--navy); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.member-cargo  { font-size: 11.5px; color: var(--slate); line-height: 1.4; }
+
+/* ── COORD GRID ── */
+.coord-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 24px; margin-top: 32px;
+}
+.coord-card {
+  background: var(--white); border: 1px solid var(--line);
+  border-radius: 12px; padding: 32px 20px 24px; text-align: center;
+  transition: box-shadow .2s, transform .2s;
+}
+.coord-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.09); transform: translateY(-4px); }
+.coord-avatar {
+  width: 72px; height: 72px; border-radius: 50%;
+  margin: 0 auto 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; font-weight: 800; color: white;
+}
+.av-coord { background: linear-gradient(135deg, var(--purple), var(--navy)); }
+.av-tech  { background: linear-gradient(135deg, #197a74, var(--green)); }
+.av-admin { background: linear-gradient(135deg, var(--gold), #c56000); }
+.coord-card h4       { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+.coord-card .role-tag  { font-size: 11.5px; font-weight: 600; color: var(--purple); margin-bottom: 6px; display: block; }
+.coord-card .inst-tag  { font-size: 12px; color: var(--slate); margin-bottom: 12px; display: block; line-height: 1.4; }
+.coord-card .email-link { font-size: 11px; color: var(--gold); text-decoration: none; word-break: break-all; opacity: 0.8; transition: opacity .2s; }
+.coord-card .email-link:hover { opacity: 1; text-decoration: underline; }
+
+/* ── PAÍSES ── */
+.countries-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px; margin-top: 32px;
+}
+.country-card {
+  background: var(--light); border: 1px solid var(--line);
+  border-radius: 10px; padding: 20px 16px; text-align: center;
+  transition: border-color .2s, box-shadow .2s;
+}
+.country-card:hover  { border-color: var(--gold); box-shadow: 0 4px 16px rgba(234,117,4,0.12); }
+.country-flag  { font-size: 32px; margin-bottom: 8px; display: block; }
+.country-name  { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
+.country-count { font-size: 12px; color: var(--slate); }
+
+@media (max-width: 768px) {
+  .socios-section, .coord-section, .map-section { padding-left: 20px; padding-right: 20px; }
+  .socios-grid { grid-template-columns: 1fr; }
+  .coord-grid  { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+  <div class="page-wrapper">
+
+<!-- NAVBAR -->
+<nav>
+  <div class="logo-wrap">
+    <img src="Estilos/img/LOGO-UE-Full_color.png" alt="UE_logo" style="height:50px; width:auto;">
+    <img src="Estilos/img/logo-fiduca-full-color.png" alt="FIDUCA_logo" style="height:50px; width:auto;">
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html">Proyecto</a></li>
+    <li><a href="index.html#objetivos">Objetivos</a></li>
+    <li><a href="#">Resultados</a></li>
+    <li><a href="equipo.html" class="nav-active">Socios</a></li>
+    <li><a href="noticias.html">Noticias</a></li>
+    <li><a href="#" class="nav-active">Galeria</a></li>
+    <li><a href="#" class="nav-cta">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="index.html">Inicio</a>
+  <span>›</span>
+  <span>Equipo &amp; Socios</span>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-inner">
+    <span class="section-label">Consorcio FIDUCA</span>
+    <h1>Equipo &amp; Socios del Proyecto</h1>
+    <p>Un consorcio de 12 instituciones de 7 países trabaja de forma colaborativa para fortalecer la innovación y el emprendimiento en comunidades indígenas centroamericanas.</p>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item"><div class="num">12</div><div class="lbl">Instituciones socias</div></div>
+  <div class="stat-item"><div class="num">7</div><div class="lbl">Países participantes</div></div>
+  <div class="stat-item"><div class="num">50+</div><div class="lbl">Investigadores y técnicos</div></div>
+  <div class="stat-item"><div class="num">2</div><div class="lbl">Continentes</div></div>
+</div>
+
+<!-- PAÍSES -->
+<section class="map-section">
+  <span class="section-label">Cobertura Geográfica</span>
+  <h2 class="section-title">Países Participantes</h2>
+  <p class="section-sub">El consorcio abarca instituciones de Centroamérica y Asia.</p>
+  <div class="countries-grid">
+    <div class="country-card"><span class="country-flag">🇵🇦</span><div class="country-name">Panamá</div><div class="country-count">3 socios · UTP, UDELAS, FCDS</div></div>
+    <div class="country-card"><span class="country-flag">🇨🇷</span><div class="country-name">Costa Rica</div><div class="country-count">2 socios · TEC, UNED</div></div>
+    <div class="country-card"><span class="country-flag">🇸🇻</span><div class="country-name">El Salvador</div><div class="country-count">2 socios · UES, USO</div></div>
+    <div class="country-card"><span class="country-flag">🇬🇹</span><div class="country-name">Guatemala</div><div class="country-count">2 socios · UGAL, URL</div></div>
+    <div class="country-card"><span class="country-flag">🇪🇸</span><div class="country-name">España</div><div class="country-count">1 socio · UPM</div></div>
+    <div class="country-card"><span class="country-flag">🇫🇷</span><div class="country-name">Francia</div><div class="country-count">1 socio · ULL</div></div>
+    <div class="country-card"><span class="country-flag">🇭🇺</span><div class="country-name">Hungría</div><div class="country-count">1 socio · ELTE</div></div>
+  </div>
+</section>
+
+<!-- SOCIOS -->
+<section class="socios-section">
+  <span class="section-label">Instituciones</span>
+  <h2>Socios del Consorcio</h2>
+  <p class="section-sub">Haz clic en "Ver equipo" para conocer a los miembros de cada institución.</p>
+  <div class="socios-grid">
+
+    <!-- P1 UTP -->
+    <div class="socio-card">
+      <div class="socio-header">
+        <div class="socio-abbr">UTP</div>
+        <div class="socio-info">
+          <h3>Universidad Tecnológica de Panamá</h3>
+          <div class="socio-meta"><span class="country-badge">🇵🇦 Panamá</span><span class="partner-num">Coordinador</span></div>
+        </div>
+      </div>
+      <div class="socio-members-preview">
+        <div class="members-count">4 miembros del equipo</div>
+        <div class="mini-avatars"><div class="mini-av">MS</div><div class="mini-av">LR</div><div class="mini-av">NT</div><div class="mini-av">NM</div></div>
+      </div>
+      <button class="expand-btn" onclick="toggleMembers(this)">▼ Ver equipo</button>
+      <div class="members-list">
+        <div class="member-row"><div class="member-av">MS</div><div class="member-detail"><div class="member-name">Mariela Salgado</div><div class="member-cargo">Investigadora / Docente - IP</div></div><span class="role-pill role-coord">Coordinadora</span></div>
+        <div class="member-row"><div class="member-av">LR</div><div class="member-detail"><div class="member-name">Lorena Ramos</div><div class="member-cargo">Administradora</div></div><span class="role-pill role-admin">Admin</span></div>
+        <div class="member-row"><div class="member-av">NT</div><div class="member-detail"><div class="member-name">Nathalia Tejedor</div><div class="member-cargo">Investigadora</div></div><span class="role-pill role-tecnico">Técnico</span></div>
+        <div class="member-row"><div class="member-av">NM</div><div class="member-detail"><div class="member-name">Nuvia Martez</div><div class="member-cargo">Investigadora / Docente</div></div><span class="role-pill role-tecnico">Técnico</span></div>
+      </div>
+    </div>
+
+    <!-- P2 UDELAS -->
+    <div class="socio-card">
+      <div class="socio-header">
+        <div class="socio-abbr">UDELAS</div>
+        <div class="socio-info">
+          <h3>Universidad Especializada de las Américas</h3>
+          <div class="socio-meta"><span class="country-badge">🇵🇦 Panamá</span><span class="partner-num">P2</span></div>
+        </div>
+      </div>
+      <div class="socio-members-preview">
+        <div class="members-count">3 miembros del equipo</div>
+        <div class="mini-avatars"><div class="mini-av">RM</div><div class="mini-av">JB</div><div class="mini-av">LT</div></div>
+      </div>
+      <button class="expand-btn" onclick="toggleMembers(this)">▼ Ver equipo</button>
+      <div class="members-list">
+        <div class="member-row"><div class="member-av">RM</div><div class="member-detail"><div class="member-name">Rolando Moreno</div><div class="member-cargo">Coordinador</div></div><span class="role-pill role-coord">Contacto Ppal.</span></div>
+        <div class="member-row"><div class="member-av">JB</div><div class="member-detail"><div class="member-name">Joanna Bernal</div></div><span class="role-pill role-tecnico">Técnico</span></div>
+        <div class="member-row"><div class="member-av">SS</div><div class="member-detail"><div class="member-name">Sugely Serrano</div><div class="member-cargo">Directora sede Chiriquí</div></div><span class="role-pill role-tecnico">Técnico</span></div>
+        <div class="member-row"><div class="member-av">MA</div><div class="member-detail"><div class="member-name">Martiza Aguilar</div></div><span class="role-pill role-tecnico">Técnico</span></div>
+      </div>
+    </div>
+
+    <!-- P3 FCDS -->
+    <div class="socio-card">
+      <div class="socio-header">
+        <div class="socio-abbr">FCDS</div>
+        <div class="socio-info">
+          <h3>Fundación Ciudad del Saber</h3>
+          <div class="socio-meta"><span class="country-badge">🇵🇦 Panamá</span><span class="partner-num">P3</span></div>
+        </div>
+      </div>
+      <div class="socio-members-preview">
+        <div class="members-count">3 miembros del equipo</div>
+        <div class="mini-avatars"><div class="mini-av">LL</div><div class="mini-av">EC</div><div class="mini-av">CD</div></div>
+      </div>
+      <button class="expand-btn" onclick="toggleMembers(this)">▼ Ver equipo</button>
+      <div class="members-list">
+        <div class="member-row"><div class="member-av">LL</div><div class="member-detail"><div class="member-name">Larú Linares</div><div class="member-cargo">LEAR - Administradora</div></div><span class="role-pill role-coord">Contacto Ppal.</span></div>
+        <div class="member-row"><div class="member-av">EC</div><div class="member-detail"><div class="member-name">Eysel Chong</div><div class="member-cargo">Investigadora</div></div><span class="role-pill role-tecnico">Técnico</span></div>
+        <div class="member-row"><div class="member-av">CD</div><div class="member-detail"><div class="member-name">Carla Donalicio</div></div><span class="role-pill role-tecnico">Técnico</span></div>
+      </div>
+    </div>
+
+    <!-- P4 TEC -->
+    <div class="socio-card">
+      <div class="socio-header">
+        <div class="socio-abbr">TEC</div>
+        <div class="socio-info">
+          <h3>Instituto Tecnológico de Costa Rica</h3>
+          <div class="socio-meta"><span class="country-badge">🇨🇷 Costa Rica</span><span class="partner-num">P4</span></div>
+        </div>
+      </div>
+      <div class="socio-members-preview">
+        <div class="members-count">3 miembros del equipo</div>
+        <div class="mini-avatars"><div class="mini-av">AR</div><div class="mini-av">RS</div><div class="mini-av">DS</div><div class="mini-av">PU</div></div>
+      </div>
+      <button class="expand-btn" onclick="toggleMembers(this)">▼ Ver equipo</button>
+      <div class="members-list">
+        <div class="member-row"><div class="member-av">AR</div><div class="member-detail"><div class="member-name">Ana Cristina Rivas</div><div class="member-cargo">Directora</div></div><span class="role-pill role-coord">Contacto Ppal.</span></div>
+        <div class="member-row"><div class="member-av">RS</div><div class="member-detail"><div class="member-name">Ricardo Salazar Díaz</div><div class="member-cargo">Docente - Escuela de Agronegocios</div></div><span class="role-pill role-tecnico">Técnico</span></div>
+        <div class="member-row"><div class="member-av">DS</div><div class="member-detail"><div class="member-name">Diana Segura Sojo</div><div class="member-cargo">Encargada Programa Resiliencia Indígena</div></div><span class="role-pill role-tecnico">Técnico</span></div>
+      </div>
+    </div>
+
+    <!-- P5 UNED -->
+    <div class="socio-card">
+      <div class="socio-header">
+        <div class="socio-abbr">UNED</div>
+        <div class="socio-info">
+          <h3>Universidad Estatal a Distancia</h3>
+          <div class="socio-meta"><span class="country-badge">🇨🇷 Costa Rica</span><span class="partner-num">P5</span></div>
+        </div>
+      </div>
+      <div class="socio-members-preview">
+        <div class="members-count">3 miembros del equipo</div>
+        <div class="mini-avatars"><div class="mini-av">AB</div><div class="mini-av">ZE</div><div class="mini-av">ES</div><div class="mini-av">MR</div></div>
+      </div>
+      <button class="expand-btn" onclick="toggleMembers(this)">▼ Ver equipo</button>
+      <div class="members-list">
+        <div class="member-row"><div class="member-av">AB</div><div class="member-detail"><div class="member-name">Adrián Bonilla Mora</div><div class="member-cargo">Docente-investigador</div></div><span class="role-pill role-coord">Técnico</span></div>
+        <div class="member-row"><div class="member-av">ZE</div><div class="member-detail"><div class="member-name">Zailyn Espinoza Alvarado</div><div class="member-cargo">Docente-investigadora</div></div><span class="role-pill role-tecnico">Técnico</span></div>
+        <div class="member-row"><div class="member-av">ES</div><div class="member-detail"><div class="member-name">Ever Humberto Shion Salas</div><div class="member-cargo">Investigador en territorios</div></div><span class="role-pill role-tecnico">Técnico</span></div>
+      </div>
+    </div>
+
+    <!-- P6 UES -->
+    <div class="socio-card">
+      <div class="socio-header">
+        <div class="socio-abbr">UES</div>
+        <div class="socio-info">
+          <h3>Universidad de El Salvador</h3>
+          <div class="socio-meta"><span class="country-badge">🇸🇻 El Salvador</span><span class="partner-num">P6</span></div>
+        </div>
+      </div>
+      <div class="socio-members-preview">
+        <div class="members-count">2 miembros del equipo</div>
+        <div class="mini-avatars"><div class="mini-av">DR</div><div class="mini-av">MB</div><div class="mini-av">WF</div></div>
+      </div>
+      <button class="expand-btn" onclick="toggleMembers(this)">▼ Ver equipo</button>
+      <div class="members-list">
+        <div class="member-row"><div class="member-av">DR</div><div class="member-detail"><div class="member-name">Deysi Renderos de Molina</div><div class="member-cargo">Docente Fac. Ciencias Económicas </div></div><span class="role-pill role-coord">Contacto Ppal.</span></div>
+        <div class="member-row"><div class="member-av">WF</div><div class="member-detail"><div class="member-name">Walter Fagoaga Ortega</div><div class="member-cargo">Director Centro Investigación Multidisciplinario</div></div><span class="role-pill role-tecnico">Técnico</span></div>
+      </div>
+    </div>
+
+    <!-- P7 USO -->
+    <div class="socio-card">
+      <div class="socio-header">
+        <div class="socio-abbr">USO</div>
+        <div class="socio-info">
+          <h3>Universidad de Sonsonate</h3>
+          <div class="socio-meta"><span class="country-badge">🇸🇻 El Salvador</span><span class="partner-num">P7</span></div>
+        </div>
+      </div>
+      <div class="socio-members-preview">
+        <div class="members-count">3 miembros del equipo</div>
+        <div class="mini-avatars"><div class="mini-av">NH</div><div class="mini-av">KE</div><div class="mini-av">RC</div></div>
+      </div>
+      <button class="expand-btn" onclick="toggleMembers(this)">▼ Ver equipo</button>
+      <div class="members-list">
+        <div class="member-row"><div class="member-av">NH</div><div class="member-detail"><div class="member-name">Nery Herrera Pineda</div><div class="member-cargo">Director </div></div><span class="role-pill role-coord">Contacto Ppal.</span></div>
+        <div class="member-row"><div class="member-av">KE</div><div class="member-detail"><div class="member-name">Karen Escalante de Guardado</div><div class="member-cargo">Docente-investigadora</div></div><span class="role-pill role-tecnico">Técnico</span></div>
+        <div class="member-row"><div class="member-av">RC</div><div class="member-detail"><div class="member-name">Rodrigo Centeno Flores</div><div class="member-cargo">Docente-investigador</div></div><span class="role-pill role-tecnico">Técnico</span></div>
+      </div>
+    </div>
+
+    <!-- P8 UGAL -->
+    <div class="socio-card">
+      <div class="socio-header">
+        <div class="socio-abbr">UGAL</div>
+        <div class="socio-info">
+          <h3>Universidad Galileo</h3>
+          <div class="socio-meta"><span class="country-badge">🇬🇹 Guatemala</span><span class="partner-num">P8</span></div>
+        </div>
+      </div>
+      <div class="socio-members-preview">
+        <div class="members-count">4 miembros del equipo</div>
+        <div class="mini-avatars"><div class="mini-av">OR</div><div class="mini-av">AM</div><div class="mini-av">CA</div><div class="mini-av">JC</div></div>
+      </div>
+      <button class="expand-btn" onclick="toggleMembers(this)">▼ Ver equipo</button>
+      <div class="members-list">
+        <div class="member-row"><div class="member-av">OR</div><div class="member-detail"><div class="member-name">Oscar Rodas</div><div class="member-cargo">Co-Director </div></div><span class="role-pill role-coord">Contacto Ppal.</span></div>
+        <div class="member-row"><div class="member-av">AM</div><div class="member-detail"><div class="member-name">Alberto Marroquín</div><div class="member-cargo">Co-Director </div></div><span class="role-pill role-tecnico">Técnico</span></div>
+        <div class="member-row"><div class="member-av">CA</div><div class="member-detail"><div class="member-name">Carlos Aguilar</div></div><span class="role-pill role-tecnico">Técnico</span></div>
+        <div class="member-row"><div class="member-av">JC</div><div class="member-detail"><div class="member-name">Juan Colmenares</div></div><span class="role-pill role-tecnico">Técnico</span></div>
+      </div>
+    </div>
+
+    <!-- P9 URL -->
+    <div class="socio-card">
+      <div class="socio-header">
+        <div class="socio-abbr">URL</div>
+        <div class="socio-info">
+          <h3>Universidad Rafael Landívar</h3>
+          <div class="socio-meta"><span class="country-badge">🇬🇹 Guatemala</span><span class="partner-num">P9</span></div>
+        </div>
+      </div>
+      <div class="socio-members-preview">
+        <div class="members-count">3 miembros del equipo</div>
+        <div class="mini-avatars"><div class="mini-av">PM</div><div class="mini-av">OM</div><div class="mini-av">SC</div></div>
+      </div>
+      <button class="expand-btn" onclick="toggleMembers(this)">▼ Ver equipo</button>
+      <div class="members-list">
+        <div class="member-row"><div class="member-av">PM</div><div class="member-detail"><div class="member-name">Publio Monterroso</div><div class="member-cargo">Director Programa Emprendedores</div></div><span class="role-pill role-coord">Contacto Ppal.</span></div>
+        <div class="member-row"><div class="member-av">OM</div><div class="member-detail"><div class="member-name">Ovidio Morales</div><div class="member-cargo">Director Centro Científico </div></div><span class="role-pill role-tecnico">Técnico</span></div>
+        <div class="member-row"><div class="member-av">SC</div><div class="member-detail"><div class="member-name">Stephania Calderón</div><div class="member-cargo">Líder Interno </div></div><span class="role-pill role-rl">Rel. Int.</span></div>
+      </div>
+    </div>
+
+    <!-- P10 ELTE -->
+    <div class="socio-card">
+      <div class="socio-header">
+        <div class="socio-abbr">ELTE</div>
+        <div class="socio-info">
+          <h3>Eötvös Loránd University</h3>
+          <div class="socio-meta"><span class="country-badge">🇭🇺 Hungría</span><span class="partner-num">P10</span></div>
+        </div>
+      </div>
+      <div class="socio-members-preview">
+        <div class="members-count">2 miembros del equipo</div>
+        <div class="mini-avatars"><div class="mini-av">MG</div><div class="mini-av">BH</div><div class="mini-av">AZ</div><div class="mini-av">SP</div></div>
+      </div>
+      <button class="expand-btn" onclick="toggleMembers(this)">▼ Ver equipo</button>
+      <div class="members-list">
+        <div class="member-row"><div class="member-av">MG</div><div class="member-detail"><div class="member-name">Miklos Gabor</div><div class="member-cargo">Coordinador</div></div><span class="role-pill role-coord">Contacto Ppal.</span></div>
+        <div class="member-row"><div class="member-av">BH</div><div class="member-detail"><div class="member-name">Barbara Hegyi</div><div class="member-cargo">Docente</div></div><span class="role-pill role-tecnico">Técnico</span></div>
+      </div>
+    </div>
+
+    <!-- P11 UPM -->
+    <div class="socio-card">
+      <div class="socio-header">
+        <div class="socio-abbr">UPM</div>
+        <div class="socio-info">
+          <h3>Universidad Politécnica de Madrid</h3>
+          <div class="socio-meta"><span class="country-badge">🇪🇸 España</span><span class="partner-num">P11</span></div>
+        </div>
+      </div>
+      <div class="socio-members-preview">
+        <div class="members-count">2 miembros del equipo</div>
+        <div class="mini-avatars"><div class="mini-av">AT</div><div class="mini-av">SR</div><div class="mini-av">MM</div></div>
+      </div>
+      <button class="expand-btn" onclick="toggleMembers(this)">▼ Ver equipo</button>
+      <div class="members-list">
+        <div class="member-row"><div class="member-av">AT</div><div class="member-detail"><div class="member-name">Alberto Tejero López</div><div class="member-cargo">Docente</div></div><span class="role-pill role-coord">Contacto Ppal.</span></div>
+        <div class="member-row"><div class="member-av">MM</div><div class="member-detail"><div class="member-name">María del Rosario Moya Durán</div><div class="member-cargo">Docente</div></div><span class="role-pill role-admin">Admin</span></div>
+      </div>
+    </div>
+
+    <!-- P12 ULL -->
+    <div class="socio-card">
+      <div class="socio-header">
+        <div class="socio-abbr">ULL</div>
+        <div class="socio-info">
+          <h3>Université Lumière Lyon 2</h3>
+          <div class="socio-meta"><span class="country-badge">🇫🇷 Francia</span><span class="partner-num">P12</span></div>
+        </div>
+      </div>
+      <div class="socio-members-preview">
+        <div class="members-count">2 miembros del equipo</div>
+        <div class="mini-avatars"><div class="mini-av">OY</div><div class="mini-av">SA</div><div class="mini-av">MN</div><div class="mini-av">NI</div></div>
+      </div>
+      <button class="expand-btn" onclick="toggleMembers(this)">▼ Ver equipo</button>
+      <div class="members-list">
+        <div class="member-row"><div class="member-av">OY</div><div class="member-detail"><div class="member-name">Ouzrout Yacine</div><div class="member-cargo">Docente</div></div><span class="role-pill role-coord">Contacto Ppal.</span></div>
+        <div class="member-row"><div class="member-av">NI</div><div class="member-detail"><div class="member-name">Negrini Inès</div><div class="member-cargo">Docente</div></div><span class="role-pill role-tecnico">Técnico</span></div>
+      </div>
+    </div>
+
+  </div><!-- /socios-grid -->
+</section>
+
+<!-- EQUIPO COORDINADOR UTP -->
+<section class="coord-section">
+  <span class="section-label">Investigadores Principales</span>
+  <h2 class="section-title">Equipo Coordinador — UTP</h2>
+  <p class="section-sub">La Universidad Tecnológica de Panamá lidera la coordinación general del proyecto FIDUCA.</p>
+  <div class="coord-grid">
+    <div class="coord-card"><div class="coord-avatar av-coord">MS</div><h4>Mariela Salgado C.</h4><span class="role-tag">Coordinadora Principal</span><span class="inst-tag">Universidad Tecnológica de Panamá</span><a href="mailto:mariela.salgado@utp.ac.pa" class="email-link">mariela.salgado@utp.ac.pa</a></div>
+    <div class="coord-card"><div class="coord-avatar av-tech">NM</div><h4>Nuvia Martez</h4><span class="role-tag">Investigadora / Técnico</span><span class="inst-tag">Universidad Tecnológica de Panamá</span><a href="mailto:nuvia.martez@utp.ac.pa" class="email-link">nuvia.martez@utp.ac.pa</a></div>
+    <div class="coord-card"><div class="coord-avatar av-tech">NT</div><h4>Nathalia Tejedor</h4><span class="role-tag">Investigadora / Técnico</span><span class="inst-tag">Universidad Tecnológica de Panamá</span><a href="mailto:nathalia.tejedor@utp.ac.pa" class="email-link">nathalia.tejedor@utp.ac.pa</a></div>
+    <div class="coord-card"><div class="coord-avatar av-admin">LR</div><h4>Lorena Ramos</h4><span class="role-tag">Administradora</span><span class="inst-tag">Universidad Tecnológica de Panamá</span><a href="mailto:lorena.ramos@utp.ac.pa" class="email-link">lorena.ramos@utp.ac.pa</a></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-about">
+      <h3>Proyecto FIDUCA</h3>
+      <p>Proyecto de investigación financiado por la Unión Europea a través del programa Erasmus+ (2026–2028). El contenido de esta página es responsabilidad exclusiva del consorcio y no representa la posición oficial de la UE.</p>
+      <div style="margin-top:16px;">
+        <span style="color:var(--gold);">★ ★ ★ ★ ★ ★</span>
+        <span style="color:rgba(255,255,255,0.3); margin-left:10px; font-size:12px;">Cofinanciado por la UE</span>
+      </div>
+    </div>
+    <div class="footer-col"><h4>Proyecto</h4><ul><li><a href="#">Acerca de</a></li><li><a href="#">Objetivos</a></li><li><a href="#">Metodología</a></li><li><a href="equipo.html">Socios</a></li></ul></div>
+    <div class="footer-col"><h4>Recursos</h4><ul><li><a href="#">Publicaciones</a></li><li><a href="#">Informes</a></li><li><a href="#">Materiales</a></li><li><a href="#">Repositorio</a></li></ul></div>
+    <div class="footer-col"><h4>Legal</h4><ul><li><a href="#">Política de privacidad</a></li><li><a href="#">Aviso legal</a></li><li><a href="#">Accesibilidad</a></li><li><a href="#">Cookies</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 FIDUCA Consortium · Grant Agreement 101094522</span>
+  </div>
+</footer>
+  </div>
+
+<script src="Estilos/scripts.js"></script>
+</body>
+</html>

@@ -5,9 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FIDUCA</title>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&display=swap" rel="stylesheet"><link rel="stylesheet" href="Estilos/styles.css">
+<script src="Estilos/scripts.js"></script>
 </head>
 <body>
-
+  <div class="modal-overlay" id="modal-overlay" onclick="closeModal()">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modal-content"></div>
+  </div>
+</div>
+<div class="page-wrapper">
 <!-- NAVBAR -->
 <nav>
   <div class="logo-wrap">
@@ -16,11 +23,11 @@
   </div>
   <ul class="nav-links">
     <li><a href="#">Proyecto</a></li>
-    <li><a href="#">Objetivos</a></li>
+<li><a href="#objetivos">Objetivos</a></li>
     <li><a href="#">Resultados</a></li>
-    <li><a href="#">Socios</a></li>
-    <li><a href="#">Noticias</a></li>
-    <li><a href="#">Equipo</a></li>
+    <li><a href="equipo.html">Socios</a></li>
+    <li><a href="noticias.html">Noticias</a></li>
+    <li><a href="#">Galeria</a></li>
     <li><a href="#" class="nav-cta">Contacto</a></li>
   </ul>
   </div>
@@ -58,19 +65,18 @@ Universidades para el Desarrollo <em> Sostenible e Inclusivo </em><br>en la Regi
 <div class="partners">
   <span class="partners-label">Socios</span>
   <div class="partners-list">
-    <span class="partner-tag">UTP</span>
-    <span class="partner-tag">UDELAS</span>
-    <span class="partner-tag">FCDS</span>
-    <span class="partner-tag">TEC</span>
-    <span class="partner-tag">UNED</span>
-    <span class="partner-tag">UGAL</span>
-    <span class="partner-tag">URL</span>
-    <span class="partner-tag">UES</span>
-    <span class="partner-tag">USO</span>
-    <span class="partner-tag">ULL</span>
-    <span class="partner-tag">URL</span>
-    <span class="partner-tag">UPM</span>
-    <span class="partner-tag">ELTE</span>
+  <a class="partner-tag" href="https://utp.ac.pa/" target="_blank" title="Universidad Tecnológica de Panamá">UTP</a>
+  <a class="partner-tag" href="https://www.udelas.ac.pa/" target="_blank" title="Universidad Especializada de las Américas">UDELAS</a>
+  <a class="partner-tag" href="https://ciudaddelsaber.org/" target="_blank" title="Fundación Ciudad del Saber">FCDS</a>
+  <a class="partner-tag" href="https://www.tec.ac.cr/" target="_blank" title="Instituto Tecnológico de Costa Rica">TEC</a>
+  <a class="partner-tag" href="https://www.uned.ac.cr/" target="_blank" title="Universidad Estatal a Distancia">UNED</a>
+  <a class="partner-tag" href="https://www.galileo.edu/" target="_blank" title="Universidad Galileo">UGAL</a>
+  <a class="partner-tag" href="https://principal.url.edu.gt/" target="_blank" title="Universidad Rafael Landívar">URL</a>
+  <a class="partner-tag" href="https://www.ues.edu.sv/" target="_blank" title="Universidad de El Salvador">UES</a>
+  <a class="partner-tag" href="https://www.usonsonate.edu.sv/" target="_blank" title="Universidad de Sonsonate">USO</a>
+  <a class="partner-tag" href="https://www.univ-lille.fr/" target="_blank" title="Université de Lille">ULL</a>
+  <a class="partner-tag" href="https://www.upm.es/" target="_blank" title="Universidad Politécnica de Madrid">UPM</a>
+  <a class="partner-tag" href="https://www.elte.hu/en" target="_blank" title="Eötvös Loránd University">ELTE</a>
   </div>
 </div>
 
@@ -90,32 +96,32 @@ indígenas con acciones enfocadas
 en el Emprendimiento Juvenil.</p>
     </div>
     <div class="about-pillars">
-      <div class="pillar">
-        <span class="pillar-icon">🔬</span>
-        <h4>Investigación</h4>
-        <p>Análisis longitudinal con grupos de control en 6 países.</p>
+    <div class="pillar" onclick="openModal('Problemática')">
+        <span class="pillar-icon">💡</span>
+        <h4>Problemática</h4>
+        <p>Necesidad de incluir la cultura empresarial y fomento al emprendimiento</p>
       </div>
-      <div class="pillar">
-        <span class="pillar-icon">🎓</span>
-        <h4>Formación</h4>
-        <p>Programas de capacitación docente adaptados y escalables.</p>
+    <div class="pillar" onclick="openModal('Impacto')">
+        <span class="pillar-icon">🤝</span>
+        <h4>Impacto</h4>
+        <p>Para la región Centroamericana, Universidades, Socios y Comunidades Indígenas</p>
       </div>
-      <div class="pillar">
-        <span class="pillar-icon">♀️</span>
-        <h4>Inclusión</h4>
-        <p>Foco especial en género y colectivos subrepresentados.</p>
+    <div class="pillar" onclick="openModal('Emprendimiento')">
+        <span class="pillar-icon">🚀</span>
+        <h4>Emprendimiento</h4>
+        <p>El proyecto promueve el emprendimiento juvenil en comunidades indígenas mediante la colaboración entre universidades, estudiantes y organizaciones locales</p>
       </div>
-      <div class="pillar">
+    <div class="pillar" onclick="openModal('Difusion')">
         <span class="pillar-icon">🌐</span>
-        <h4>Diseminación</h4>
-        <p>Recursos abiertos y policy briefs para instituciones.</p>
+        <h4>Difusión</h4>
+        <p>El proyecto contempla diversas estrategias para compartir los resultados obtenidos y ampliar su impacto en la región centroamericana</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- OBJETIVOS -->
-<section class="objectives-section">
+<section class="objectives-section" id="objetivos">
   <span class="section-label">Líneas de Trabajo</span>
   <h2 class="section-title">Objetivos Específicos</h2>
   <div class="objectives-grid">
@@ -154,23 +160,23 @@ futuros.</p>
       <span class="section-label">Actualidad</span>
       <h2 class="section-title">Últimas Noticias</h2>
     </div>
-    <a href="#" class="link-arrow">Ver todas las noticias →</a>
+    <a href="noticias.html" class="link-arrow">Ver todas las noticias →</a>
   </div>
   <div class="news-grid">
-    <div class="news-card featured">
+    <a href="https://cinemi.utp.ac.pa/ver-noticias/utp-lidera-proyecto-internacional-fiduca-para-fortalecer-la-innovacion-y-la-investigacion" class="news-card featured" style="text-decoration:none; color:inherit;" target="_blank">      
       <div class="news-thumb">🔭</div>
       <div class="news-body">
         <span class="news-tag">Publicación</span>
-        <h3>Primer informe anual sobre brechas STEM en Europa meridional y del Este</h3>
-        <p>El consorcio publica hoy el informe diagnóstico del primer año, con datos de más de 8.000 estudiantes en 6 países. Los resultados muestran diferencias significativas de género y contexto socioeconómico.</p>
-        <span class="news-date">15 Feb 2025</span>
+        <h3>Noticia por parte de la UTP</h3>
+        <p>UTP lidera proyecto internacional FIDUCA para fortalecer la innovación y la investigación transdisciplinaria en Centroamérica</p>
+        <span class="news-date">11 de febrero 2026</span>
       </div>
-    </div>
+    </a>
     <div class="news-card">
       <div class="news-thumb" style="height:130px;font-size:40px;">🏛️</div>
       <div class="news-body">
-        <span class="news-tag">Evento</span>
-        <h3>Conferencia anual en Bruselas</h3>
+        <span class="news-tag">Nota</span>
+        <h3>Nota del TEC</h3>
         <p>Los socios del proyecto se reúnen para presentar avances y debatir próximas fases de pilotaje.</p>
         <span class="news-date">03 Feb 2025</span>
       </div>
@@ -207,16 +213,16 @@ futuros.</p>
       <span class="institution">Universidad Tecnológica de Panamá</span>
     </div>
     <div class="team-card">
-      <div class="team-avatar">AK</div>
-      <h4>Dr. Anna Kowalski</h4>
-      <span class="role">Responsable Datos</span>
-      <span class="institution">Warsaw University of Tech.</span>
+      <div class="team-avatar">NT</div>
+      <h4>Dra. Nathalia Tejedor</h4>
+      <span class="role">Investigadora</span>
+      <span class="institution">Universidad Tecnológica de Panamá</span>
     </div>
     <div class="team-card">
-      <div class="team-avatar">MS</div>
-      <h4>Prof. Marco Santini</h4>
-      <span class="role">Experto en Curriculum</span>
-      <span class="institution">Università di Bologna</span>
+      <div class="team-avatar">LR</div>
+      <h4>Dra. Lorena Ramos</h4>
+      <span class="role">Administradora</span>
+      <span class="institution">Universidad Tecnológica de Panamá</span>
     </div>
   </div>
 </section>
@@ -225,8 +231,8 @@ futuros.</p>
 <footer>
   <div class="footer-top">
     <div class="footer-about">
-      <h3>STEMBridge EU</h3>
-      <p>Proyecto de investigación financiado por la Unión Europea a través del programa Horizon Europe (2024–2027). El contenido de esta página es responsabilidad exclusiva del consorcio y no representa la posición oficial de la UE.</p>
+      <h3>Proyecto FIDUCA</h3>
+      <p>Proyecto de investigación financiado por la Unión Europea a través del programa Erasmus+ (2026–2028). El contenido de esta página es responsabilidad exclusiva del consorcio y no representa la posición oficial de la UE.</p>
       <div style="margin-top:16px;" class="eu-flag">
         <span>★ ★ ★ ★ ★ ★</span>
         <span style="color:rgba(255,255,255,0.3); margin-left:10px; font-size:12px;">Cofinanciado por la UE</span>
@@ -238,13 +244,13 @@ futuros.</p>
         <li><a href="#">Acerca de</a></li>
         <li><a href="#">Objetivos</a></li>
         <li><a href="#">Metodología</a></li>
-        <li><a href="#">Socios</a></li>
+        <li><a href="equipo.html">Socios</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Recursos</h4>
       <ul>
-        <li><a href="#">Publicaciones</a></li>
+        <li><a href="noticias.html">Publicaciones</a></li>
         <li><a href="#">Informes</a></li>
         <li><a href="#">Materiales</a></li>
         <li><a href="#">Repositorio</a></li>
@@ -262,9 +268,11 @@ futuros.</p>
   </div>
   <div class="footer-bottom">
     <span>© 2025 FIDUCA Consortium · Grant Agreement 101094522</span>
-    <span>Diseño: STEMBridge Communications Team</span>
   </div>
 </footer>
+</div>
+
+<script src="Estilos/scripts.js"></script>
 
 </body>
 </html>
