@@ -128,7 +128,7 @@ nav {
 .hero {
   min-height: 560px;
   display: grid;
-  grid-template-columns: 1fr 420px;
+  grid-template-columns: 1fr 220px;
 }
 .hero-grid-bg {
   position: absolute; inset: 0;
@@ -175,15 +175,6 @@ nav {
 }
 .btn-outline:hover { border-color: rgba(255,255,255,0.6); color: white; }
 
-/* Panel derecho del hero */
-.hero-visual {
-  background: rgba(65,9,56,0.4);
-  border-left: 1px solid rgba(255,255,255,0.06);
-  display: flex; flex-direction: column;
-  justify-content: center; align-items: center;
-  padding: 60px 40px; gap: 20px;
-  position: relative; z-index: 2;
-}
 .stat-card {
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.1);
@@ -490,7 +481,6 @@ body.page-enter { animation: pageFadeIn .4s ease forwards; }
   nav { padding: 0 20px; }
   .nav-links { display: none; }
   .hero { grid-template-columns: 1fr; }
-  .hero-visual { display: none; }
   .hero-content,
   .section,
   .objectives-section,
@@ -534,3 +524,61 @@ body.page-enter { animation: pageFadeIn .4s ease forwards; }
 }
 
 
+/* ── HERO LOGOS CARRUSEL ── */
+.hero {
+  grid-template-columns: 1fr;  
+}
+
+.hero-logos {
+  margin-top: 40px;
+  overflow: hidden;
+  position: relative;
+}
+
+.hero-logos-label {
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 14px;
+  display: block;
+}
+
+.logos-track-wrap {
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+}
+
+.logos-track {
+  display: flex;
+  flex-direction: row; 
+  gap: 32px;
+  animation: scrollLogos 20s linear infinite;
+  width: max-content;
+  align-items: center;
+}
+
+.logos-track img {
+  height: 65px;
+  width: auto;
+  object-fit: contain;
+  opacity: 0.85;
+  transition: opacity 0.3s, transform 0.3s;
+  flex-shrink: 0;
+}
+
+.logos-track img:hover {
+  opacity: 1;
+  transform: scale(1.08);
+}
+
+@keyframes scrollLogos {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }  
+}
