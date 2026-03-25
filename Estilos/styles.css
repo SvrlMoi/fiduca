@@ -38,7 +38,9 @@ nav {
   border-bottom: 1px solid var(--line);
   position: sticky;
   top: 0;
-  z-index: 100;
+  left: 0;
+  right: 0;
+  z-index: 9999;
   box-shadow: 0 2px 20px rgba(0,0,0,0.06);
 }
 .logo-wrap {
@@ -581,4 +583,30 @@ body.page-enter { animation: pageFadeIn .4s ease forwards; }
 @keyframes scrollLogos {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }  
+}
+.obj-general {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,204,0,0.3);
+  border-radius: 12px;
+  padding: 36px 40px;
+  margin: 36px 0 40px;
+  display: flex;
+  align-items: flex-start;
+  gap: 28px;
+}
+.obj-general-icon { font-size: 36px; flex-shrink: 0; margin-top: 2px; }
+.obj-general-tag {
+  font-size: 10px; font-weight: 700; color: var(--gold);
+  text-transform: uppercase; letter-spacing: 2px;
+  margin-bottom: 8px; display: block;
+}
+.obj-general p { color: rgba(255,255,255,0.9); font-size: 15.5px; line-height: 1.75; margin: 0; }
+
+.obj-divider {
+  display: flex; align-items: center; gap: 16px; margin-bottom: 32px;
+}
+.obj-divider-line { flex: 1; height: 1px; background: rgba(255,255,255,0.1); }
+.obj-divider-label {
+  font-size: 10px; color: rgba(255,255,255,0.4);
+  text-transform: uppercase; letter-spacing: 2.5px; white-space: nowrap;
 }
