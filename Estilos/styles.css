@@ -43,7 +43,7 @@ nav {
   z-index: 9999;
   box-shadow: 0 2px 20px rgba(0,0,0,0.06);
 }
-.logo-wrap {
+rap {
   display: flex;
   align-items: center;
   gap: 20px;
@@ -609,4 +609,8 @@ body.page-enter { animation: pageFadeIn .4s ease forwards; }
 .obj-divider-label {
   font-size: 10px; color: rgba(255,255,255,0.4);
   text-transform: uppercase; letter-spacing: 2.5px; white-space: nowrap;
+}
+.activo {
+  border-bottom: 2px solid purple;
+  padding-bottom: 4px;
 }
