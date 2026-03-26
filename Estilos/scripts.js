@@ -125,6 +125,7 @@ function toggleMembers(btn) {
     btn.textContent = '▲ Ocultar equipo';
   }
 }
+
 function filtrar(btn, categoria) {
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
@@ -135,6 +136,16 @@ function filtrar(btn, categoria) {
   });
 }
 
+/* ── SCROLL REVEAL ── */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target); // se anima una sola vez
+    }
+  });
+}, { threshold: 0.12 });
 
-
-
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+});

@@ -98,7 +98,7 @@ rap {
 /* Colores base de cada sección */
 .hero               { background: var(--navy); }
 .objectives-section { background: var(--green); }
-.team-section       { background: #0e3d3b; }
+.team-section       { background: var(--white) }
 .contact-section    { background: var(--purple); }
 
 .hero::before {
@@ -112,9 +112,7 @@ rap {
     radial-gradient(ellipse 40% 40% at 80% 20%, rgba(0,77,28,0.4)   0%, transparent 60%);
 }
 .team-section::before {
-  background:
-    radial-gradient(ellipse 60% 80% at 20% 50%, rgba(69,210,197,0.55) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 40% at 80% 20%, rgba(25,122,116,0.4)  0%, transparent 60%);
+  background: none;
 }
 .contact-section::before {
   background:
@@ -220,7 +218,7 @@ rap {
 .team-section .section-title,
 .contact-section .section-title { color: var(--white); }
 .objectives-section .section-label { color: var(--gold); }
-.team-section .section-label       { color: rgba(255,255,255,0.6); }
+.team-section .section-label       { color: rgb(43, 160, 173); }
 .contact-section .section-label    { color: var(--gold); opacity: 0.8; }
 .team-section .section-title       { color: var(--teal); }
 
@@ -281,11 +279,11 @@ rap {
 .team-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; margin-top: 50px; }
 .team-card {
   text-align: center; padding: 32px 20px;
-  border: 1px solid rgba(255,255,255,0.15); border-radius: 10px;
+  border: 1px solid rgb(121, 184, 205); border-radius: 10px;
   background: rgba(255,255,255,0.93);
   transition: box-shadow .2s, border-color .2s;
 }
-.team-card:hover { border-color: rgba(255,255,255,0.5); box-shadow: 0 6px 30px rgba(0,0,0,0.15); }
+.team-card:hover { border-color: var(--teal); box-shadow: 0 6px 30px rgba(0,0,0,0.15); }
 .team-avatar {
   width: 70px; height: 70px; border-radius: 50%;
   margin: 0 auto 16px; display: flex; align-items: center; justify-content: center;
@@ -609,4 +607,19 @@ body.page-exit  { opacity: 0; transition: opacity .2s ease; }
 .activo {
   border-bottom: 2px solid purple;
   padding-bottom: 4px;
+}
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.from-left {
+  transform: translateX(-50px);
+}
+.reveal.from-right {
+  transform: translateX(50px);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translate(0, 0);
 }
