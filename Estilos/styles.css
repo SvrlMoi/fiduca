@@ -42,22 +42,42 @@ nav {
   right: 0;
   z-index: 9999;
   box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+  min-height: 77px;
 }
-rap {
+ 
+.logo-wrap {
   display: flex;
   align-items: center;
-  gap: 20px;
-  padding: 14px 0;
+  gap: 16px;
+  padding: 10px 0;
+  flex-shrink: 0;           /* Evita que los logos se compriman */
 }
-.nav-links { display: flex; gap: 32px; list-style: none; }
+ 
+.logo-wrap img {
+  height: 60px;             /* Ligeramente más pequeño para dar espacio */
+  width: auto;
+  flex-shrink: 0;
+}
+ 
+.nav-links {
+  display: flex;
+  gap: 24px;                /* Reducido de 32px para que quepan más links */
+  list-style: none;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+ 
 .nav-links a {
   text-decoration: none;
   color: var(--slate);
-  font-size: 14px;
+  font-size: 13.5px;        /* Ligeramente más pequeño para adaptarse */
+  font-weight: 600;
   transition: color .2s;
   position: relative;
   padding-bottom: 3px;
+  white-space: nowrap;      /* Evita que los links se rompan en 2 líneas */
 }
+ 
 .nav-links a::after {
   content: '';
   position: absolute;
@@ -66,34 +86,110 @@ rap {
   background: var(--purple);
   transition: width .25s;
 }
-.nav-links a:hover { color: var(--purple); }
-.nav-links a:hover::after { width: 100%; }
+ 
+.nav-links a:hover            { color: var(--purple); }
+.nav-links a:hover::after     { width: 100%; }
+ 
 .nav-cta {
   background: var(--purple);
   color: var(--white) !important;
-  padding: 8px 20px;
+  padding: 8px 18px;
   border-radius: 4px;
-  font-weight: 600 !important;
+  font-weight: 700 !important;
 }
-.nav-cta:hover { background: var(--gold) !important; }
-.nav-cta::after { display: none !important; }
-
-.hero,
-.objectives-section,
-.team-section,
-.contact-section {
-  position: relative;
-  overflow: hidden;
+.nav-cta:hover     { background: var(--gold) !important; }
+.nav-cta::after    { display: none !important; }
+ 
+/* ── HAMBURGER BUTTON (oculto en desktop) ── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px; height: 40px;
+  background: none; border: none;
+  cursor: pointer; padding: 6px;
+  border-radius: 6px;
+  transition: background .2s;
 }
-.hero::before,
-.objectives-section::before,
-.team-section::before,
-.contact-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
+.nav-hamburger:hover { background: var(--light); }
+.nav-hamburger span {
+  display: block;
+  width: 22px; height: 2px;
+  background: var(--navy);
+  border-radius: 2px;
+  transition: transform .3s, opacity .3s;
 }
+/* Animación a X cuando está abierto */
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+ 
+/* ── MOBILE MENU DRAWER ── */
+.nav-drawer {
+  display: none;                     /* Se convierte en block via JS */
+  position: fixed;
+  top: 77px; left: 0; right: 0;
+  background: var(--white);
+  border-bottom: 2px solid var(--line);
+  padding: 20px 24px 28px;
+  z-index: 9998;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  animation: drawerSlide .25s ease forwards;
+}
+.nav-drawer.open { display: block; }
+ 
+@keyframes drawerSlide {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+ 
+.nav-drawer ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+ 
+.nav-drawer ul li a {
+  display: block;
+  padding: 12px 16px;
+  color: var(--navy);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: background .2s, color .2s;
+}
+.nav-drawer ul li a:hover    { background: var(--light); color: var(--purple); }
+.nav-drawer ul li a.activo   { color: var(--purple); background: rgba(145,17,126,0.06); }
+.nav-drawer ul li a.nav-cta  {
+  background: var(--purple); color: var(--white);
+  text-align: center; margin-top: 8px;
+}
+.nav-drawer ul li a.nav-cta:hover { background: var(--gold); }
+ 
+/* ── BREAKPOINTS ── */
+ 
+/* Tablet: reducir padding y tamaño de logo */
+@media (max-width: 1024px) {
+  nav { padding: 0 28px; }
+  .logo-wrap img { height: 52px; }
+  .nav-links { gap: 18px; }
+  .nav-links a { font-size: 13px; }
+  .nav-cta { padding: 7px 14px; }
+}
+ 
+/* Mobile: ocultar links, mostrar hamburguesa */
+@media (max-width: 768px) {
+  nav { padding: 0 20px; min-height: 68px; }
+  .logo-wrap img { height: 44px; }
+  .logo-wrap { gap: 10px; }
+ 
+  .nav-links     { display: none; }   /* Links del navbar ocultos */
+  .nav-hamburger { display: flex; }   /* Botón hamburguesa visible */
+}
+ 
 
 /* Colores base de cada sección */
 .hero               { background: var(--navy); }
