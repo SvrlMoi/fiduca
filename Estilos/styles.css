@@ -186,8 +186,8 @@ nav {
   .logo-wrap img { height: 44px; }
   .logo-wrap { gap: 10px; }
  
-  .nav-links     { display: none; }   /* Links del navbar ocultos */
-  .nav-hamburger { display: flex; }   /* Botón hamburguesa visible */
+  .nav-links     { display: none; }  
+  .nav-hamburger { display: flex; }   
 }
  
 

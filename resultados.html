@@ -666,7 +666,6 @@ function switchTab(id, btn) {
   btn.classList.add('active');
   window.scrollTo({ top: document.querySelector('.tabs-bar').offsetTop - 80, behavior: 'smooth' });
 
-  // Re-observar los elementos del panel recién activado
   setTimeout(() => {
     document.querySelectorAll('#tab-' + id + ' .reveal:not(.visible)').forEach(el => {
       revealObserver.observe(el);
