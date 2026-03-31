@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto – FIDUCA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Estilos/styles.css">
+  <script src="Estilos/scripts.js"></script>
+</head>
+<body>
+<div class="page-wrapper">
+
+<!-- NAVBAR -->
+<nav>
+  <div class="logo-wrap">
+    <img src="Estilos/img/LOGO-UE-Full_color.png" alt="UE_logo" style="height:75px; width:auto;">
+    <img src="Estilos/img/logo-fiduca-full-color.png" alt="FIDUCA_logo" style="height:75px; width:auto;">
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html">Proyecto</a></li>
+    <li><a href="#">Recursos</a></li>
+    <li><a href="resultados.html">Resultados</a></li>
+    <li><a href="equipo.html">Socios</a></li>
+    <li><a href="noticias.html">Noticias</a></li>
+    <li><a href="#">Galeria</a></li>
+    <li><a href="contacto.html" class="nav-cta activo">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-inner">
+    <span class="section-label">Contáctanos</span>
+    <h1>¿Tienes alguna consulta sobre FIDUCA?</h1>
+    <p>Escríbenos y nuestro equipo coordinador te responderá a la brevedad.</p>
+  </div>
+</section>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="index.html">Inicio</a>
+  <span>›</span>
+  <span>Contacto</span>
+</div>
+
+<!-- CONTACTO PRINCIPAL -->
+<section class="contact-main-section">
+  <div class="contact-grid">
+
+    <!-- COLUMNA IZQUIERDA: info -->
+    <div class="contact-info-col">
+
+      <!-- Coordinadora -->
+      <div class="contact-person-card">
+        <div class="team-avatar" style="background:#197a74; width:70px; height:70px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:22px; font-weight:700; color:white; margin-bottom:16px;">MS</div>
+        <h3>Dra. Mariela Salgado C.</h3>
+        <span class="role-pill role-coord">Coordinadora del Proyecto</span>
+        <p style="margin-top:12px; color:var(--slate); font-size:14px; line-height:1.7;">Universidad Tecnológica de Panamá</p>
+      </div>
+
+      <!-- Datos de contacto -->
+      <div class="contact-details">
+        <h4>Información de Contacto</h4>
+        <div class="contact-item">
+          <span class="contact-icon">✉️</span>
+          <div>
+            <span class="contact-label">Correo electrónico</span>
+            <a href="mailto:fiduca.project@utp.ac.pa">fiduca.project@utp.ac.pa</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">📍</span>
+          <div>
+            <span class="contact-label">Ubicación</span>
+            <span>Universidad Tecnológica de Panamá<br>Ciudad de Panamá, Panamá</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Logos institucionales -->
+      <div class="contact-logos">
+        <h4>Instituciones</h4>
+        <div class="contact-logos-grid">
+          <img src="Estilos/img/utp_logo.png" alt="UTP" title="Universidad Tecnológica de Panamá">
+          <img src="Estilos/img/cinemi_logo.png" alt="CINEMI" title="CINEMI">
+          <img src="Estilos/img/cemcit_logo.png" alt="CEMCIT-AIP" title="CEMCIT-AIP">
+        </div>
+        <p class="contact-logos-note">Si los logos no cargan, asegúrate de tener los archivos <code>cinemi_logo.png</code> y <code>cemcit_logo.png</code> en <code>Estilos/img/</code></p>
+      </div>
+
+    </div>
+
+    <!-- COLUMNA DERECHA: formulario -->
+    <div class="contact-form-col">
+      <div class="contact-form-card">
+        <h3>Envíanos un mensaje</h3>
+        <p style="color:var(--slate); font-size:14px; margin-bottom:28px;">Completa el formulario y recibirás respuesta en menos de 48 horas hábiles.</p>
+
+        <!-- FORMSPREE: reemplaza TU_ID_DE_FORMSPREE -->
+        <form action="https://formspree.io/f/TU_ID_DE_FORMSPREE" method="POST" class="contact-form" id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nombre">Nombre completo *</label>
+              <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+            </div>
+            <div class="form-group">
+              <label for="institucion">Institución / Organización</label>
+              <input type="text" id="institucion" name="institucion" placeholder="Tu institución">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Correo electrónico *</label>
+            <input type="email" id="email" name="email" placeholder="tu@correo.com" required>
+          </div>
+          <div class="form-group">
+            <label for="asunto">Asunto *</label>
+            <select id="asunto" name="asunto" required>
+              <option value="" disabled selected>Selecciona un tema</option>
+              <option value="Información general">Información general sobre FIDUCA</option>
+              <option value="Colaboración">Propuesta de colaboración</option>
+              <option value="Prensa">Prensa y medios</option>
+              <option value="Recursos">Acceso a recursos y publicaciones</option>
+              <option value="Otro">Otro</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="mensaje">Mensaje *</label>
+            <textarea id="mensaje" name="mensaje" rows="5" placeholder="Escribe tu consulta aquí..." required></textarea>
+          </div>
+          <div class="form-group form-check">
+            <input type="checkbox" id="privacidad" name="privacidad" required>
+            <label for="privacidad">He leído y acepto la <a href="#">política de privacidad</a></label>
+          </div>
+          <!-- Campo honeypot anti-spam -->
+          <input type="text" name="_gotcha" style="display:none">
+          <input type="hidden" name="_subject" value="Nueva consulta desde fiduca.utp.ac.pa">
+
+          <button type="submit" class="btn-submit">Enviar mensaje →</button>
+          <div id="form-success" class="form-success" style="display:none">
+            ✅ ¡Mensaje enviado! Te responderemos pronto a <strong id="reply-email"></strong>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-about">
+      <h3><strong>Proyecto FIDUCA</strong></h3>
+      <p><strong>Proyecto de investigación cofinanciado por la Unión Europea a través del programa Erasmus+ (2026–2028).</strong></p>
+      <div style="margin-top:16px;" class="eu-flag">
+        <span><strong>★ ★ ★ ★ ★ ★</strong></span>
+        <span style="color:rgba(255,255,255,0.3); margin-left:10px; font-size:12px;"><strong>Cofinanciado por la UE</strong></span>
+      </div>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/proyecto.fiduca" target="_blank" class="social-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          Instagram
+        </a>
+        <a href="https://twitter.com/proyecto_FIDUCA" target="_blank" class="social-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          X / Twitter
+        </a>
+        <a href="https://www.youtube.com/@proyectoFIDUCA" target="_blank" class="social-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7s-.3-1.9-1.2-2.7c-1.1-1.2-2.4-1.2-3-1.3C16.2 3 12 3 12 3s-4.2 0-6.8.1c-.6.1-1.9.1-3 1.3C1.3 5.2 1 7 1 7S.7 9.1.7 11.2v1.9C.7 15.2 1 17 1 17s.3 1.9 1.2 2.7c1.1 1.2 2.6 1.1 3.3 1.2C7.6 21 12 21 12 21s4.2 0 6.8-.2c.6-.1 1.9-.1 3-1.3.9-.8 1.2-2.7 1.2-2.7s.3-2.1.3-4.2v-1.9C23.3 9.1 23 7 23 7zM9.7 15.5V8.4l8.1 3.6-8.1 3.5z"/></svg>
+          YouTube
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4><strong>Proyecto</strong></h4>
+      <ul>
+        <li><a href="#"><strong>Acerca de</strong></a></li>
+        <li><a href="#"><strong>Objetivos</strong></a></li>
+        <li><a href="#"><strong>Metodología</strong></a></li>
+        <li><a href="equipo.html"><strong>Socios</strong></a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4><strong>Recursos</strong></h4>
+      <ul>
+        <li><a href="noticias.html"><strong>Publicaciones</strong></a></li>
+        <li><a href="#"><strong>Informes</strong></a></li>
+        <li><a href="#"><strong>Materiales</strong></a></li>
+        <li><a href="#"><strong>Repositorio</strong></a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4><strong>Legal</strong></h4>
+      <ul>
+        <li><a href="#"><strong>Política de privacidad</strong></a></li>
+        <li><a href="#"><strong>Aviso legal</strong></a></li>
+        <li><a href="#"><strong>Accesibilidad</strong></a></li>
+        <li><a href="#"><strong>Cookies</strong></a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span><strong>© 2025 FIDUCA Consortium · Grant Agreement 101094522</strong></span>
+  </div>
+</footer>
+
+<script>
+// Confirmación visual tras enviar formulario
+const form = document.getElementById('contactForm');
+if (form) {
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const data = new FormData(form);
+    const email = form.querySelector('#email').value;
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST', body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        const success = document.getElementById('form-success');
+        document.getElementById('reply-email').textContent = email;
+        success.style.display = 'block';
+      }
+    } catch(err) {
+      alert('Hubo un error. Por favor escríbenos directamente a fiduca.project@utp.ac.pa');
+    }
+  });
+}
+</script>
+</body>
+</html>
