@@ -16,7 +16,7 @@
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'Baloo 2';
+  font-family: 'Baloo 2',sans-serif;
   background: var(--white);
   color: var(--navy);
   font-size: 16px;
@@ -886,4 +886,43 @@ body.page-exit  { opacity: 0; transition: opacity .2s ease; }
   .contact-grid { grid-template-columns: 1fr; gap: 32px; }
   .form-row { grid-template-columns: 1fr; }
   .contact-form-card { padding: 24px; }
+}
+.associated-section {
+  padding: 60px;
+  background: var(--white);
+  border-top: 1px solid var(--line);
+}
+
+.associated-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--line);
+  margin-bottom: 40px;
+}
+
+.associated-grid {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.socio-logo-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.socio-flag {
+  position: absolute;
+  bottom: -6px;
+  right: -6px;
+  font-size: 18px;
+  line-height: 1;
+  font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;
+}
+.socio-flag,
+.country-flag,
+.chip-icon {
+  font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;
 }
