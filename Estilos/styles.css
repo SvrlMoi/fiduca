@@ -30,7 +30,7 @@ body {
 
 /* ── NAVBAR ── */
 nav {
-  background: var(--white);
+  background: var(--navy);
   padding: 0 60px;
   display: flex;
   align-items: center;
@@ -83,7 +83,7 @@ nav {
   position: absolute;
   bottom: -2px; left: 0;
   width: 0; height: 2px;
-  background: var(--purple);
+  background: var(--white);
   transition: width .25s;
 }
  
@@ -91,7 +91,7 @@ nav {
 .nav-links a:hover::after     { width: 100%; }
  
 .nav-cta {
-  background: var(--purple);
+  background: var(--white);
   color: var(--white) !important;
   padding: 8px 18px;
   border-radius: 4px;
@@ -164,7 +164,7 @@ nav {
 .nav-drawer ul li a:hover    { background: var(--light); color: var(--purple); }
 .nav-drawer ul li a.activo   { color: var(--purple); background: rgba(145,17,126,0.06); }
 .nav-drawer ul li a.nav-cta  {
-  background: var(--purple); color: var(--white);
+  background: var(--white); color: var(--white);
   text-align: center; margin-top: 8px;
 }
 .nav-drawer ul li a.nav-cta:hover { background: var(--gold); }
@@ -192,10 +192,10 @@ nav {
  
 
 /* Colores base de cada sección */
-.hero               { background: var(--navy); }
-.objectives-section { background: var(--green); }
+.hero               { background: var(--white); }
+.objectives-section { background: var(--white); }
 .team-section       { background: var(--white) }
-.contact-section    { background: var(--purple); }
+.contact-section    { background: var(--white); }
 
 .hero::before {
   background:
@@ -259,7 +259,7 @@ nav {
 .hero h1 {
   font-size: clamp(36px, 4vw, 56px);
   font-weight: 900;
-  color: var(--white);
+  color: var(--purple);
   line-height: 1.15;
   margin-bottom: 24px;
   word-break: break-word;
@@ -354,7 +354,7 @@ nav {
 .obj-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,204,0,0.4); }
 .obj-number { font-size: 42px; font-weight: 700; color: rgba(255,204,0,0.45); margin-bottom: 16px; }
 .obj-card h3 { font-size: 19px; font-weight: 700; color: var(--white); margin-bottom: 12px; }
-.obj-card p { font-size: 14px; color: rgba(255,255,255,0.85); line-height: 1.75; }
+.obj-card p { font-size: 14px; color:var(--navy); line-height: 1.75; }
 
 /* ── NOTICIAS ── */
 .news-section { padding: 90px 60px; background: var(--light); }
@@ -402,22 +402,22 @@ nav {
 .team-card .institution { font-size: 12.5px; color: var(--slate); }
 
 /* ── FOOTER ── */
-footer { background: var(--navy); padding: 50px 60px 30px; }
+footer { background: var(--white); padding: 50px 60px 30px; }
 .footer-top {
   display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 50px;
   border-bottom: 1px solid rgba(255,255,255,0.07);
   padding-bottom: 40px; margin-bottom: 28px;
 }
-.footer-about h3 { color: white; font-size: 18px; margin-bottom: 12px; }
-.footer-about p { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.8; }
+.footer-about h3 { color: var(--navy); font-size: 18px; margin-bottom: 12px; }
+.footer-about p { font-size: 13px; color:var(--navy); line-height: 1.8; }
 .footer-col h4 { font-size: 11px; color: var(--gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 18px; }
 .footer-col ul { list-style: none; }
 .footer-col ul li { margin-bottom: 10px; }
-.footer-col ul a { text-decoration: none; color: rgba(255,255,255,0.4); font-size: 13px; transition: color .2s; }
+.footer-col ul a { text-decoration: none; color:var(--navy); font-size: 13px; transition: color .2s; }
 .footer-col ul a:hover { color: rgba(255,255,255,0.8); }
 .footer-bottom {
   display: flex; align-items: center; justify-content: space-between;
-  font-size: 12px; color: rgba(255,255,255,0.25);
+  font-size: 12px; color: var(--navy);
 }
 
 /* ── ANIMACIONES ── */
@@ -496,7 +496,7 @@ footer { background: var(--navy); padding: 50px 60px 30px; }
   font-size: clamp(36px, 4vw, 52px); font-weight: 900;
   color: var(--white); line-height: 1.15; margin-bottom: 18px;
 }
-.page-hero p { font-size: 16px; color: rgba(255,255,255,0.6); max-width: 560px; line-height: 1.8; }
+.page-hero p { font-size: 16px; color:var(--navy); max-width: 560px; line-height: 1.8; }
 
 /* ── BREADCRUMB ── */
 .breadcrumb {
@@ -523,7 +523,7 @@ footer { background: var(--navy); padding: 50px 60px 30px; }
 }
 .stat-item       { text-align: center; position: relative; z-index: 1; }
 .stat-item .num  { font-size: 42px; font-weight: 900; color: var(--gold); line-height: 1; margin-bottom: 6px; }
-.stat-item .lbl  { font-size: 12px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1.5px; }
+.stat-item .lbl  { font-size: 12px; color: var(--navy); text-transform: uppercase; letter-spacing: 1.5px; }
 
 /* ── FILTER BAR ── */
 .filter-bar {
