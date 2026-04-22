@@ -46,6 +46,11 @@ nav {
   box-shadow: 0 2px 20px rgba(0,0,0,0.06);
   min-height: 77px;
 }
+.icon-grande {
+  width: 170px;
+  height: auto;
+  color: var(--teal);
+}
  
 .logo-wrap {
   display: flex;
@@ -72,7 +77,7 @@ nav {
 .nav-links a {
   text-decoration: none;
   color: var(--navy);
-  font-size: 13.5px;        
+  font-size: 18px;        
   font-weight: 600;
   transition: color .2s;
   position: relative;
@@ -93,13 +98,13 @@ nav {
 .nav-links a:hover::after     { width: 100%; }
  
 .nav-cta {
-  background: var(--white);
+  background: var(--gold);
   color: var(--white) !important;
   padding: 8px 18px;
   border-radius: 4px;
   font-weight: 700 !important;
 }
-.nav-cta:hover     { background: var(--gold) !important; }
+.nav-cta:hover     { background: var(--slate) !important; }
 .nav-cta::after    { display: none !important; }
  
 /* ── HAMBURGER BUTTON (oculto en desktop) ── */
@@ -360,7 +365,7 @@ background: var(--gold);}
 .obj-card p { font-size: 20px; color:var(--light); line-height: 1.4; }
 
 /* ── NOTICIAS ── */
-.news-section { padding: 90px 60px; background: var(--light); }
+.news-section { padding: 90px 60px; background: var(--white); }
 .news-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 50px; }
 .news-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 24px; }
 .news-card {
@@ -405,15 +410,15 @@ background: var(--gold);}
 .team-card .institution { font-size: 12.5px; color: var(--slate); }
 
 /* ── FOOTER ── */
-footer { background: var(--white); padding: 50px 60px 30px; }
+footer { background: var(--light); padding: 50px 60px 30px; }
 .footer-top {
   display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 50px;
   border-bottom: 1px solid rgba(255,255,255,0.07);
   padding-bottom: 40px; margin-bottom: 28px;
 }
 .footer-about h3 { color: var(--navy); font-size: 18px; margin-bottom: 12px; }
-.footer-about p { font-size: 13px; color:var(--navy); line-height: 1.8; }
-.footer-col h4 { font-size: 11px; color: var(--gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 18px; }
+.footer-about p { font-size: 14px; color:var(--navy); line-height: 1.8; }
+.footer-col h4 { font-size: 14px; color: var(--gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 18px; }
 .footer-col ul { list-style: none; }
 .footer-col ul li { margin-bottom: 10px; }
 .footer-col ul a { text-decoration: none; color:var(--navy); font-size: 13px; transition: color .2s; }
@@ -937,7 +942,7 @@ body.page-exit  { opacity: 0; transition: opacity .2s ease; }
 /* ── ERASMUS SECTION ── */
 .erasmus-section {
   padding: 90px 60px;
-  background: var(--light);
+  background: var(--white);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
@@ -968,31 +973,11 @@ body.page-exit  { opacity: 0; transition: opacity .2s ease; }
 /* Texto izquierda */
 .erasmus-text .section-body {
   color: var(--slate);
-  font-size: 16px;
+  font-size: 20px;
   max-width: 500px;
 }
 .erasmus-text strong { color: var(--navy); }
 
-.erasmus-disclaimer {
-  display: flex;
-  gap: 14px;
-  align-items: flex-start;
-  margin-top: 32px;
-  padding: 18px 20px;
-  background: var(--white);
-  border: 1px solid var(--line);
-  border-left: 3px solid var(--gold);
-  border-radius: 8px;
-}
-.erasmus-disclaimer span { font-size: 18px; flex-shrink: 0; margin-top: 2px; }
-.erasmus-disclaimer p {
-  font-size: 13px;
-  color: var(--slate);
-  line-height: 1.75;
-  margin: 0;
-}
-
-/* Derecha — tarjeta logo + datos */
 .erasmus-cards {
   display: flex;
   flex-direction: column;
@@ -1000,7 +985,7 @@ body.page-exit  { opacity: 0; transition: opacity .2s ease; }
 }
 
 .erasmus-logo-card {
-  background: var(--white);
+  background: var(--light);
   border: 1px solid var(--line);
   border-radius: 14px;
   padding: 36px 32px;
@@ -1022,13 +1007,13 @@ body.page-exit  { opacity: 0; transition: opacity .2s ease; }
   margin: 20px 0 16px;
 }
 .erasmus-card-label {
-  font-size: 17px;
+  font-size: 24px;
   font-weight: 800;
   color: var(--navy);
   margin-bottom: 5px;
 }
 .erasmus-card-sub {
-  font-size: 13px;
+  font-size: 18px;
   color: var(--slate);
   line-height: 1.5;
   margin-bottom: 14px;

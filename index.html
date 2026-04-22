@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<script src="https://unpkg.com/lucide@latest"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FIDUCA</title>
@@ -88,22 +89,22 @@ Universidades para el Desarrollo <em> Sostenible e Inclusivo </em><br>en la Regi
     </div>
     <div class="about-pillars">
       <div class="pillar reveal" style="transition-delay:0.05s" onclick="openModal('Problemática')">
-        <span class="pillar-icon">💡</span>
+        <i data-lucide="person-standing"></i>    
         <h4>Problemática</h4>
         <p>Necesidad de incluir la cultura empresarial y fomento al emprendimiento</p>
       </div>
       <div class="pillar reveal" style="transition-delay:0.15s" onclick="openModal('Impacto')">
-        <span class="pillar-icon">🤝</span>
+        <i data-lucide="heart-handshake"></i>    
         <h4>Impacto</h4>
         <p>Para la región Centroamericana, Universidades, Socios y Comunidades Indígenas</p>
       </div>
       <div class="pillar reveal" style="transition-delay:0.25s" onclick="openModal('Emprendimiento')">
-        <span class="pillar-icon">🚀</span>
+        <i data-lucide="chart-line"></i>    
         <h4>Emprendimiento</h4>
         <p>El proyecto promueve el emprendimiento juvenil en comunidades indígenas mediante la colaboración entre universidades, estudiantes y organizaciones locales</p>
       </div>
       <div class="pillar reveal" style="transition-delay:0.35s" onclick="openModal('Difusion')">
-        <span class="pillar-icon">🌐</span>
+        <i data-lucide="globe"></i>    
         <h4>Difusión</h4>
         <p>El proyecto contempla diversas estrategias para compartir los resultados obtenidos y ampliar su impacto en la región centroamericana</p>
       </div>
@@ -116,7 +117,7 @@ Universidades para el Desarrollo <em> Sostenible e Inclusivo </em><br>en la Regi
   <h2 class="section-title reveal from-up" style="transition-delay:0.1s">Objetivos del Proyecto</h2>
 
   <div class="obj-general reveal" style="transition-delay:0.15s">
-    <div class="obj-general-icon">🎯</div>
+        <i data-lucide="goal" class="icon-grande"></i>    
     <div>
       <span class="obj-general-tag">Objetivo General</span>
       <p>Fortalecer las capacidades de las universidades centroamericanas para disminuir las brechas de desigualdad en comunidades indígenas, con acciones enfocadas en el Emprendimiento Juvenil sostenible e innovador.</p>
@@ -272,5 +273,8 @@ Universidades para el Desarrollo <em> Sostenible e Inclusivo </em><br>en la Regi
   </div>
 </footer>
 <script src="Estilos/scripts.js"></script>
+<script>
+  lucide.createIcons();
+</script>
 </body>
 </html>
