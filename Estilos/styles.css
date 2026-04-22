@@ -30,7 +30,9 @@ body {
 
 /* ── NAVBAR ── */
 nav {
-  background: var(--navy);
+  background: var(--white);
+  border-bottom: 2px solid var(--line);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.06);
   padding: 0 60px;
   display: flex;
   align-items: center;
@@ -69,7 +71,7 @@ nav {
  
 .nav-links a {
   text-decoration: none;
-  color: var(--slate);
+  color: var(--navy);
   font-size: 13.5px;        
   font-weight: 600;
   transition: color .2s;
@@ -276,12 +278,12 @@ nav {
 }
 .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(234,117,4,0.35); }
 .btn-outline {
-  border: 1px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.8);
+  border: 1px solid var(--gold); color: var(--purple);
   padding: 13px 28px; border-radius: 4px;
   text-decoration: none; font-size: 14px;
   transition: border-color .2s, color .2s;
 }
-.btn-outline:hover { border-color: rgba(255,255,255,0.6); color: white; }
+.btn-outline:hover { border-color: var(--purple); color: white; }
 
 .stat-card {
   background: rgba(255,255,255,0.05);
@@ -344,17 +346,18 @@ nav {
 .pillar p { font-size: 13.5px; color: var(--slate); line-height: 1.6; }
 
 /* ── OBJETIVOS ── */
-.objectives-section { padding: 90px 60px; }
+.objectives-section { padding: 90px 60px; 
+background: var(--gold);}
 .objectives-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 50px; }
 .obj-card {
   border: 1px solid rgba(255,255,255,0.1); border-radius: 10px;
   padding: 36px 28px; background: rgba(255,255,255,0.08);
   transition: border-color .3s, background .3s;
 }
-.obj-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,204,0,0.4); }
-.obj-number { font-size: 42px; font-weight: 700; color: rgba(255,204,0,0.45); margin-bottom: 16px; }
+.obj-card:hover { background: rgba(180, 120, 24, 0.281); border-color: rgba(255,204,0,0.4); }
+.obj-number { font-size: 42px; font-weight: 700; color: var(--white); margin-bottom: 16px; }
 .obj-card h3 { font-size: 19px; font-weight: 700; color: var(--white); margin-bottom: 12px; }
-.obj-card p { font-size: 14px; color:var(--navy); line-height: 1.75; }
+.obj-card p { font-size: 20px; color:var(--light); line-height: 1.4; }
 
 /* ── NOTICIAS ── */
 .news-section { padding: 90px 60px; background: var(--light); }
@@ -417,7 +420,7 @@ footer { background: var(--white); padding: 50px 60px 30px; }
 .footer-col ul a:hover { color: rgba(255,255,255,0.8); }
 .footer-bottom {
   display: flex; align-items: center; justify-content: space-between;
-  font-size: 12px; color: var(--navy);
+  font-size: 16px; color: var(--navy);
 }
 
 /* ── ANIMACIONES ── */
@@ -640,10 +643,10 @@ body.page-exit  { opacity: 0; transition: opacity .2s ease; }
 }
 
 .hero-logos-label {
-  font-size: 10px;
+  font-size: 15px;
   letter-spacing: 2.5px;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.35);
+  color: var(--navy);
   margin-bottom: 14px;
   display: block;
 }
@@ -698,7 +701,7 @@ body.page-exit  { opacity: 0; transition: opacity .2s ease; }
 }
 .obj-general-icon { font-size: 42px; flex-shrink: 0; margin-top: 2px; }
 .obj-general-tag {
-  font-size: 15px; font-weight: 700; color: var(--gold);
+  font-size: 15px; font-weight: 700; color: var(--white);
   text-transform: uppercase; letter-spacing: 2px;
   margin-bottom: 8px; display: block;
 }
@@ -868,15 +871,15 @@ body.page-exit  { opacity: 0; transition: opacity .2s ease; }
 }
 .social-btn {
   display: inline-flex; align-items: center; gap: 7px;
-  background: rgba(255,255,255,0.07);
+  background: rgba(28, 211, 218, 0.378);
   border: 1px solid rgba(255,255,255,0.15);
-  color: rgba(255,255,255,0.65);
+  color:var(--slate);
   text-decoration: none; font-size: 12px; font-weight: 600;
   padding: 7px 13px; border-radius: 20px;
   transition: background .2s, color .2s;
 }
 .social-btn:hover {
-  background: rgba(255,255,255,0.15);
+  background: var(--teal);
   color: white;
 }
 
@@ -930,4 +933,154 @@ body.page-exit  { opacity: 0; transition: opacity .2s ease; }
   height: 100%;
   object-fit: cover;
   display: block;
+}
+/* ── ERASMUS SECTION ── */
+.erasmus-section {
+  padding: 90px 60px;
+  background: var(--light);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.erasmus-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.erasmus-header {
+  margin-bottom: 52px;
+}
+.erasmus-header .section-label { color: var(--purple); }
+.erasmus-header .section-title {
+  color: var(--navy);
+  max-width: 640px;
+  font-size: clamp(24px, 2.8vw, 38px);
+}
+
+/* Grid principal */
+.erasmus-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  align-items: start;
+}
+
+/* Texto izquierda */
+.erasmus-text .section-body {
+  color: var(--slate);
+  font-size: 16px;
+  max-width: 500px;
+}
+.erasmus-text strong { color: var(--navy); }
+
+.erasmus-disclaimer {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  margin-top: 32px;
+  padding: 18px 20px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--gold);
+  border-radius: 8px;
+}
+.erasmus-disclaimer span { font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+.erasmus-disclaimer p {
+  font-size: 13px;
+  color: var(--slate);
+  line-height: 1.75;
+  margin: 0;
+}
+
+/* Derecha — tarjeta logo + datos */
+.erasmus-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.erasmus-logo-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0;
+}
+.erasmus-logo-card img {
+  height: 120px;
+  width: auto;
+  object-fit: contain;
+}
+.erasmus-card-divider {
+  width: 40px; height: 2px;
+  background: linear-gradient(90deg, var(--purple), var(--gold));
+  border-radius: 2px;
+  margin: 20px 0 16px;
+}
+.erasmus-card-label {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 5px;
+}
+.erasmus-card-sub {
+  font-size: 13px;
+  color: var(--slate);
+  line-height: 1.5;
+  margin-bottom: 14px;
+}
+.erasmus-grant {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--purple);
+  background: rgba(145,17,126,0.07);
+  border: 1px solid rgba(145,17,126,0.15);
+  padding: 4px 12px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+}
+
+/* Grid de datos */
+.erasmus-data-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.erasmus-data-item {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 20px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  transition: border-color .2s, box-shadow .2s;
+}
+.erasmus-data-item:hover {
+  border-color: var(--purple);
+  box-shadow: 0 4px 16px rgba(145,17,126,0.08);
+}
+.erasmus-data-num {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--navy);
+  line-height: 1;
+}
+.erasmus-data-lbl {
+  font-size: 12px;
+  color: var(--slate);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1.4;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .erasmus-section { padding: 60px 20px; }
+  .erasmus-grid    { grid-template-columns: 1fr; gap: 40px; }
+  .erasmus-data-grid { grid-template-columns: repeat(2, 1fr); }
 }
