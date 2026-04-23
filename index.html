@@ -8,6 +8,57 @@
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="Estilos/styles.css">
 <script src="Estilos/scripts.js"></script>
+<style>
+/* ── PILLAR COLORES ── */
+
+.pillar:nth-child(1) {
+  background: color-mix(in srgb, var(--purple) 80%, white);
+  border-color: color-mix(in srgb, var(--purple) 80%, white);
+}
+
+.pillar:nth-child(1) h4,
+.pillar:nth-child(1) p,
+.pillar:nth-child(1) i {
+  color: #fff !important;
+}
+
+.pillar:nth-child(2) {
+  background: color-mix(in srgb, var(--gold) 80%, white);
+  border-color: color-mix(in srgb, var(--gold) 80%, white);
+}
+.pillar:nth-child(2) h4,
+.pillar:nth-child(2) p,
+.pillar:nth-child(2) i {
+  color: var(--navy) !important;
+}
+
+.pillar:nth-child(3) {
+  background: color-mix(in srgb, #004d1c 80%, white);
+  border-color: color-mix(in srgb, #004d1c 80%, white);
+}
+.pillar:nth-child(3) h4,
+.pillar:nth-child(3) p,
+.pillar:nth-child(3) i {
+  color: #fff !important;
+}
+
+.pillar:nth-child(4) {
+  background: color-mix(in srgb, var(--teal), white);
+  border-color: color-mix(in srgb, var(--teal), white);
+}
+
+.pillar:nth-child(4) h4,
+.pillar:nth-child(4) p,
+.pillar:nth-child(4) i {
+  color: var(--navy) !important;
+}
+
+/* Hover: oscurecer ligeramente */
+.pillar:hover {
+  filter: brightness(0.92);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.18);
+}
+</style>
 </head>
 <body>
   <div class="modal-overlay" id="modal-overlay" onclick="closeModal()">
@@ -53,7 +104,7 @@ Universidades para el Desarrollo <em> Sostenible e Inclusivo </em><br>en la Regi
               <img src="Estilos/img/Logo TEC.jpg" alt="TEC">
               <img src="Estilos/img/logo-UNED-horizontal-completo-azul-fondo-transparente.png" alt="UNED">
               <img src="Estilos/img/Logo Galileo.jpg" alt="UGAL">
-              <img src="Estilos/img/url_logo.png"URL">
+              <img src="Estilos/img/url_logo.png" alt="URL">
               <img src="Estilos/img/LOGO-UES-HORIZONTAL-UES-330.png" alt="UES">
               <img src="Estilos/img/USO_LogoOficial.png" alt="USO">
               <img src="Estilos/img/univlyon2_logo201806-standard.png" alt="ULL">
@@ -64,8 +115,8 @@ Universidades para el Desarrollo <em> Sostenible e Inclusivo </em><br>en la Regi
               <img src="Estilos/img/fcds_logo.png" alt="FCDS">
               <img src="Estilos/img/Logo TEC.jpg" alt="TEC">
               <img src="Estilos/img/logo-UNED-horizontal-completo-azul-fondo-transparente.png" alt="UNED">
-              <img src="Estilos/img/Logo Galileo.jpg alt="UGAL">
-              <img src="Estilos/img/url_logo.png"URL">
+              <img src="Estilos/img/Logo Galileo.jpg" alt="UGAL">
+              <img src="Estilos/img/url_logo.png" alt="URL">
               <img src="Estilos/img/LOGO-UES-HORIZONTAL-UES-330.png" alt="UES">
               <img src="Estilos/img/USO_LogoOficial.png" alt="USO">
               <img src="Estilos/img/univlyon2_logo201806-standard.png" alt="ULL">
@@ -90,23 +141,27 @@ Universidades para el Desarrollo <em> Sostenible e Inclusivo </em><br>en la Regi
       <p class="section-body">FIDUCA es un proyecto cofinanciado por la Unión Europea, que tiene como objetivo principal fortalecer las capacidades de las universidades centroamericanas para disminuir las brechas de desigualdad en comunidades indígenas con acciones enfocadas en el Emprendimiento Juvenil.</p>
     </div>
     <div class="about-pillars">
+      <!-- Tarjeta 1: Púrpura -->
       <div class="pillar reveal" style="transition-delay:0.05s" onclick="openModal('Problemática')">
-        <i data-lucide="person-standing"></i>    
+        <i data-lucide="person-standing"></i>
         <h4>Problemática</h4>
         <p>Necesidad de incluir la cultura empresarial y fomento al emprendimiento</p>
       </div>
+      <!-- Tarjeta 2: Dorado -->
       <div class="pillar reveal" style="transition-delay:0.15s" onclick="openModal('Impacto')">
-        <i data-lucide="heart-handshake"></i>    
+        <i data-lucide="heart-handshake"></i>
         <h4>Impacto</h4>
         <p>Para la región Centroamericana, Universidades, Socios y Comunidades Indígenas</p>
       </div>
+      <!-- Tarjeta 3: Navy -->
       <div class="pillar reveal" style="transition-delay:0.25s" onclick="openModal('Emprendimiento')">
-        <i data-lucide="chart-line"></i>    
+        <i data-lucide="chart-line"></i>
         <h4>Emprendimiento</h4>
         <p>El proyecto promueve el emprendimiento juvenil en comunidades indígenas mediante la colaboración entre universidades, estudiantes y organizaciones locales</p>
       </div>
+      <!-- Tarjeta 4: Teal -->
       <div class="pillar reveal" style="transition-delay:0.35s" onclick="openModal('Difusion')">
-        <i data-lucide="globe"></i>    
+        <i data-lucide="globe"></i>
         <h4>Difusión</h4>
         <p>El proyecto contempla diversas estrategias para compartir los resultados obtenidos y ampliar su impacto en la región centroamericana</p>
       </div>
@@ -115,13 +170,12 @@ Universidades para el Desarrollo <em> Sostenible e Inclusivo </em><br>en la Regi
 </section>
 <hr class="purple-divider">
 
-
 <section class="objectives-section" id="objetivos">
   <span class="section-label reveal from-up">Líneas de Trabajo</span>
   <h2 class="section-title reveal from-up" style="transition-delay:0.1s">Objetivos del Proyecto</h2>
 
   <div class="obj-general reveal" style="transition-delay:0.15s">
-        <i data-lucide="goal" class="icon-grande"></i>    
+    <i data-lucide="goal" class="icon-grande"></i>
     <div>
       <span class="obj-general-tag">Objetivo General</span>
       <p>Fortalecer las capacidades de las universidades centroamericanas para disminuir las brechas de desigualdad en comunidades indígenas, con acciones enfocadas en el Emprendimiento Juvenil sostenible e innovador.</p>
@@ -165,13 +219,10 @@ Universidades para el Desarrollo <em> Sostenible e Inclusivo </em><br>en la Regi
 
   <div class="news-grid">
 
-    <!-- NOTICIA 1 -->
     <a href="https://cinemi.utp.ac.pa/ver-noticias/utp-lidera-proyecto-internacional-fiduca-para-fortalecer-la-innovacion-y-la-investigacion"
        class="news-card featured reveal from-left"
        target="_blank">
-
       <img src="Estilos/img/Fotos noticias/utpLidera.jpeg" class="news-img">
-
       <div class="news-body">
         <span class="news-tag">Difusión</span>
         <h3>Noticia por parte de la UTP</h3>
@@ -180,11 +231,8 @@ Universidades para el Desarrollo <em> Sostenible e Inclusivo </em><br>en la Regi
       </div>
     </a>
 
-    <!-- NOTICIA 2 -->
     <a href="https://principal.url.edu.gt/facultades/facultad-de-ciencias-economicas-y-empresariales/landivar-asume-rol-estrategico-en-proyecto-europeo-para-fortalecer-emprendimiento-indigena-en-guatemala/" class="news-card reveal" style="transition-delay:0.15s" target="_blank">
-
       <img src="Estilos/img/Fotos noticias/Foto Grupal CTEC KOM CR.jpeg" class="news-img">
-
       <div class="news-body">
         <span class="news-tag">Difusión</span>
         <h3>Nota de URL</h3>
@@ -193,11 +241,8 @@ Universidades para el Desarrollo <em> Sostenible e Inclusivo </em><br>en la Regi
       </div>
     </a>
 
-    <!-- NOTICIA 3 -->
     <a href="https://es.linkedin.com/posts/albertotejero_fiduca-comunidadesrurales-pueblosind%C3%ADgenas-activity-7430671939142152192-ua8g?utm_source=li_share&utm_content=feedcontent&utm_medium=g_mb_web&utm_campaign=copy&fbclid=PAdGRleARWZRpleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA8xMjQwMjQ1NzQyODc0MTQAAaeVwXttpmHv4itHN0DJmzMoKo5RUsj4KgTlG_O6HiAbJ_oZg2ZtcmsPJrz-EA_aem_wYh0kZzH6QPDEQwmszfy7g" class="news-card reveal" style="transition-delay:0.3s" target="_blank">
-
       <img src="Estilos/img/Fotos noticias/LinkedIn-Logo.wine.png" class="news-img">
-
       <div class="news-body">
         <span class="news-tag">Difusión</span>
         <h3>Publicación en LinkedIn</h3>
@@ -212,12 +257,10 @@ Universidades para el Desarrollo <em> Sostenible e Inclusivo </em><br>en la Regi
 
 <section class="erasmus-section">
   <div class="erasmus-inner">
-
     <div class="erasmus-header reveal from-up">
       <span class="section-label">Financiación Europea</span>
       <h2 class="section-title">Cofinanciado por la Unión Europea a través de Erasmus+</h2>
     </div>
-
     <div class="erasmus-grid">
       <div class="erasmus-text reveal from-left">
         <p class="section-body">FIDUCA forma parte del programa <strong>Erasmus+</strong>, la iniciativa de la Unión Europea para apoyar la educación, la formación, la juventud y el deporte en todo el mundo. A través de su acción de <strong>Capacity Building in Higher Education</strong>, el proyecto recibe financiación para fortalecer la cooperación entre universidades de Centroamérica y Europa.</p>
@@ -232,10 +275,11 @@ Universidades para el Desarrollo <em> Sostenible e Inclusivo </em><br>en la Regi
           <span class="erasmus-card-sub">Capacity Building in Higher Education</span>
           <span class="erasmus-grant">Grant Agreement · 101094522</span>
         </div>
+      </div>
+      </a>
     </div>
   </div>
 </section>
-</a>
 <hr class="purple-divider">
 
 <footer>
@@ -276,7 +320,7 @@ Universidades para el Desarrollo <em> Sostenible e Inclusivo </em><br>en la Regi
       <ul>
         <li><a href="noticias.html"><strong>Publicaciones</strong></a></li>
         <li><a href="#"><strong>Informes</strong></a></li>
-        <li><a href="#"><strong>Galería</strong></a></li> 
+        <li><a href="galeria.html"><strong>Galería</strong></a></li>
         <li><a href="#"><strong>Recursos</strong></a></li>
       </ul>
     </div>
@@ -294,6 +338,7 @@ Universidades para el Desarrollo <em> Sostenible e Inclusivo </em><br>en la Regi
     <span><strong>© 2026 FIDUCA Consortium · Grant Agreement 101094522</strong></span>
   </div>
 </footer>
+
 <script src="Estilos/scripts.js"></script>
 <script>
   lucide.createIcons();
