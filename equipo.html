@@ -4,23 +4,114 @@
 <script src="https://unpkg.com/lucide@latest"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Equipo & Socios — FIDUCA</title>
+<title>Socios — FIDUCA</title>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="Estilos/styles.css">
 <style>
-.socios-section { padding: 60px 60px 80px; background: var(--light); }
-.coord-section  { padding: 60px 60px 80px; background: var(--white); }
-.map-section    { padding: 60px 60px 80px; background: var(--white); }
-.socios-section h2 { font-size: 26px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+/* ── VARIABLES ── */
+:root {
+  --purple: #91117e;
+  --gold:   #ea7504;
+  --navy:   #410938;
+  --slate:  #4A5568;
+  --light:  #F4F6FB;
+  --green:  #004d1c;
+  --teal:   #45d2c5;
+  --white:  #FFFFFF;
+  --line:   rgba(65,9,56,0.10);
+}
 
+/* ── HERO ── */
+.page-hero {
+  background: var(--navy);
+  position: relative; overflow: hidden;
+  padding: 80px 60px 70px;
+}
+.page-hero::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 80% at 15% 55%, rgba(145,17,126,0.55) 0%, transparent 65%),
+    radial-gradient(ellipse 35% 45% at 88% 18%, rgba(65,9,56,0.4) 0%, transparent 60%);
+}
+.page-hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+.page-hero-inner { position: relative; z-index: 2; max-width: 680px; }
+.page-hero .section-label-small { color: var(--gold); margin-bottom: 14px; }
+.page-hero h1 {
+  font-size: clamp(36px, 4vw, 52px); font-weight: 900;
+  color: var(--white); line-height: 1.12; margin-bottom: 18px;
+}
+
+/* ── LABELS ── */
+.section-label-small {
+  font-size: 11px; color: var(--purple);
+  text-transform: uppercase; letter-spacing: 3px;
+  margin-bottom: 10px; display: block; font-weight: 700;
+}
+.section-h2 {
+  font-size: clamp(24px, 2.8vw, 36px); font-weight: 800;
+  color: var(--navy); line-height: 1.2; margin-bottom: 12px;
+}
+.section-lead { font-size: 15px; color: var(--slate); line-height: 1.85; }
+
+/* ── BREADCRUMB ── */
+.breadcrumb {
+  background: var(--light); padding: 14px 60px;
+  border-bottom: 1px solid var(--line); font-size: 13px; color: var(--slate);
+  display: flex; gap: 8px; align-items: center;
+}
+.breadcrumb a { color: var(--purple); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb span { opacity: 0.4; }
+
+/* ── STATS BAR ── */
+.stats-bar {
+  background: var(--navy); position: relative; overflow: hidden;
+  padding: 48px 60px;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+}
+.stats-bar::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 50% 100% at 30% 50%, rgba(145,17,126,0.4) 0%, transparent 70%);
+}
+.stat-item { text-align: center; position: relative; z-index: 1; }
+.stat-item .num { font-size: 42px; font-weight: 900; color: var(--gold); line-height: 1; margin-bottom: 6px; }
+.stat-item .lbl { font-size: 12px; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 1.5px; }
+
+/* ── SECTION BLOCK ── */
+.section-block { padding: 70px 60px 80px; }
+.section-block.bg-white { background: var(--white); }
+.section-block.bg-light { background: var(--light); }
+
+/* ── PAÍSES ── */
+.countries-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px; margin-top: 36px;
+}
+.country-card {
+  background: var(--white); border: 1px solid var(--line);
+  border-radius: 12px; padding: 22px 16px; text-align: center;
+  transition: border-color .2s, box-shadow .2s, transform .2s;
+}
+.country-card:hover {
+  border-color: var(--gold); box-shadow: 0 6px 20px rgba(234,117,4,0.12); transform: translateY(-3px);
+}
+.country-flag  { font-size: 34px; margin-bottom: 10px; display: block; }
+.country-name  { font-size: 14px; font-weight: 800; color: var(--navy); margin-bottom: 4px; }
+.country-count { font-size: 12px; color: var(--slate); line-height: 1.4; }
+
+/* ── SOCIOS GRID ── */
 .socios-intro {
   display: flex; align-items: flex-end;
   justify-content: space-between; gap: 24px;
   margin-bottom: 40px; flex-wrap: wrap;
 }
-.socios-intro-text .section-label { margin-bottom: 8px; }
-.socios-intro-text h2 { margin-bottom: 6px; }
-.socios-intro-text p  { font-size: 14px; color: var(--slate); max-width: 440px; line-height: 1.7; }
+.socios-intro p { font-size: 14px; color: var(--slate); max-width: 440px; line-height: 1.75; }
 
 .socios-grid {
   display: grid;
@@ -28,14 +119,13 @@
   gap: 20px;
 }
 
+/* ── SOCIO CARD ── */
 .socio-card {
   background: var(--white); border: 1px solid var(--line);
-  border-radius: 16px; padding: 30px 26px 26px;
+  border-radius: 16px; padding: 28px 24px 24px;
   transition: box-shadow .3s, border-color .3s, transform .25s;
   position: relative; overflow: hidden;
   display: flex; flex-direction: column; gap: 0;
-    cursor: pointer;
-
 }
 .socio-card::before {
   content: ''; position: absolute;
@@ -47,99 +137,83 @@
 .socio-card:hover::before { transform: scaleX(1); }
 .socio-card:hover {
   box-shadow: 0 12px 48px rgba(65,9,56,0.12);
-  border-color: rgba(145,17,126,0.18);
-  transform: translateY(-4px);
+  border-color: rgba(145,17,126,0.18); transform: translateY(-4px);
 }
 
-.socio-header { display: flex; align-items: flex-start; gap: 18px; margin-bottom: 20px; }
+.socio-header { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 18px; }
 .socio-logo-wrap { position: relative; flex-shrink: 0; width: 72px; }
 .socio-abbr {
-  width: 72px; height: 72px; border-radius: 14px;
-  background: var(--light); border: 1.5px dashed rgba(145,17,126,0.2);
+  width: 72px; height: 72px; border-radius: 12px;
+  background: var(--light); border: 1.5px solid rgba(65,9,56,0.08);
   display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0; overflow: hidden;
+  overflow: hidden;
 }
 .socio-abbr img { width: 100%; height: 100%; object-fit: contain; padding: 8px; }
 .socio-flag {
-  position: absolute; bottom: -4px; right: -4px;
+  position: absolute; bottom: -5px; right: -5px;
   width: 26px; height: 26px; border-radius: 50%;
   background: var(--white); border: 2px solid var(--white);
   display: flex; align-items: center; justify-content: center;
-  font-size: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); line-height: 1;
+  overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.12);
 }
+.socio-flag img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
 .socio-info { flex: 1; min-width: 0; }
-.socio-info h3 { font-size: 15px; font-weight: 700; color: var(--navy); line-height: 1.35; margin-bottom: 8px; }
-.socio-meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.socio-info h3 { font-size: 14px; font-weight: 700; color: var(--navy); line-height: 1.4; margin-bottom: 8px; }
 .partner-num {
-  font-size: 11px; color: var(--slate); opacity: 0.45; font-weight: 600;
+  font-size: 11px; color: var(--slate); font-weight: 600;
   background: rgba(0,0,0,0.04); padding: 3px 10px; border-radius: 20px;
-  border: 1px solid transparent;
+  display: inline-block;
 }
-.socio-divider { height: 1px; background: var(--line); margin: 0 0 18px; }
-.socio-chips { display: flex; flex-direction: column; gap: 10px; margin-top: auto; }
-.socio-chip { display: flex; align-items: center; gap: 10px; font-size: 12.5px; color: var(--slate); line-height: 1.4; }
+.socio-divider { height: 1px; background: var(--line); margin: 0 0 16px; }
+.socio-chip { display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--slate); }
 .chip-icon {
-  width: 28px; height: 28px; border-radius: 8px; background: var(--light);
-  display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0;
+  width: 26px; height: 26px; border-radius: 7px; background: var(--light);
+  display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0;
 }
-.chip-label { font-weight: 600; color: var(--navy); }
-.chip-val   { color: var(--slate); font-size: 12px; }
-
-.coord-grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 24px; margin-top: 32px;
-}
-.coord-card {
-  background: var(--light); border: 1px solid var(--line);
-  border-radius: 14px; padding: 32px 20px 24px; text-align: center;
-  transition: box-shadow .2s, transform .2s;
-}
-.coord-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.09); transform: translateY(-4px); }
-.coord-avatar {
-  width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 14px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 20px; font-weight: 800; color: white;
-}
-.av-coord { background: linear-gradient(135deg, var(--purple), var(--navy)); }
-.av-tech  { background: linear-gradient(135deg, #197a74, var(--green)); }
-.av-admin { background: linear-gradient(135deg, var(--gold), #c56000); }
-.coord-card h4       { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
-.coord-card .role-tag  { font-size: 11.5px; font-weight: 600; color: var(--purple); margin-bottom: 6px; display: block; }
-.coord-card .inst-tag  { font-size: 12px; color: var(--slate); margin-bottom: 12px; display: block; line-height: 1.4; }
-.coord-card .email-link {
-  font-size: 11px; color: var(--gold); text-decoration: none;
-  word-break: break-all; opacity: 0.8; transition: opacity .2s;
-}
-.coord-card .email-link:hover { opacity: 1; text-decoration: underline; }
-
-.countries-grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 16px; margin-top: 32px;
-}
-.country-card {
-  background: var(--light); border: 1px solid var(--line);
-  border-radius: 10px; padding: 20px 16px; text-align: center;
-  transition: border-color .2s, box-shadow .2s;
-}
-.country-card:hover { border-color: var(--gold); box-shadow: 0 4px 16px rgba(234,117,4,0.12); }
-.country-flag  { font-size: 32px; margin-bottom: 8px; display: block; }
-.country-name  { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
-.country-count { font-size: 12px; color: var(--slate); }
-
+.chip-label { font-weight: 700; color: var(--navy); margin-right: 4px; }
 .coord-badge {
   display: inline-flex; align-items: center; gap: 5px;
-  font-size: 10.5px; font-weight: 700; color: var(--purple);
-  background: rgba(145,17,126,0.07); border: 1px solid rgba(145,17,126,0.15);
-  padding: 3px 10px 3px 6px; border-radius: 20px;
-  margin-top: 14px; align-self: flex-start;
+  font-size: 10px; font-weight: 800; color: var(--purple);
+  background: rgba(145,17,126,0.07); border: 1px solid rgba(145,17,126,0.18);
+  padding: 4px 11px 4px 8px; border-radius: 20px; margin-top: 14px; align-self: flex-start;
 }
 .coord-badge::before { content: '★'; font-size: 9px; }
 
+/* ── ASOCIADOS ── */
+.associated-section { padding: 60px 60px 80px; background: var(--white); }
+.associated-intro {
+  text-align: center; margin-bottom: 40px;
+}
+.associated-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px; max-width: 900px; margin: 0 auto;
+}
+
+/* ── REVEAL ── */
+.reveal {
+  opacity: 0; transform: translateY(36px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.reveal.from-left  { transform: translateX(-44px); }
+.reveal.from-right { transform: translateX(44px); }
+.reveal.from-up    { transform: translateY(-24px); }
+.reveal.visible    { opacity: 1; transform: translate(0,0); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .associated-grid { grid-template-columns: repeat(2,1fr); }
+}
 @media (max-width: 768px) {
-  .socios-section, .coord-section, .map-section { padding-left: 20px; padding-right: 20px; }
+  .page-hero, .breadcrumb { padding-left: 20px; padding-right: 20px; }
+  .stats-bar { grid-template-columns: repeat(2,1fr); padding: 40px 20px; }
+  .section-block { padding: 50px 20px 60px; }
   .socios-grid { grid-template-columns: 1fr; }
-  .coord-grid  { grid-template-columns: repeat(2, 1fr); }
+  .associated-grid { grid-template-columns: 1fr; }
+  .countries-grid { grid-template-columns: repeat(2,1fr); }
   .socios-intro { flex-direction: column; align-items: flex-start; }
+  .associated-section { padding: 50px 20px 60px; }
 }
 </style>
 </head>
@@ -149,8 +223,8 @@
 <!-- NAVBAR -->
 <nav>
   <div class="logo-wrap">
-    <img src="Estilos/img/LOGO-UE-Full_color.png" alt="UE_logo" style="height:90px;width:auto;">
-    <img src="Estilos/img/logo-fiduca-full-color.png" alt="FIDUCA_logo" style="height:90px;width:auto;">
+    <img src="Estilos/img/LOGO-UE-Full_color.png" alt="UE_logo" style="height:90px; width:auto;">
+    <img src="Estilos/img/logo-fiduca-full-color.png" alt="FIDUCA_logo" style="height:90px; width:auto;">
   </div>
   <ul class="nav-links">
     <li><a href="index.html">Proyecto</a></li>
@@ -158,8 +232,8 @@
     <li><a href="resultados.html">Resultados</a></li>
     <li><a href="recursos.html">Recursos</a></li>
     <li><a href="noticias.html">Noticias</a></li>
-    <li><a href="galeria.html">Galeria</a></li>
-    <li><a href="contacto.html"class="nav-cta">Contacto</a></li>
+    <li><a href="galeria.html">Galería</a></li>
+    <li><a href="contacto.html" class="nav-cta">Contacto</a></li>
   </ul>
 </nav>
 
@@ -167,14 +241,14 @@
 <div class="breadcrumb">
   <a href="index.html">Inicio</a>
   <span>›</span>
-  <span>Equipo &amp; Socios</span>
+  <span style="color:var(--navy); opacity:1; font-weight:600;">Equipo &amp; Socios</span>
 </div>
 
 <!-- PAGE HERO -->
 <section class="page-hero">
   <div class="page-hero-grid"></div>
   <div class="page-hero-inner">
-    <span class="section-label">Consorcio FIDUCA</span>
+    <span class="section-label-small">Consorcio FIDUCA</span>
     <h1>Equipo &amp; Socios del Proyecto</h1>
     <p>Un consorcio de 12 instituciones de 7 países trabaja de forma colaborativa para fortalecer la innovación y el emprendimiento en comunidades indígenas centroamericanas.</p>
   </div>
@@ -182,335 +256,407 @@
 
 <!-- STATS BAR -->
 <div class="stats-bar">
-  <div class="stat-item reveal from-up" style="transition-delay:0.05s"><div class="num">12</div><div class="lbl">Instituciones socias</div></div>
-  <div class="stat-item reveal from-up" style="transition-delay:0.15s"><div class="num">7</div><div class="lbl">Países participantes</div></div>
-  <div class="stat-item reveal from-up" style="transition-delay:0.25s"><div class="num">50+</div><div class="lbl">Investigadores y técnicos</div></div>
-  <div class="stat-item reveal from-up" style="transition-delay:0.35s"><div class="num">2</div><div class="lbl">Continentes</div></div>
+  <div class="stat-item reveal from-up" style="transition-delay:0.05s">
+    <div class="num">12</div><div class="lbl">Instituciones socias</div>
+  </div>
+  <div class="stat-item reveal from-up" style="transition-delay:0.15s">
+    <div class="num">7</div><div class="lbl">Países participantes</div>
+  </div>
+  <div class="stat-item reveal from-up" style="transition-delay:0.25s">
+    <div class="num">50+</div><div class="lbl">Investigadores y técnicos</div>
+  </div>
+  <div class="stat-item reveal from-up" style="transition-delay:0.35s">
+    <div class="num">2</div><div class="lbl">Continentes</div>
+  </div>
 </div>
 
-<!-- PAÍSES -->
-<section class="map-section">
-  <span class="section-label reveal from-up">Cobertura Geográfica</span>
-  <h2 class="section-title reveal from-up" style="transition-delay:0.1s">Países Participantes</h2>
-  <p style="font-size:14px; color:var(--slate); margin-top:8px;" class="reveal from-up" style="transition-delay:0.15s">El consorcio abarca instituciones de Centroamérica y Europa.</p>
+<!-- ── PAÍSES ── -->
+<section class="section-block bg-white">
+  <span class="section-label-small reveal from-up">Cobertura Geográfica</span>
+  <h2 class="section-h2 reveal from-up" style="transition-delay:0.08s">Países Participantes</h2>
+  <p class="section-lead reveal from-up" style="transition-delay:0.14s">El consorcio abarca instituciones de Centroamérica y Europa, unidos por un objetivo común.</p>
   <div class="countries-grid">
-    <div class="country-card reveal" style="transition-delay:0.05s"><span class="country-flag">🇵🇦</span><div class="country-name">Panamá</div><div class="country-count">3 socios · UTP, UDELAS, FCDS</div></div>
-    <div class="country-card reveal" style="transition-delay:0.10s"><span class="country-flag">🇨🇷</span><div class="country-name">Costa Rica</div><div class="country-count">2 socios · TEC, UNED</div></div>
-    <div class="country-card reveal" style="transition-delay:0.15s"><span class="country-flag">🇸🇻</span><div class="country-name">El Salvador</div><div class="country-count">2 socios · UES, USO</div></div>
-    <div class="country-card reveal" style="transition-delay:0.20s"><span class="country-flag">🇬🇹</span><div class="country-name">Guatemala</div><div class="country-count">2 socios · UGAL, URL</div></div>
-    <div class="country-card reveal" style="transition-delay:0.25s"><span class="country-flag">🇪🇸</span><div class="country-name">España</div><div class="country-count">1 socio · UPM</div></div>
-    <div class="country-card reveal" style="transition-delay:0.30s"><span class="country-flag">🇫🇷</span><div class="country-name">Francia</div><div class="country-count">1 socio · ULL</div></div>
-    <div class="country-card reveal" style="transition-delay:0.35s"><span class="country-flag">🇭🇺</span><div class="country-name">Hungría</div><div class="country-count">1 socio · ELTE</div></div>
+    <div class="country-card reveal" style="transition-delay:0.05s">
+      <span class="country-flag">🇵🇦</span>
+      <div class="country-name">Panamá</div>
+      <div class="country-count">3 socios · UTP, UDELAS, FCDS</div>
+    </div>
+    <div class="country-card reveal" style="transition-delay:0.10s">
+      <span class="country-flag">🇨🇷</span>
+      <div class="country-name">Costa Rica</div>
+      <div class="country-count">2 socios · TEC, UNED</div>
+    </div>
+    <div class="country-card reveal" style="transition-delay:0.15s">
+      <span class="country-flag">🇸🇻</span>
+      <div class="country-name">El Salvador</div>
+      <div class="country-count">2 socios · UES, USO</div>
+    </div>
+    <div class="country-card reveal" style="transition-delay:0.20s">
+      <span class="country-flag">🇬🇹</span>
+      <div class="country-name">Guatemala</div>
+      <div class="country-count">2 socios · UGAL, URL</div>
+    </div>
+    <div class="country-card reveal" style="transition-delay:0.25s">
+      <span class="country-flag">🇪🇸</span>
+      <div class="country-name">España</div>
+      <div class="country-count">1 socio · UPM</div>
+    </div>
+    <div class="country-card reveal" style="transition-delay:0.30s">
+      <span class="country-flag">🇫🇷</span>
+      <div class="country-name">Francia</div>
+      <div class="country-count">1 socio · ULL</div>
+    </div>
+    <div class="country-card reveal" style="transition-delay:0.35s">
+      <span class="country-flag">🇭🇺</span>
+      <div class="country-name">Hungría</div>
+      <div class="country-count">1 socio · ELTE</div>
+    </div>
   </div>
 </section>
 
-<!-- SOCIOS -->
-<section class="socios-section">
+<hr class="purple-divider">
+
+<!-- ── SOCIOS ── -->
+<section class="section-block bg-light">
   <div class="socios-intro reveal from-left">
-    <div class="socios-intro-text">
-      <span class="section-label">Instituciones</span>
-      <h2>Socios del Consorcio</h2>
+    <div>
+      <span class="section-label-small">Instituciones</span>
+      <h2 class="section-h2">Socios del Consorcio</h2>
       <p>Las 12 instituciones que conforman el consorcio FIDUCA, distribuidas en 7 países de Centroamérica y Europa.</p>
     </div>
   </div>
 
   <div class="socios-grid">
+
+    <!-- P1 UTP -->
     <a href="https://www.utp.ac.pa" target="_blank" style="text-decoration:none; color:inherit;">
-    <div class="socio-card reveal" style="transition-delay:0.05s">
-      <div class="socio-header">
-        <div class="socio-logo-wrap">
-          <div class="socio-abbr"><img src="Estilos/img/utp_logo.png" alt="Logo UTP"></div>
-  <span class="socio-flag"><img src="Estilos/img/BANDERAS/Flag_of_Panama.svg" alt="Panamá"></span>
+      <div class="socio-card reveal" style="transition-delay:0.05s">
+        <div class="socio-header">
+          <div class="socio-logo-wrap">
+            <div class="socio-abbr"><img src="Estilos/img/utp_logo.png" alt="UTP"></div>
+            <span class="socio-flag"><img src="Estilos/img/BANDERAS/Flag_of_Panama.svg" alt="Panamá"></span>
+          </div>
+          <div class="socio-info">
+            <h3>Universidad Tecnológica de Panamá</h3>
+            <span class="partner-num">Coordinador · P1</span>
+          </div>
         </div>
-        <div class="socio-info">
-          <h3>Universidad Tecnológica de Panamá</h3>
-          <div class="socio-meta"><span class="partner-num">Coordinador · P1</span></div>
+        <div class="socio-divider"></div>
+        <div class="socio-chip">
+          <div class="chip-icon">📍</div>
+          <span><span class="chip-label">País:</span> Panamá</span>
         </div>
+        <span class="coord-badge">Institución Coordinadora</span>
       </div>
-      <div class="socio-divider"></div>
-      <div class="socio-chips">
-        <div class="socio-chip"><div class="chip-icon">📍</div><div><div class="chip-label">País</div><div class="chip-val">Panamá</div></div></div>
-      </div>
-      <span class="coord-badge">Institución Coordinadora</span>
-    </div>
-</a>
-    <a href="https://www.udelas.ac.pa/" target="_blank" style="text-decoration:none; color:inherit;">
-    <div class="socio-card reveal" style="transition-delay:0.10s">
-      <div class="socio-header">
-        <div class="socio-logo-wrap">
-          <div class="socio-abbr"><img src="Estilos/img/logo Udelas.png" alt="Logo UDELAS"></div>
-  <span class="socio-flag"><img src="Estilos/img/BANDERAS/Flag_of_Panama.svg" alt="Panamá"></span>
-        </div>
-        <div class="socio-info">
-          <h3>Universidad Especializada de las Américas</h3>
-          <div class="socio-meta"><span class="partner-num">P2</span></div>
-        </div>
-      </div>
-      <div class="socio-divider"></div>
-      <div class="socio-chips">
-        <div class="socio-chip"><div class="chip-icon">📍</div><div><div class="chip-label">País</div><div class="chip-val">Panamá</div></div></div>
-      </div>
-    </div>
-</a>
-    <a href="https://ciudaddelsaber.org/" target="_blank" style="text-decoration:none; color:inherit;">
-    <div class="socio-card reveal" style="transition-delay:0.15s">
-      <div class="socio-header">
-        <div class="socio-logo-wrap">
-          <div class="socio-abbr"><img src="Estilos/img/fcds_logo.png" alt="Logo FCDS"></div>
-  <span class="socio-flag"><img src="Estilos/img/BANDERAS/Flag_of_Panama.svg" alt="Panamá"></span>
-        </div>
-        <div class="socio-info">
-          <h3>Fundación Ciudad del Saber</h3>
-          <div class="socio-meta"><span class="partner-num">P3</span></div>
-        </div>
-      </div>
-      <div class="socio-divider"></div>
-      <div class="socio-chips">
-        <div class="socio-chip"><div class="chip-icon">📍</div><div><div class="chip-label">País</div><div class="chip-val">Panamá</div></div></div>
-      </div>
-    </div>
-</a>
-    <a href="https://www.tec.ac.cr/" target="_blank" style="text-decoration:none; color:inherit;">
-    <div class="socio-card reveal" style="transition-delay:0.20s">
-      <div class="socio-header">
-        <div class="socio-logo-wrap">
-          <div class="socio-abbr"><img src="Estilos/img/logo_tec-1.jpg" alt="Logo TEC"></div>
-  <span class="socio-flag"><img src="Estilos/img/BANDERAS/Flag_of_Costa_Rica_(state).svg.png" alt="Costa Rica"></span>
-        </div>
-        <div class="socio-info">
-          <h3>Instituto Tecnológico de Costa Rica</h3>
-          <div class="socio-meta"><span class="partner-num">P4</span></div>
-        </div>
-      </div>
-      <div class="socio-divider"></div>
-      <div class="socio-chips">
-        <div class="socio-chip"><div class="chip-icon">📍</div><div><div class="chip-label">País</div><div class="chip-val">Costa Rica</div></div></div>
-      </div>
-    </div>
-</a>
-    <a href="https://www.uned.ac.cr/" target="_blank" style="text-decoration:none; color:inherit;">
-    <div class="socio-card reveal" style="transition-delay:0.25s">
-      <div class="socio-header">
-        <div class="socio-logo-wrap">
-          <div class="socio-abbr"><img src="Estilos/img/logo-UNED-horizontal-completo-azul-fondo-transparente.png" alt="Logo UNED"></div>
-  <span class="socio-flag"><img src="Estilos/img/BANDERAS/Flag_of_Costa_Rica_(state).svg.png" alt="Costa Rica"></span>
-        </div>
-        <div class="socio-info">
-          <h3>Universidad Estatal a Distancia</h3>
-          <div class="socio-meta"><span class="partner-num">P5</span></div>
-        </div>
-      </div>
-      <div class="socio-divider"></div>
-      <div class="socio-chips">
-        <div class="socio-chip"><div class="chip-icon">📍</div><div><div class="chip-label">País</div><div class="chip-val">Costa Rica</div></div></div>
-      </div>
-    </div>
-</a>
-
-    <a href="https://www.ues.edu.sv/" target="_blank" style="text-decoration:none; color:inherit;">
-    <div class="socio-card reveal" style="transition-delay:0.30s">
-      <div class="socio-header">
-        <div class="socio-logo-wrap">
-          <div class="socio-abbr"><img src="Estilos/img/LOGO-UES-HORIZONTAL-UES-330.png" alt="Logo UES"></div>
-  <span class="socio-flag"><img src="Estilos/img/BANDERAS/Flag_of_El_Salvador.svg.png" alt="El Salvador"></span>
-        </div>
-        <div class="socio-info">
-          <h3>Universidad de El Salvador</h3>
-          <div class="socio-meta"><span class="partner-num">P6</span></div>
-        </div>
-      </div>
-      <div class="socio-divider"></div>
-      <div class="socio-chips">
-        <div class="socio-chip"><div class="chip-icon">📍</div><div><div class="chip-label">País</div><div class="chip-val">El Salvador</div></div></div>
-      </div>
-    </div>
-</a>
-
-    <a href="https://www.usonsonate.edu.sv/" target="_blank" style="text-decoration:none; color:inherit;">
-    <div class="socio-card reveal" style="transition-delay:0.35s">
-      <div class="socio-header">
-        <div class="socio-logo-wrap">
-          <div class="socio-abbr"><img src="Estilos/img/USO_LogoOficial.png" alt="Logo USO"></div>
-  <span class="socio-flag"><img src="Estilos/img/BANDERAS/Flag_of_El_Salvador.svg.png" alt="El Salvador"></span>
-        </div>
-        <div class="socio-info">
-          <h3>Universidad de Sonsonate</h3>
-          <div class="socio-meta"><span class="partner-num">P7</span></div>
-        </div>
-      </div>
-      <div class="socio-divider"></div>
-      <div class="socio-chips">
-        <div class="socio-chip"><div class="chip-icon">📍</div><div><div class="chip-label">País</div><div class="chip-val">El Salvador</div></div></div>
-      </div>
-    </div>
-</a>
-
-    <a href="https://www.galileo.edu/" target="_blank" style="text-decoration:none; color:inherit;">
-    <div class="socio-card reveal" style="transition-delay:0.40s">
-      <div class="socio-header">
-        <div class="socio-logo-wrap">
-          <div class="socio-abbr"><img src="Estilos/img/logo-galileoPequeño.png" alt="Logo UGAL"></div>
-  <span class="socio-flag"><img src="Estilos/img/BANDERAS/Flag_of_Guatemala.svg" alt="Guatemala"></span>
-        </div>
-        <div class="socio-info">
-          <h3>Universidad Galileo</h3>
-          <div class="socio-meta"><span class="partner-num">P8</span></div>
-        </div>
-      </div>
-      <div class="socio-divider"></div>
-      <div class="socio-chips">
-        <div class="socio-chip"><div class="chip-icon">📍</div><div><div class="chip-label">País</div><div class="chip-val">Guatemala</div></div></div>
-      </div>
-    </div>
-</a>
-
-    <a href="https://principal.url.edu.gt/" target="_blank" style="text-decoration:none; color:inherit;">
-    <div class="socio-card reveal" style="transition-delay:0.45s">
-      <div class="socio-header">
-        <div class="socio-logo-wrap">
-          <div class="socio-abbr"><img src="Estilos/img/url_logo.png" alt="Logo URL"></div>
-  <span class="socio-flag"><img src="Estilos/img/BANDERAS/Flag_of_Guatemala.svg" alt="Guatemala"></span>
-        </div>
-        <div class="socio-info">
-          <h3>Universidad Rafael Landívar</h3>
-          <div class="socio-meta"><span class="partner-num">P9</span></div>
-        </div>
-      </div>
-      <div class="socio-divider"></div>
-      <div class="socio-chips">
-        <div class="socio-chip"><div class="chip-icon">📍</div><div><div class="chip-label">País</div><div class="chip-val">Guatemala</div></div></div>
-      </div>
-    </div>
-</a>
-
-    <a href="https://www.elte.hu/en" target="_blank" style="text-decoration:none; color:inherit;">
-    <div class="socio-card reveal" style="transition-delay:0.50s">
-      <div class="socio-header">
-        <div class="socio-logo-wrap">
-          <div class="socio-abbr"><img src="Estilos/img/elte nuevo.jpg" alt="Logo ELTE"></div>
-  <span class="socio-flag"><img src="Estilos/img/BANDERAS/Flag_of_Hungary.svg.png" alt="Hungría"></span>
-        </div>
-        <div class="socio-info">
-          <h3>Eötvös Loránd University</h3>
-          <div class="socio-meta"><span class="partner-num">P10</span></div>
-        </div>
-      </div>
-      <div class="socio-divider"></div>
-      <div class="socio-chips">
-        <div class="socio-chip"><div class="chip-icon">📍</div><div><div class="chip-label">País</div><div class="chip-val">Hungría</div></div></div>
-      </div>
-    </div>
-</a>
-
-    <a href="https://www.upm.es/" target="_blank" style="text-decoration:none; color:inherit;">
-    <div class="socio-card reveal" style="transition-delay:0.55s">
-      <div class="socio-header">
-        <div class="socio-logo-wrap">
-          <div class="socio-abbr"><img src="Estilos/img/UPM-LOGO.png" alt="Logo UPM"></div>
-  <span class="socio-flag"><img src="Estilos/img/BANDERAS/Bandera_de_España.svg.webp" alt="España"></span>
-        </div>
-        <div class="socio-info">
-          <h3>Universidad Politécnica de Madrid</h3>
-          <div class="socio-meta"><span class="partner-num">P11</span></div>
-        </div>
-      </div>
-      <div class="socio-divider"></div>
-      <div class="socio-chips">
-        <div class="socio-chip"><div class="chip-icon">📍</div><div><div class="chip-label">País</div><div class="chip-val">España</div></div></div>
-      </div>
-    </div>
-</a>
-
-    <a href="https://www.univ-lyon2.fr/" target="_blank" style="text-decoration:none; color:inherit;">
-    <div class="socio-card reveal" style="transition-delay:0.60s">
-      <div class="socio-header">
-        <div class="socio-logo-wrap">
-          <div class="socio-abbr"><img src="Estilos/img/ull_logo.png" alt="Logo ULL"></div>
-  <span class="socio-flag"><img src="Estilos/img/BANDERAS/Flag_of_France.svg.png" alt="Francia"></span>
-        </div>
-        <div class="socio-info">
-          <h3>Université Lumière Lyon 2</h3>
-          <div class="socio-meta"><span class="partner-num">P12</span></div>
-        </div>
-      </div>
-      <div class="socio-divider"></div>
-      <div class="socio-chips">
-        <div class="socio-chip"><div class="chip-icon">📍</div><div><div class="chip-label">País</div><div class="chip-val">Francia</div></div></div>
-      </div>
-    </div>
     </a>
+
+    <!-- P2 UDELAS -->
+    <a href="https://www.udelas.ac.pa/" target="_blank" style="text-decoration:none; color:inherit;">
+      <div class="socio-card reveal" style="transition-delay:0.10s">
+        <div class="socio-header">
+          <div class="socio-logo-wrap">
+            <div class="socio-abbr"><img src="Estilos/img/logo Udelas.png" alt="UDELAS"></div>
+            <span class="socio-flag"><img src="Estilos/img/BANDERAS/Flag_of_Panama.svg" alt="Panamá"></span>
+          </div>
+          <div class="socio-info">
+            <h3>Universidad Especializada de las Américas</h3>
+            <span class="partner-num">P2</span>
+          </div>
+        </div>
+        <div class="socio-divider"></div>
+        <div class="socio-chip">
+          <div class="chip-icon">📍</div>
+          <span><span class="chip-label">País:</span> Panamá</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- P3 FCDS -->
+    <a href="https://ciudaddelsaber.org/" target="_blank" style="text-decoration:none; color:inherit;">
+      <div class="socio-card reveal" style="transition-delay:0.15s">
+        <div class="socio-header">
+          <div class="socio-logo-wrap">
+            <div class="socio-abbr"><img src="Estilos/img/fcds_logo.png" alt="FCDS"></div>
+            <span class="socio-flag"><img src="Estilos/img/BANDERAS/Flag_of_Panama.svg" alt="Panamá"></span>
+          </div>
+          <div class="socio-info">
+            <h3>Fundación Ciudad del Saber</h3>
+            <span class="partner-num">P3</span>
+          </div>
+        </div>
+        <div class="socio-divider"></div>
+        <div class="socio-chip">
+          <div class="chip-icon">📍</div>
+          <span><span class="chip-label">País:</span> Panamá</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- P4 TEC -->
+    <a href="https://www.tec.ac.cr/" target="_blank" style="text-decoration:none; color:inherit;">
+      <div class="socio-card reveal" style="transition-delay:0.20s">
+        <div class="socio-header">
+          <div class="socio-logo-wrap">
+            <div class="socio-abbr"><img src="Estilos/img/Logo TEC.jpg" alt="TEC"></div>
+            <span class="socio-flag"><img src="Estilos/img/BANDERAS/Flag_of_Costa_Rica_(state).svg.png" alt="Costa Rica"></span>
+          </div>
+          <div class="socio-info">
+            <h3>Instituto Tecnológico de Costa Rica</h3>
+            <span class="partner-num">P4</span>
+          </div>
+        </div>
+        <div class="socio-divider"></div>
+        <div class="socio-chip">
+          <div class="chip-icon">📍</div>
+          <span><span class="chip-label">País:</span> Costa Rica</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- P5 UNED -->
+    <a href="https://www.uned.ac.cr/" target="_blank" style="text-decoration:none; color:inherit;">
+      <div class="socio-card reveal" style="transition-delay:0.25s">
+        <div class="socio-header">
+          <div class="socio-logo-wrap">
+            <div class="socio-abbr"><img src="Estilos/img/logo-UNED-horizontal-completo-azul-fondo-transparente.png" alt="UNED"></div>
+            <span class="socio-flag"><img src="Estilos/img/BANDERAS/Flag_of_Costa_Rica_(state).svg.png" alt="Costa Rica"></span>
+          </div>
+          <div class="socio-info">
+            <h3>Universidad Estatal a Distancia</h3>
+            <span class="partner-num">P5</span>
+          </div>
+        </div>
+        <div class="socio-divider"></div>
+        <div class="socio-chip">
+          <div class="chip-icon">📍</div>
+          <span><span class="chip-label">País:</span> Costa Rica</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- P6 UES -->
+    <a href="https://www.ues.edu.sv/" target="_blank" style="text-decoration:none; color:inherit;">
+      <div class="socio-card reveal" style="transition-delay:0.30s">
+        <div class="socio-header">
+          <div class="socio-logo-wrap">
+            <div class="socio-abbr"><img src="Estilos/img/LOGO-UES-HORIZONTAL-UES-330.png" alt="UES"></div>
+            <span class="socio-flag"><img src="Estilos/img/BANDERAS/Flag_of_El_Salvador.svg.png" alt="El Salvador"></span>
+          </div>
+          <div class="socio-info">
+            <h3>Universidad de El Salvador</h3>
+            <span class="partner-num">P6</span>
+          </div>
+        </div>
+        <div class="socio-divider"></div>
+        <div class="socio-chip">
+          <div class="chip-icon">📍</div>
+          <span><span class="chip-label">País:</span> El Salvador</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- P7 USO -->
+    <a href="https://www.usonsonate.edu.sv/" target="_blank" style="text-decoration:none; color:inherit;">
+      <div class="socio-card reveal" style="transition-delay:0.35s">
+        <div class="socio-header">
+          <div class="socio-logo-wrap">
+            <div class="socio-abbr"><img src="Estilos/img/USO_LogoOficial.png" alt="USO"></div>
+            <span class="socio-flag"><img src="Estilos/img/BANDERAS/Flag_of_El_Salvador.svg.png" alt="El Salvador"></span>
+          </div>
+          <div class="socio-info">
+            <h3>Universidad de Sonsonate</h3>
+            <span class="partner-num">P7</span>
+          </div>
+        </div>
+        <div class="socio-divider"></div>
+        <div class="socio-chip">
+          <div class="chip-icon">📍</div>
+          <span><span class="chip-label">País:</span> El Salvador</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- P8 UGAL -->
+    <a href="https://www.galileo.edu/" target="_blank" style="text-decoration:none; color:inherit;">
+      <div class="socio-card reveal" style="transition-delay:0.40s">
+        <div class="socio-header">
+          <div class="socio-logo-wrap">
+            <div class="socio-abbr"><img src="Estilos/img/Logo Galileo.jpg" alt="UGAL"></div>
+            <span class="socio-flag"><img src="Estilos/img/BANDERAS/Flag_of_Guatemala.svg" alt="Guatemala"></span>
+          </div>
+          <div class="socio-info">
+            <h3>Universidad Galileo</h3>
+            <span class="partner-num">P8</span>
+          </div>
+        </div>
+        <div class="socio-divider"></div>
+        <div class="socio-chip">
+          <div class="chip-icon">📍</div>
+          <span><span class="chip-label">País:</span> Guatemala</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- P9 URL -->
+    <a href="https://principal.url.edu.gt/" target="_blank" style="text-decoration:none; color:inherit;">
+      <div class="socio-card reveal" style="transition-delay:0.45s">
+        <div class="socio-header">
+          <div class="socio-logo-wrap">
+            <div class="socio-abbr"><img src="Estilos/img/url_logo.png" alt="URL"></div>
+            <span class="socio-flag"><img src="Estilos/img/BANDERAS/Flag_of_Guatemala.svg" alt="Guatemala"></span>
+          </div>
+          <div class="socio-info">
+            <h3>Universidad Rafael Landívar</h3>
+            <span class="partner-num">P9</span>
+          </div>
+        </div>
+        <div class="socio-divider"></div>
+        <div class="socio-chip">
+          <div class="chip-icon">📍</div>
+          <span><span class="chip-label">País:</span> Guatemala</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- P10 ELTE -->
+    <a href="https://www.elte.hu/en" target="_blank" style="text-decoration:none; color:inherit;">
+      <div class="socio-card reveal" style="transition-delay:0.50s">
+        <div class="socio-header">
+          <div class="socio-logo-wrap">
+            <div class="socio-abbr"><img src="Estilos/img/elte nuevo.jpg" alt="ELTE"></div>
+            <span class="socio-flag"><img src="Estilos/img/BANDERAS/Flag_of_Hungary.svg.png" alt="Hungría"></span>
+          </div>
+          <div class="socio-info">
+            <h3>Eötvös Loránd University</h3>
+            <span class="partner-num">P10</span>
+          </div>
+        </div>
+        <div class="socio-divider"></div>
+        <div class="socio-chip">
+          <div class="chip-icon">📍</div>
+          <span><span class="chip-label">País:</span> Hungría</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- P11 UPM -->
+    <a href="https://www.upm.es/" target="_blank" style="text-decoration:none; color:inherit;">
+      <div class="socio-card reveal" style="transition-delay:0.55s">
+        <div class="socio-header">
+          <div class="socio-logo-wrap">
+            <div class="socio-abbr"><img src="Estilos/img/UPM-LOGO.png" alt="UPM"></div>
+            <span class="socio-flag"><img src="Estilos/img/BANDERAS/Bandera_de_España.svg.webp" alt="España"></span>
+          </div>
+          <div class="socio-info">
+            <h3>Universidad Politécnica de Madrid</h3>
+            <span class="partner-num">P11</span>
+          </div>
+        </div>
+        <div class="socio-divider"></div>
+        <div class="socio-chip">
+          <div class="chip-icon">📍</div>
+          <span><span class="chip-label">País:</span> España</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- P12 ULL -->
+    <a href="https://www.univ-lyon2.fr/" target="_blank" style="text-decoration:none; color:inherit;">
+      <div class="socio-card reveal" style="transition-delay:0.60s">
+        <div class="socio-header">
+          <div class="socio-logo-wrap">
+            <div class="socio-abbr"><img src="Estilos/img/univlyon2_logo201806-standard.png" alt="ULL"></div>
+            <span class="socio-flag"><img src="Estilos/img/BANDERAS/Flag_of_France.svg.png" alt="Francia"></span>
+          </div>
+          <div class="socio-info">
+            <h3>Université Lumière Lyon 2</h3>
+            <span class="partner-num">P12</span>
+          </div>
+        </div>
+        <div class="socio-divider"></div>
+        <div class="socio-chip">
+          <div class="chip-icon">📍</div>
+          <span><span class="chip-label">País:</span> Francia</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
 </section>
 
-  <section class="associated-section">
+<hr class="purple-divider">
 
-  <div class="associated-divider"></div>
-
-  <div class="socios-intro reveal from-left" style="text-align:center; justify-content:center;">
-    <div class="socios-intro-text">
-      <span class="section-label">Instituciones vinculadas</span>
-      <h2>Miembros asociados</h2>
-    </div>
+<!-- ── ASOCIADOS ── -->
+<section class="associated-section">
+  <div class="associated-intro reveal from-up">
+    <span class="section-label-small">Instituciones Vinculadas</span>
+    <h2 class="section-h2">Miembros Asociados</h2>
+    <p class="section-lead" style="max-width:480px; margin: 8px auto 0;">Entidades que colaboran con el consorcio y amplían el alcance del proyecto en la región.</p>
   </div>
 
   <div class="associated-grid">
-        <a href="https://www.up.ac.pa/" target="_blank" style="text-decoration:none; color:inherit;">
-    <div class="socio-card reveal" style="max-width:300px;">
-      <div class="socio-header">
-        <div class="socio-logo-wrap">
-          <div class="socio-abbr">
-            <img src="Estilos/img/UP-logo.png" alt="Logo Universidad de Panamá">
+    <a href="https://www.up.ac.pa/" target="_blank" style="text-decoration:none; color:inherit;">
+      <div class="socio-card reveal" style="transition-delay:0.05s">
+        <div class="socio-header">
+          <div class="socio-logo-wrap">
+            <div class="socio-abbr"><img src="Estilos/img/UP-logo.png" alt="Universidad de Panamá"></div>
+            <span class="socio-flag"><img src="Estilos/img/BANDERAS/Flag_of_Panama.svg" alt="Panamá"></span>
           </div>
-  <span class="socio-flag"><img src="Estilos/img/BANDERAS/Flag_of_Panama.svg" alt="Panamá"></span>
-        </div>
-        <div class="socio-info">
-          <h3>Universidad de Panamá</h3>
-          <div class="socio-meta">
+          <div class="socio-info">
+            <h3>Universidad de Panamá</h3>
             <span class="partner-num">Miembro asociado</span>
           </div>
         </div>
+        <div class="socio-divider"></div>
+        <div class="socio-chip">
+          <div class="chip-icon">📍</div>
+          <span><span class="chip-label">País:</span> Panamá</span>
+        </div>
       </div>
-    </div>
     </a>
 
     <a href="https://www.unah.edu.hn/" target="_blank" style="text-decoration:none; color:inherit;">
-    <div class="socio-card reveal" style="max-width:300px;">
-      <div class="socio-header">
-        <div class="socio-logo-wrap">
-          <div class="socio-abbr">
-            <img src="Estilos/img/Logo-unah.jpg" alt="Logo Universidad Nacional de Honduras">
+      <div class="socio-card reveal" style="transition-delay:0.15s">
+        <div class="socio-header">
+          <div class="socio-logo-wrap">
+            <div class="socio-abbr"><img src="Estilos/img/Logo-unah.jpg" alt="UNAH"></div>
+            <span class="socio-flag"><img src="Estilos/img/BANDERAS/Flag_of_Honduras_(1949–2022,_2026–present).svg" alt="Honduras"></span>
           </div>
-  <span class="socio-flag"><img src="Estilos/img/BANDERAS/Flag_of_Honduras_(1949–2022,_2026–present).svg" alt="Honduras"></span>
-        </div>
-        <div class="socio-info">
-          <h3>Universidad Nacional de Honduras</h3>
-          <div class="socio-meta">
+          <div class="socio-info">
+            <h3>Universidad Nacional Autónoma de Honduras</h3>
             <span class="partner-num">Miembro asociado</span>
           </div>
         </div>
+        <div class="socio-divider"></div>
+        <div class="socio-chip">
+          <div class="chip-icon">📍</div>
+          <span><span class="chip-label">País:</span> Honduras</span>
+        </div>
       </div>
-    </div>
     </a>
 
-        <a href="https://www.senacyt.gob.pa/en/" target="_blank" style="text-decoration:none; color:inherit;">
-    <div class="socio-card reveal" style="max-width:300px;">
-      <div class="socio-header">
-        <div class="socio-logo-wrap">
-          <div class="socio-abbr">
-            <img src="Estilos/img/senacyt-logo.jpg" alt="Logo SENACYT">
+    <a href="https://www.senacyt.gob.pa/en/" target="_blank" style="text-decoration:none; color:inherit;">
+      <div class="socio-card reveal" style="transition-delay:0.25s">
+        <div class="socio-header">
+          <div class="socio-logo-wrap">
+            <div class="socio-abbr"><img src="Estilos/img/senacyt-logo.jpg" alt="SENACYT"></div>
+            <span class="socio-flag"><img src="Estilos/img/BANDERAS/Flag_of_Panama.svg" alt="Panamá"></span>
           </div>
-  <span class="socio-flag"><img src="Estilos/img/BANDERAS/Flag_of_Panama.svg" alt="Panamá"></span>
-        </div>
-        <div class="socio-info">
-          <h3>Secretaría Nacional de Ciencia y Tecnología</h3>
-          <div class="socio-meta">
+          <div class="socio-info">
+            <h3>Secretaría Nacional de Ciencia y Tecnología</h3>
             <span class="partner-num">Miembro asociado</span>
           </div>
         </div>
+        <div class="socio-divider"></div>
+        <div class="socio-chip">
+          <div class="chip-icon">📍</div>
+          <span><span class="chip-label">País:</span> Panamá</span>
+        </div>
       </div>
-    </div>
+    </a>
   </div>
-      </a>
 </section>
+<hr class="purple-divider">
 
 <!-- FOOTER -->
 <footer>
@@ -520,9 +666,8 @@
       <p><strong>Proyecto de investigación cofinanciado por la Unión Europea a través del programa Erasmus+ (2026–2028). El contenido de esta página es responsabilidad exclusiva del consorcio y no representa la posición oficial de la UE.</strong></p>
       <div style="margin-top:16px;" class="eu-flag">
         <span><strong>★ ★ ★ ★ ★ ★</strong></span>
-        <span style="color:rgba(255,255,255,0.3); margin-left:10px; font-size:12px;"><strong>Cofinanciado por la UE</strong></span>
+        <span style="color:rgba(0,0,0,0.35); margin-left:10px; font-size:12px;"><strong>Cofinanciado por la UE</strong></span>
       </div>
-      <!-- REDES SOCIALES -->
       <div class="footer-social">
         <a href="https://www.instagram.com/proyecto.fiduca" target="_blank" class="social-btn" title="Instagram">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
@@ -542,7 +687,7 @@
       <h4><strong>Proyecto</strong></h4>
       <ul>
         <li><a href="index.html"><strong>Acerca de</strong></a></li>
-        <li><a href="#"><strong>Objetivos</strong></a></li>
+        <li><a href="index.html#objetivos"><strong>Objetivos</strong></a></li>
         <li><a href="resultados.html"><strong>Resultados</strong></a></li>
         <li><a href="equipo.html"><strong>Socios</strong></a></li>
       </ul>
@@ -552,8 +697,8 @@
       <ul>
         <li><a href="noticias.html"><strong>Publicaciones</strong></a></li>
         <li><a href="#"><strong>Informes</strong></a></li>
-        <li><a href="#"><strong>Galerian></a></li> 
-        <li><a href="#"><strong>Recursos</strong></a></li>
+        <li><a href="galeria.html"><strong>Galería</strong></a></li>
+        <li><a href="recursos.html"><strong>Recursos</strong></a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -567,14 +712,12 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <span><strong>© 2025 FIDUCA Consortium · Grant Agreement 101094522</strong></span>
+    <span><strong>© 2026 FIDUCA Consortium · Grant Agreement 101094522</strong></span>
   </div>
 </footer>
 
-</div>
+</div><!-- /page-wrapper -->
 <script src="Estilos/scripts.js"></script>
-<script>
-  lucide.createIcons();
-</script>
+<script>lucide.createIcons();</script>
 </body>
 </html>

@@ -46,6 +46,7 @@ nav {
   box-shadow: 0 2px 20px rgba(0,0,0,0.06);
   min-height: 77px;
 }
+
 .icon-grande {
   width: 170px;
   height: auto;
@@ -311,7 +312,7 @@ nav {
 
 .section { padding: 90px 60px; }
 .section-label {
-  font-size: 11px; color: var(--purple);
+  font-size: 14x; color: var(--purple);
   text-transform: uppercase; letter-spacing: 3px;
   margin-bottom: 16px; display: block;
 }
@@ -320,6 +321,14 @@ nav {
   line-height: 1.2; margin-bottom: 20px;
 }
 .section-body { font-size: 16px; color: var(--slate); max-width: 640px; line-height: 1.9; }
+
+p,
+.section-body,
+.section-lead,
+.page-hero p {
+  font-size: 18px;
+  line-height: 1.8;
+}
 
 .objectives-section .section-label,
 .objectives-section .section-title,
@@ -505,7 +514,7 @@ footer { background: var(--light); padding: 50px 60px 30px; }
   font-size: clamp(36px, 4vw, 52px); font-weight: 900;
   color: var(--white); line-height: 1.15; margin-bottom: 18px;
 }
-.page-hero p { font-size: 16px; color:var(--navy); max-width: 560px; line-height: 1.8; }
+.page-hero p { font-size: 18px; color:var(--white); max-width: 560px; line-height: 1.8; }
 
 /* ── BREADCRUMB ── */
 .breadcrumb {
