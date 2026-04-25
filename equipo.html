@@ -8,7 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="Estilos/styles.css">
 <style>
-/* ── VARIABLES ── */
 :root {
   --purple: #91117e;
   --gold:   #ea7504;
@@ -21,32 +20,55 @@
   --line:   rgba(65,9,56,0.10);
 }
 
-
-/* ── HERO ── */
-.page-hero {
+/* ── HERO — mismo patrón exacto que rec-hero en recursos.html ── */
+.eq-hero {
   background: var(--navy);
-  position: relative; overflow: hidden;
-  padding: 80px 60px 70px;
+  position: relative;
+  overflow: hidden;
+  padding: 90px 60px 80px;
 }
-.page-hero::before {
-  content: ''; position: absolute; inset: 0; pointer-events: none;
+.eq-hero::before {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none;
   background:
-    radial-gradient(ellipse 60% 80% at 15% 55%, rgba(145,17,126,0.55) 0%, transparent 65%),
-    radial-gradient(ellipse 35% 45% at 88% 18%, rgba(65,9,56,0.4) 0%, transparent 60%);
+    radial-gradient(ellipse 50% 80% at 10% 60%, rgba(145,17,126,0.25) 0%, transparent 65%),
+    radial-gradient(ellipse 45% 55% at 88% 18%, rgba(65,9,56,0.50)  0%, transparent 60%),
+    radial-gradient(ellipse 30% 40% at 60% 85%, rgba(234,117,4,0.18)  0%, transparent 55%);
 }
-.page-hero-grid {
+.eq-hero-grid {
   position: absolute; inset: 0;
   background-image:
     linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
   background-size: 50px 50px;
 }
-.page-hero-inner { position: relative; z-index: 2; max-width: 680px; }
-.page-hero .section-label-small { color: var(--gold); margin-bottom: 14px; }
-.page-hero h1 {
-  font-size: clamp(36px, 4vw, 52px); font-weight: 900;
-  color: var(--white); line-height: 1.12; margin-bottom: 18px;
+.eq-hero-inner {
+  position: relative; z-index: 2;
+  display: grid; grid-template-columns: 1.1fr 1fr;
+  gap: 72px; align-items: center;
 }
+.eq-hero-text .section-label { color: var(--gold); margin-bottom: 14px; display: block;
+  font-size: 11px; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; }
+.eq-hero-text h1 {
+  font-size: clamp(34px, 4vw, 52px); font-weight: 900;
+  color: white; line-height: 1.12; margin-bottom: 18px;
+}
+.eq-hero-text p {
+  font-size: 16px; color: rgba(255,255,255,0.65);
+  line-height: 1.85; max-width: 480px;
+}
+
+/* KPIs hero — mismo patrón exacto que rec-kpi en recursos.html */
+.eq-kpi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.eq-kpi {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px; padding: 26px 22px;
+  transition: border-color .25s, background .25s;
+}
+.eq-kpi:hover { border-color: rgba(234,117,4,0.4); background: rgba(255,255,255,0.09); }
+.eq-kpi-num   { font-size: 38px; font-weight: 900; color: var(--gold); line-height: 1; margin-bottom: 8px; }
+.eq-kpi-label { font-size: 12px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1.5px; line-height: 1.5; font-weight: 600; }
 
 /* ── LABELS ── */
 .section-label-small {
@@ -69,20 +91,6 @@
 .breadcrumb a { color: var(--purple); text-decoration: none; }
 .breadcrumb a:hover { text-decoration: underline; }
 .breadcrumb span { opacity: 0.4; }
-
-/* ── STATS BAR ── */
-.stats-bar {
-  background: var(--navy); position: relative; overflow: hidden;
-  padding: 48px 60px;
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
-}
-.stats-bar::before {
-  content: ''; position: absolute; inset: 0; pointer-events: none;
-  background: radial-gradient(ellipse 50% 100% at 30% 50%, rgba(145,17,126,0.4) 0%, transparent 70%);
-}
-.stat-item { text-align: center; position: relative; z-index: 1; }
-.stat-item .num { font-size: 42px; font-weight: 900; color: var(--gold); line-height: 1; margin-bottom: 6px; }
-.stat-item .lbl { font-size: 12px; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 1.5px; }
 
 /* ── SECTION BLOCK ── */
 .section-block { padding: 70px 60px 80px; }
@@ -183,12 +191,9 @@
 
 /* ── ASOCIADOS ── */
 .associated-section { padding: 60px 60px 80px; background: var(--white); }
-.associated-intro {
-  text-align: center; margin-bottom: 40px;
-}
+.associated-intro { text-align: center; margin-bottom: 40px; }
 .associated-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: grid; grid-template-columns: repeat(3, 1fr);
   gap: 20px; max-width: 900px; margin: 0 auto;
 }
 
@@ -207,8 +212,10 @@
   .associated-grid { grid-template-columns: repeat(2,1fr); }
 }
 @media (max-width: 768px) {
-  .page-hero, .breadcrumb { padding-left: 20px; padding-right: 20px; }
-  .stats-bar { grid-template-columns: repeat(2,1fr); padding: 40px 20px; }
+  .eq-hero { padding: 60px 20px 50px; }
+  .eq-hero-inner { grid-template-columns: 1fr; gap: 36px; }
+  .eq-kpi-grid { grid-template-columns: 1fr 1fr; }
+  .breadcrumb { padding: 14px 20px; }
   .section-block { padding: 50px 20px 60px; }
   .socios-grid { grid-template-columns: 1fr; }
   .associated-grid { grid-template-columns: 1fr; }
@@ -237,6 +244,37 @@
     <li><a href="contacto.html" class="nav-cta">Contacto</a></li>
   </ul>
 </nav>
+<hr class="purple-divider">
+
+<!-- HERO — estructura idéntica a recursos.html -->
+<section class="eq-hero">
+  <div class="eq-hero-grid"></div>
+  <div class="eq-hero-inner">
+    <div class="eq-hero-text reveal from-left">
+      <span class="section-label">Consorcio FIDUCA</span>
+      <h1>Equipo &amp; Socios<br>del Proyecto</h1>
+      <p>Un consorcio de 12 instituciones de 7 países trabaja de forma colaborativa para fortalecer la innovación y el emprendimiento en comunidades indígenas centroamericanas.</p>
+    </div>
+    <div class="eq-kpi-grid">
+      <div class="eq-kpi reveal" style="transition-delay:0.10s">
+        <div class="eq-kpi-num">12</div>
+        <div class="eq-kpi-label">Instituciones<br>socias</div>
+      </div>
+      <div class="eq-kpi reveal" style="transition-delay:0.20s">
+        <div class="eq-kpi-num">7</div>
+        <div class="eq-kpi-label">Países<br>participantes</div>
+      </div>
+      <div class="eq-kpi reveal" style="transition-delay:0.30s">
+        <div class="eq-kpi-num">50+</div>
+        <div class="eq-kpi-label">Investigadores<br>y técnicos</div>
+      </div>
+      <div class="eq-kpi reveal" style="transition-delay:0.40s">
+        <div class="eq-kpi-num">3</div>
+        <div class="eq-kpi-label">Miembros<br>Asociados</div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- BREADCRUMB -->
 <div class="breadcrumb">
@@ -245,31 +283,7 @@
   <span style="color:var(--navy); opacity:1; font-weight:600;">Equipo &amp; Socios</span>
 </div>
 
-<!-- PAGE HERO -->
-<section class="page-hero">
-  <div class="page-hero-grid"></div>
-  <div class="page-hero-inner">
-    <span class="section-label-small">Consorcio FIDUCA</span>
-    <h1>Equipo &amp; Socios del Proyecto</h1>
-    <p>Un consorcio de 12 instituciones de 7 países trabaja de forma colaborativa para fortalecer la innovación y el emprendimiento en comunidades indígenas centroamericanas.</p>
-  </div>
-</section>
-
-<!-- STATS BAR -->
-<div class="stats-bar">
-  <div class="stat-item reveal from-up" style="transition-delay:0.05s">
-    <div class="num">12</div><div class="lbl">Instituciones socias</div>
-  </div>
-  <div class="stat-item reveal from-up" style="transition-delay:0.15s">
-    <div class="num">7</div><div class="lbl">Países participantes</div>
-  </div>
-  <div class="stat-item reveal from-up" style="transition-delay:0.25s">
-    <div class="num">50+</div><div class="lbl">Investigadores y técnicos</div>
-  </div>
-  <div class="stat-item reveal from-up" style="transition-delay:0.35s">
-    <div class="num">2</div><div class="lbl">Continentes</div>
-  </div>
-</div>
+<hr class="purple-divider">
 
 <!-- ── PAÍSES ── -->
 <section class="section-block bg-white">
@@ -657,6 +671,7 @@
     </a>
   </div>
 </section>
+
 <hr class="purple-divider">
 
 <!-- FOOTER -->
@@ -697,7 +712,7 @@
       <h4><strong>Recursos</strong></h4>
       <ul>
         <li><a href="noticias.html"><strong>Publicaciones</strong></a></li>
-        <li><a href="#"><strong>Informes</strong></a></li>
+        <li><a href="recursos.html"><strong>Repositorio</strong></a></li>
         <li><a href="galeria.html"><strong>Galería</strong></a></li>
         <li><a href="recursos.html"><strong>Recursos</strong></a></li>
       </ul>
@@ -717,7 +732,7 @@
   </div>
 </footer>
 
-</div><!-- /page-wrapper -->
+</div>
 <script src="Estilos/scripts.js"></script>
 <script>lucide.createIcons();</script>
 </body>
