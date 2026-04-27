@@ -17,25 +17,51 @@
   margin-top: 32px;
 }
 
-.news-card.destacada { grid-column: span 2; }
-.news-card.destacada .news-thumb { height: 260px; font-size: 72px; }
-.news-card.destacada .news-body h3 { font-size: 22px; }
+/* Tarjeta destacada: ocupa 2 columnas */
+.news-card.destacada {
+  grid-column: span 2;
+}
+.news-card.destacada .news-img {
+  height: 260px;
+}
+.news-card.destacada .news-body h3 {
+  font-size: 22px;
+}
+
+.news-card.media {
+  grid-column: span 2;
+}
+.news-card.media .news-img {
+  height: 200px;
+}
+.news-card.media .news-body h3 {
+  font-size: 18px;
+}
 
 .empty-state {
-  text-align: center; padding: 80px 20px;
-  color: var(--slate); grid-column: 1 / -1;
+  text-align: center;
+  padding: 80px 20px;
+  color: var(--slate);
+  grid-column: 1 / -1;
 }
-.empty-state span { font-size: 48px; display: block; margin-bottom: 16px; }
+.empty-state span {
+  font-size: 48px;
+  display: block;
+  margin-bottom: 16px;
+}
 
 @media (max-width: 768px) {
   .noticias-section { padding: 40px 20px 60px; }
   .noticias-grid { grid-template-columns: 1fr; }
-  .news-card.destacada { grid-column: span 1; }
+  .news-card.destacada,
+  .news-card.media { grid-column: span 1; }
 }
 </style>
 </head>
 <body>
 <div class="page-wrapper">
+
+<!-- NAV -->
 <nav>
   <div class="logo-wrap">
     <img src="Estilos/img/LOGO-UE-Full_color.png" alt="UE_logo" style="height:90px; width:auto;">
@@ -44,24 +70,26 @@
   <ul class="nav-links">
     <li><a href="index.html">Proyecto</a></li>
     <li><a href="equipo.html">Socios</a></li>
-   <li><a href="resultados.html">Resultados</a></li>
+    <li><a href="resultados.html">Resultados</a></li>
     <li><a href="recursos.html">Recursos</a></li>
     <li><a href="noticias.html" class="activo">Noticias</a></li>
     <li><a href="galeria.html">Galeria</a></li>
-    <li><a href="contacto.html"class="nav-cta">Contacto</a></li>
+    <li><a href="contacto.html" class="nav-cta">Contacto</a></li>
   </ul>
 </nav>
 
+<!-- BREADCRUMB -->
 <div class="breadcrumb">
   <a href="index.html">Inicio</a>
   <span>›</span>
   <span>Noticias</span>
 </div>
 
+<!-- HERO -->
 <section class="page-hero">
   <div class="page-hero-grid"></div>
   <div class="page-hero-inner">
-  <h1>Mantente al día con los eventos y publicaciones del consorcio FIDUCA en toda la región centroamericana</h1>
+    <h1>Mantente al día con los eventos y publicaciones del consorcio FIDUCA en toda la región centroamericana</h1>
   </div>
 </section>
 
@@ -74,9 +102,21 @@
   <button class="filter-btn" onclick="filtrar(this, 'Difusión')">Difusión</button>
 </div>
 
+<!-- GRID DE NOTICIAS -->
 <section class="noticias-section">
   <div class="noticias-grid" id="noticias-grid">
 
+    <!--
+      PATRÓN DE LAYOUT (3 columnas):
+      Fila 1: [DESTACADA  span2] [CORTA  span1]
+      Fila 2: [CORTA span1] [CORTA span1] [CORTA span1]
+      Fila 3: [CORTA span1] [MEDIA span2]
+      Fila 4: [CORTA span1] [CORTA span1] [CORTA span1]
+    -->
+
+    <!-- FILA 1 ─────────────────────────────── -->
+
+    <!-- 1. DESTACADA (span 2) -->
     <a href="https://cinemi.utp.ac.pa/ver-noticias/utp-lidera-proyecto-internacional-fiduca-para-fortalecer-la-innovacion-y-la-investigacion"
        class="news-card destacada reveal from-left"
        data-cat="Difusión"
@@ -90,7 +130,8 @@
       </div>
     </a>
 
-    <a href="https://www.inf.elte.hu/innovacios-projekt-indult-kozep-amerikaban-az-elte-reszvetelevel?fbclid=PAdGRleARXBktleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA8xMjQwMjQ1NzQyODc0MTQAAaer9Or4xhE83qP0oZf2NWnpr-aTimLHwTkh9E5QiqaUsVP_vhys5YnRh8Gj4Q_aem_JVpz17UKY_WJVKyKPsWTDA"
+    <!-- 2. CORTA (span 1) -->
+    <a href="https://www.inf.elte.hu/innovacios-projekt-indult-kozep-amerikaban-az-elte-reszvetelevel"
        class="news-card reveal"
        data-cat="Difusión"
        style="transition-delay:0.15s"
@@ -99,39 +140,44 @@
       <div class="news-body">
         <span class="news-tag">Difusión</span>
         <h3>Innovációs projekt indult Közép-Amerikában az ELTE részvételével</h3>
-        <p>Az Eötvös Loránd Tudományegyetem (ELTE) részt vett a Fomento de la Innovación y la Investigación Transdisciplinaria en las Universidades para el Desarrollo Sostenible e Inclusivo en la Región Centroamerican (FIDUCA) projekt hivatalos megnyitóján, amelyet 2026. február 11-én tartottak a Costa Rica-i Műszaki Egyetem (TEC) San Carlos helyi campusán.</p>
+        <p>Az Eötvös Loránd Tudományegyetem (ELTE) részt vett a FIDUCA projekt hivatalos megnyitóján Costa Ricában.</p>
         <span class="news-date">11 Feb 2026</span>
       </div>
     </a>
 
+    <!-- FILA 2 ─────────────────────────────── -->
+
+    <!-- 3. CORTA (span 1) -->
     <a href="https://www.linkedin.com/posts/albertotejero_fiduca-comunidadesabrrurales-pueblosabrindaedgenas-ugcPost-7430671937976233984-ikml"
        class="news-card reveal"
        data-cat="Difusión"
-       style="transition-delay:0.3s"
+       style="transition-delay:0.1s"
        target="_blank">
       <img src="Estilos/img/Fotos noticias/LinkedIn-Logo.wine.png" class="news-img">
       <div class="news-body">
         <span class="news-tag">Difusión</span>
         <h3>Post realizado por la UPM en LinkedIn</h3>
-        <p>La Universidad Politécnica de Madrid (UPM) participa en el proyecto FIDUCA impulsando la cooperación internacional en educación superior.</p>
+        <p>La Universidad Politécnica de Madrid participa en FIDUCA impulsando la cooperación internacional en educación superior.</p>
         <span class="news-date">11 Feb 2026</span>
       </div>
     </a>
 
+    <!-- 4. CORTA (span 1) -->
     <a href="http://usonsonate.edu.sv/news"
        class="news-card reveal"
        data-cat="Difusión"
-       style="transition-delay:0.3s"
+       style="transition-delay:0.2s"
        target="_blank">
-      <img src="Estilos/img/Fotos noticias/uso_publicacion.png" class="news-img">
+      <img src="Estilos/img/Fotos noticias/Foto Grupal CTEC KOM CR.jpeg" class="news-img">
       <div class="news-body">
         <span class="news-tag">Difusión</span>
-        <h3>La Universidad de Sonsonate se proyecta al mundo con el lanzamiento del proyecto FIDUCA, Unión Europea-Erasmus+</h3>
-        <p>El pasado 11 de febrero de 2026, la ciudad de San Carlos, Costa Rica, fue el escenario del lanzamiento oficial del proyecto FIDUCA (Fortalecimiento de la Innovación y la Investigación Transdisciplinaria en las Universidad para el Desarrollo Sostenible e Inclusivo de la Región Centroamericana)</p>
+        <h3>La Universidad de Sonsonate se proyecta al mundo con el lanzamiento del proyecto FIDUCA</h3>
+        <p>El 11 de febrero de 2026, San Carlos, Costa Rica fue el escenario del lanzamiento oficial del proyecto FIDUCA.</p>
         <span class="news-date">11 Feb 2026</span>
       </div>
     </a>
 
+    <!-- 5. CORTA (span 1) -->
     <a href="https://www.galileo.edu/historias-de-exito/fiduca-ugalileo-participa-en-proyecto-de-innovacion-social-y-emprendimiento-tecnologico-financiado-por-la-ue/"
        class="news-card reveal"
        data-cat="Difusión"
@@ -140,41 +186,80 @@
       <img src="Estilos/img/Fotos noticias/Fotos-verticales-articulos-Galileo-1.png" class="news-img">
       <div class="news-body">
         <span class="news-tag">Difusión</span>
-        <h3>FIDUCA: UGalileo participa en proyecto de innovación social y emprendimiento tecnológico financiado por la UE </h3>
-        <p>Universidad Galileo participa en el proyecto internacional FIDUCA, una iniciativa financiada por el programa Erasmus+ de la Unión Europea que busca fortalecer la innovación, la investigación transdisciplinaria y el emprendimiento para impulsar el desarrollo sostenible en Centroamérica</p>
+        <h3>FIDUCA: UGalileo participa en proyecto de innovación social financiado por la UE</h3>
+        <p>Universidad Galileo se suma al consorcio FIDUCA, iniciativa Erasmus+ que impulsa el desarrollo sostenible en Centroamérica.</p>
         <span class="news-date">26 Mar 2026</span>
       </div>
     </a>
 
-     <a href="https://www.tec.ac.cr/tec-impulsa-emprendimientos-indigenas-limon-cartago-apoyo-union-europea?fbclid=PAdGRleARXBJFleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA8xMjQwMjQ1NzQyODc0MTQAAafsKlKP2dj8gKBMc1LIovts4n02JT9OjC_zNIYM_duQtStpYjKM8W13s2CH8Q_aem_0--DWYFW3lWeapqhXYCP0A"
-       class="news-card destacada reveal from-left"
+    <!-- FILA 3 ─────────────────────────────── -->
+
+    <!-- 6. CORTA (span 1) -->
+    <a href="https://www.ues.edu.sv/ues-es-parte-del-proyecto-fiduca-para-impulsar-el-desarrollo-sostenible-en-centro-america/"
+       class="news-card reveal"
        data-cat="Difusión"
+       style="transition-delay:0.1s"
+       target="_blank">
+      <img src="Estilos/img/Fotos noticias/utpLidera.jpeg" class="news-img">
+      <div class="news-body">
+        <span class="news-tag">Difusión</span>
+        <h3>UES es parte del proyecto FIDUCA para impulsar el desarrollo sostenible en Centro América</h3>
+        <p>La Universidad de El Salvador participa a través de INTTEC-UES y el Centro de Investigación Multidisciplinaria CIMU.</p>
+        <span class="news-date">17 Feb 2026</span>
+      </div>
+    </a>
+
+    <!-- 7. DESTACADA (span 2) -->
+    <a href="https://www.tec.ac.cr/tec-impulsa-emprendimientos-indigenas-limon-cartago-apoyo-union-europea"
+       class="news-card destacada reveal"
+       data-cat="Difusión"
+       style="transition-delay:0.2s"
        target="_blank">
       <img src="Estilos/img/Fotos noticias/tec_publica.webp" class="news-img" style="height:260px;">
       <div class="news-body">
         <span class="news-tag">Difusión</span>
         <h3>TEC impulsa emprendimientos indígenas en Limón y Cartago con apoyo de la Unión Europea</h3>
-      <p>El Tecnológico de Costa Rica (TEC) se adentrará en los territorios indígenas de Jabuy, en Tayní, en el Valle la Estrella de la provincia de Limón, y de Alto Pacuare, en Alto Chirripó, Turrialba, en la provincia de Cartago, para apoyar a la población local en fortalecer sus capacidades emprendedoras y darles herramientas útiles para sus negocios.</p>
+        <p>El Tecnológico de Costa Rica se adentrará en los territorios indígenas de Jabuy y Alto Pacuare para fortalecer capacidades emprendedoras de la población local.</p>
         <span class="news-date">11 de febrero 2026</span>
       </div>
     </a>
-    
-<a href="https://www.ues.edu.sv/ues-es-parte-del-proyecto-fiduca-para-impulsar-el-desarrollo-sostenible-en-centro-america/"
-       class="news-card destacada reveal from-left"
+
+    <!-- FILA 4 ─────────────────────────────── -->
+
+    <!-- 8. CORTA (span 1) -->
+    <a href="https://principal.url.edu.gt/facultades/facultad-de-ciencias-economicas-y-empresariales/landivar-asume-rol-estrategico-en-proyecto-europeo-para-fortalecer-emprendimiento-indigena-en-guatemala/"
+       class="news-card reveal"
        data-cat="Difusión"
-       style="transition-delay:0.3s"
+       style="transition-delay:0.1s"
        target="_blank">
-      <img src="Estilos/img/Fotos noticias/tec_publica.webp" class="news-img">
+      <img src="Estilos/img/Fotos noticias/kom-url.webp" class="news-img">
       <div class="news-body">
         <span class="news-tag">Difusión</span>
-        <h3>UES es parte del proyecto FIDUCA para impulsar el desarrollo sostenible en Centro América</h3>
-        <p>La Universidad de El Salvador, a través de la Oficina de Innovación y Transferencia de Tecnología (INTTEC-UES) y el Centro de Investigación Multidisciplinaria (CIMU) de la Facultad Multidisciplinaria de Occidente, participa en el proyecto “Fomento de la Innovación y la Investigación transdisciplinaria en las universidades para el Desarrollo Sostenible e Inclusivo en la Región Centroamericana” (FIDUCA)</p>
-        <span class="news-date">17 Feb 2026</span>
+        <h3>Landívar asume rol estratégico en proyecto europeo para fortalecer emprendimiento indígena en Guatemala</h3>
+        <p>La URL participó en el KOM del proyecto FIDUCA, encuentro que marcó el inicio de una alianza estratégica entre 19 organizaciones de Centroamérica y Europa.</p>
+        <span class="news-date">02 Mar 2026</span>
       </div>
     </a>
-  </div>
 
+    <!-- 9. CORTA (span 1) -->
+    <a href="https://www.upm.es/UPM/SalaPrensa/Noticias_de_investigacion?fmt=detail&prefmt=articulo&id=CON25909"
+       class="news-card reveal"
+       data-cat="Difusión"
+       style="transition-delay:0.2s"
+       target="_blank">
+      <img src="Estilos/img/Fotos noticias/upm_noticia.jpeg" class="news-img">
+      <div class="news-body">
+        <span class="news-tag">Difusión</span>
+        <h3>Fortalecer la innovación y la transformación digital</h3>
+        <p>La Universidad Politécnica de Madrid participa en el proyecto FIDUCA impulsando la cooperación internacional entre instituciones de educación superior.</p>
+        <span class="news-date">02 Mar 2026</span>
+      </div>
+    </a>
+
+
+  </div>
 </section>
+
 <hr class="purple-divider">
 
 <!-- FOOTER -->
@@ -203,6 +288,7 @@
         </a>
       </div>
     </div>
+
     <div class="footer-col">
       <h4><strong>Proyecto</strong></h4>
       <ul>
@@ -212,15 +298,17 @@
         <li><a href="equipo.html"><strong>Socios</strong></a></li>
       </ul>
     </div>
+
     <div class="footer-col">
       <h4><strong>Recursos</strong></h4>
       <ul>
         <li><a href="noticias.html"><strong>Publicaciones</strong></a></li>
         <li><a href="#"><strong>Informes</strong></a></li>
-        <li><a href="#"><strong>Galerian></a></li> 
-        <li><a href="#"><strong>Recursos</strong></a></li>
+        <li><a href="galeria.html"><strong>Galería</strong></a></li>
+        <li><a href="recursos.html"><strong>Recursos</strong></a></li>
       </ul>
     </div>
+
     <div class="footer-col">
       <h4><strong>Legal</strong></h4>
       <ul>
@@ -231,11 +319,13 @@
       </ul>
     </div>
   </div>
+
   <div class="footer-bottom">
     <span><strong>© 2025 FIDUCA Consortium · Grant Agreement 101094522</strong></span>
   </div>
 </footer>
-</div>
+
+</div><!-- /.page-wrapper -->
 
 <script src="Estilos/scripts.js"></script>
 <script>
