@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<link rel="icon" type="image/png" href="/Estilos/img/FIDUCA_logo_sinnombre.png">
 <script src="https://unpkg.com/lucide@latest"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -57,9 +58,168 @@
   filter: brightness(0.92);
   box-shadow: 0 8px 28px rgba(0,0,0,0.18);
 }
+.insta-notice{
+  position: fixed;
+
+  top: 20px;
+  right: 20px;
+
+  width: 390px;
+  max-width: calc(100% - 24px);
+
+  background:
+    linear-gradient(
+      135deg,
+      #833ab4,
+      #c13584,
+      #e1306c,
+      #fd1d1d,
+      #fcb045
+    );
+
+  border-radius: 22px;
+
+  box-shadow:
+    0 12px 35px rgba(0,0,0,0.18);
+
+  z-index: 9999;
+
+  overflow: hidden;
+
+  animation: instaSlide 0.5s ease;
+}
+
+.insta-notice-content{
+  display:flex;
+  align-items:center;
+  gap:16px;
+
+  padding:20px 22px;
+
+  text-decoration:none;
+  color:white;
+}
+
+.insta-notice-icon{
+  width:52px;
+  height:52px;
+
+  border-radius:16px;
+
+  background:rgba(255,255,255,0.18);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  flex-shrink:0;
+}
+
+.insta-notice-icon i{
+  width:28px;
+  height:28px;
+}
+
+.insta-notice-text span{
+  display:block;
+  font-size:0.8rem;
+  font-weight:700;
+  letter-spacing:0.05em;
+  opacity:0.9;
+  text-transform:uppercase;
+}
+
+.insta-notice-text p{
+  margin:4px 0 0;
+  font-size:1rem;
+  line-height:1.4;
+  font-weight:600;
+}
+
+.insta-notice-arrow{
+  margin-left:auto;
+  font-size:1.6rem;
+  font-weight:700;
+  opacity:0.9;
+}
+
+.insta-notice-close{
+  position:absolute;
+
+  top:10px;
+  right:10px;
+
+  border:none;
+  background:none;
+
+  color:white;
+
+  cursor:pointer;
+
+  font-size:0.9rem;
+  opacity:0.85;
+}
+
+@keyframes instaSlide{
+  from{
+    opacity:0;
+    transform:translateY(-12px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+@media(max-width:600px){
+
+  .insta-notice{
+    right:12px;
+    left:12px;
+    width:auto;
+  }
+
+  .insta-notice-content{
+    padding:18px;
+  }
+
+  .insta-notice-text p{
+    font-size:0.92rem;
+  }
+}
 </style>
 </head>
 <body>
+  <div class="insta-notice" id="instaNotice">
+
+  <a href="https://www.instagram.com/p/DYN0ufCERQn/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+     target="_blank"
+     class="insta-notice-content">
+
+    <div class="insta-notice-icon">
+    <img src="Estilos/iconos/instagram-white-icon.webp" alt="IG_logo" style="height:40px; width:auto;">
+    </div>
+
+    <div class="insta-notice-text">
+      <span>Nueva publicación</span>
+      <p>
+        Revive el lanzamiento nacional del proyecto FIDUCA en Panamá
+      </p>
+    </div>
+
+    <div class="insta-notice-arrow">
+      →
+    </div>
+
+  </a>
+
+  <button class="insta-notice-close"
+    onclick="document.getElementById('instaNotice').style.display='none'">
+    ✕
+  </button>
+
+</div>
   <div class="modal-overlay" id="modal-overlay" onclick="closeModal()">
   <div class="modal-box" onclick="event.stopPropagation()">
     <button class="modal-close" onclick="closeModal()">✕</button>
