@@ -1113,3 +1113,34 @@
     .erasmus-grid    { grid-template-columns: 1fr; gap: 40px; }
     .erasmus-data-grid { grid-template-columns: repeat(2, 1fr); }
   }
+/* ── FIX NAVBAR MÓVIL ── */
+@media (max-width: 768px) {
+  nav {
+    overflow: hidden;         
+    max-width: 100vw;
+    width: 100%;
+    nav {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+  }
+
+  .logo-wrap {
+    gap: 6px;
+    overflow: hidden;
+    flex: 1;                   
+    min-width: 0;              
+  }
+
+  .logo-wrap img {
+    height: 36px;              
+    width: auto;
+    flex-shrink: 1;
+    max-width: 120px;          
+  }
+
+  .nav-hamburger {
+    flex-shrink: 0;            
+    margin-left: auto;
+  }
+}
