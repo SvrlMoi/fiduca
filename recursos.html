@@ -164,10 +164,10 @@
   letter-spacing: 1.5px; display: block; margin-bottom: 4px;
 }
 .doc-card h4 {
-  font-size: 14px; font-weight: 700; color: var(--navy);
+  font-size: 20px; font-weight: 700; color: var(--navy);
   line-height: 1.4; margin-bottom: 8px;
 }
-.doc-card p { font-size: 13px; color: var(--slate); line-height: 1.7; flex: 1; }
+.doc-card p { font-size: 16px; color: var(--slate); line-height: 1.7; flex: 1; }
 .doc-meta {
   display: flex; align-items: center; justify-content: space-between;
   margin-top: 18px; padding-top: 14px;
@@ -189,111 +189,21 @@
 .doc-dl-btn:hover { background: var(--purple); color: white; }
 .doc-dl-btn i { width: 13px; height: 13px; }
 
-/* Proximamente badge */
-.doc-soon {
-  font-size: 11px; font-weight: 700; color: var(--slate);
-  background: rgba(0,0,0,0.05); padding: 4px 10px; border-radius: 8px; opacity: 0.6;
+/* Video card ocupa todo el ancho */
+.doc-card.video-card { grid-column: 1 / -1; }
+.video-wrapper {
+  margin-top: 16px; border-radius: 12px; overflow: hidden;
+  background: #000; display: flex; justify-content: center;
+  align-items: center; min-height: 320px;
+}
+.video-wrapper video {
+  width: 100%; max-width: 320px;
+  border-radius: 10px; background: black;
 }
 
-/* ── ENLACES DE INTERÉS ── */
-.enlaces-grid {
-  display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
-}
-.enlace-card {
-  background: var(--white); border: 1px solid var(--line);
-  border-radius: 12px; padding: 24px;
-  display: flex; gap: 18px; align-items: flex-start;
-  text-decoration: none; color: inherit;
-  transition: box-shadow .25s, transform .25s, border-color .25s;
-  position: relative; overflow: hidden;
-}
-.enlace-card::before {
-  content: ''; position: absolute; top: 0; left: 0; bottom: 0;
-  width: 4px; border-radius: 4px 0 0 4px;
-  background: var(--purple);
-  transform: scaleY(0); transform-origin: bottom;
-  transition: transform .3s cubic-bezier(.4,0,.2,1);
-}
-.enlace-card:hover { box-shadow: 0 8px 32px rgba(65,9,56,0.10); transform: translateY(-3px); border-color: rgba(145,17,126,0.2); }
-.enlace-card:hover::before { transform: scaleY(1); }
-.enlace-icon-wrap {
-  width: 48px; height: 48px; border-radius: 12px; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-}
-.enlace-icon-wrap i { width: 22px; height: 22px; }
-.enlace-info { flex: 1; min-width: 0; }
-.enlace-cat {
-  font-size: 10px; font-weight: 800; text-transform: uppercase;
-  letter-spacing: 1.5px; display: block; margin-bottom: 5px;
-}
-.enlace-card h4 { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 5px; line-height: 1.35; }
-.enlace-card p { font-size: 16px; color: var(--slate); line-height: 1.65; margin-bottom: 10px; }
-.enlace-url {
-  font-size: 12px; color: var(--purple); font-weight: 600;
-  display: flex; align-items: center; gap: 5px;
-}
-.enlace-url i { width: 14px; height: 12px; }
-.enlace-ext {
-  margin-left: auto; flex-shrink: 0;
-  color: var(--slate); opacity: 0.3; transition: opacity .2s;
-}
-.enlace-card:hover .enlace-ext { opacity: 0.7; color: var(--purple); }
-.enlace-ext i { width: 16px; height: 16px; }
-
-/* ── CATEGORÍAS HEADER ── */
-.cat-section-header {
-  display: flex; align-items: center; gap: 14px;
-  margin-bottom: 28px; margin-top: 48px;
-  padding-bottom: 16px; border-bottom: 2px solid var(--line);
-}
-.cat-section-header:first-of-type { margin-top: 0; }
-.cat-icon-badge {
-  width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-}
-.cat-icon-badge i { width: 20px; height: 20px; }
-.cat-section-header h3 { font-size: 18px; font-weight: 800; color: var(--navy); }
-.cat-section-header span { font-size: 13px; color: var(--slate); margin-left: auto; }
-
-/* ── HERRAMIENTAS ── */
-.tools-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
-}
-.tool-card {
-  background: var(--white); border: 1px solid var(--line);
-  border-radius: 12px; padding: 22px 20px;
-  text-decoration: none; color: inherit;
-  display: flex; flex-direction: column; gap: 12px;
-  transition: box-shadow .25s, transform .25s, border-color .25s;
-}
-.tool-card:hover {
-  box-shadow: 0 8px 28px rgba(65,9,56,0.10);
-  transform: translateY(-3px); border-color: rgba(145,17,126,0.2);
-}
-.tool-top { display: flex; align-items: center; gap: 12px; }
-.tool-logo {
-  width: 44px; height: 44px; border-radius: 10px; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 22px;
-}
-.tool-card h4 { font-size: 18px; font-weight: 700; color: var(--navy); line-height: 1.35; }
-.tool-card p { font-size: 16px; color: var(--slate); line-height: 1.65; flex: 1; }
-.tool-tag {
-  font-size: 10px; font-weight: 800; text-transform: uppercase;
-  letter-spacing: 1px; padding: 3px 8px; border-radius: 6px; align-self: flex-start;
-}
-
-/* ── NOTA BOX ── */
-.nota-box {
-  margin-top: 32px; padding: 20px 24px;
-  background: rgba(69,210,197,0.06); border: 1px solid rgba(69,210,197,0.25);
-  border-left: 4px solid var(--teal); border-radius: 0 10px 10px 0;
-}
-.nota-box p { font-size: 14px; color: var(--slate); line-height: 1.75; margin: 0; }
-.nota-box strong { color: var(--navy); }
-
-/* ── VACÍO ── */
+/* Estado vacío */
 .empty-resources {
+  grid-column: 1 / -1;
   text-align: center; padding: 70px 20px; color: var(--slate);
 }
 .empty-resources .empty-icon { font-size: 48px; display: block; margin-bottom: 16px; opacity: 0.4; }
@@ -318,10 +228,9 @@
   .tabs-bar { padding: 0 20px; }
   .section-block { padding: 50px 20px 60px; }
   .docs-grid { grid-template-columns: 1fr; }
-  .enlaces-grid { grid-template-columns: 1fr; }
-  .tools-grid { grid-template-columns: 1fr; }
   .recursos-header { flex-direction: column; align-items: flex-start; }
   .search-box input { width: 160px; }
+  .doc-card.video-card { grid-column: 1; }
 }
 </style>
 </head>
@@ -352,17 +261,17 @@
   <div class="rec-hero-inner">
     <div class="rec-hero-text reveal from-left">
       <span class="section-label">Repositorio de Recursos</span>
-      <h1>Documentos, enlaces<br>y <em>herramientas</em><br>del proyecto</h1>
-      <p>Accede a los materiales generados por el consorcio FIDUCA: informes, guías metodológicas, recursos de interés y herramientas de apoyo para la investigación y el emprendimiento.</p>
+      <h1>Documentos, videos<br>y <em>publicaciones</em><br>del proyecto</h1>
+      <p>Accede a los materiales generados por el consorcio FIDUCA: manuales, guías prácticas, multimedia, estudios e informes de investigación.</p>
     </div>
     <div class="rec-kpi-grid">
       <div class="rec-kpi reveal" style="transition-delay:0.10s">
-        <div class="rec-kpi-num">5</div>
-        <div class="rec-kpi-label">Documentos<br>disponibles</div>
+        <div class="rec-kpi-num">0</div>
+        <div class="rec-kpi-label">Materiales<br>y Guías</div>
       </div>
       <div class="rec-kpi reveal" style="transition-delay:0.20s">
-        <div class="rec-kpi-num">8</div>
-        <div class="rec-kpi-label">Enlaces de<br>interés</div>
+        <div class="rec-kpi-num">1</div>
+        <div class="rec-kpi-label">Videos y<br>Multimedia</div>
       </div>
       <div class="rec-kpi reveal" style="transition-delay:0.30s">
         <div class="rec-kpi-num">WP 1–5</div>
@@ -387,55 +296,45 @@
 
 <!-- TABS -->
 <div class="tabs-bar">
-  <button class="tab-btn active" onclick="switchTab('documentos', this)">
-    <i data-lucide="file-text"></i> Documentos
+  <button class="tab-btn active" onclick="switchTab('materiales', this)">
+    <i data-lucide="book-open"></i> Materiales y Guías
   </button>
-  <button class="tab-btn" onclick="switchTab('enlaces', this)">
-    <i data-lucide="link-2"></i> Enlaces de Interés
+  <button class="tab-btn" onclick="switchTab('multimedia', this)">
+    <i data-lucide="play-circle"></i> Videos y Multimedia
   </button>
-  <button class="tab-btn" onclick="switchTab('herramientas', this)">
-    <i data-lucide="wrench"></i> Herramientas
+  <button class="tab-btn" onclick="switchTab('investigaciones', this)">
+    <i data-lucide="file-search"></i> Investigaciones y Publicaciones
   </button>
 </div>
 
 
-<!-- ═══════════ TAB 1 – DOCUMENTOS ═══════════ -->
-<div id="tab-documentos" class="tab-panel active">
+<!-- ═══════════ TAB 1 – MATERIALES Y GUÍAS ═══════════ -->
+<div id="tab-materiales" class="tab-panel active">
   <section class="section-block bg-light">
 
     <div class="recursos-header reveal from-up">
       <div>
-        <span class="section-label-small">Materiales del Proyecto</span>
-        <h2 class="section-h2">Documentos y Publicaciones</h2>
+        <span class="section-label-small">Recursos del Proyecto</span>
+        <h2 class="section-h2">Materiales y Guías</h2>
+        <p class="section-lead">Manuales, guías prácticas y plantillas generadas por el consorcio FIDUCA.</p>
       </div>
-      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
-        <div class="filter-bar-inline" style="display:flex; gap:8px; flex-wrap:wrap;">
-          <button class="filter-btn active" onclick="filtrarDocs('todos', this)">Todos</button>
-          <button class="filter-btn" onclick="filtrarDocs('informe', this)">Informes</button>
-          <button class="filter-btn" onclick="filtrarDocs('guia', this)">Guías</button>
-          <button class="filter-btn" onclick="filtrarDocs('material', this)">Materiales</button>
-          <button class="filter-btn" onclick="filtrarDocs('multimedia', this)">Multimedia</button>
-        </div>
-        <div class="search-box">
-          <i data-lucide="search"></i>
-          <input type="text" id="search-docs" placeholder="Buscar documento…" oninput="buscarDocs(this.value)">
-        </div>
+      <div class="search-box">
+        <i data-lucide="search"></i>
+        <input type="text" placeholder="Buscar material…" oninput="buscarEnTab('grid-materiales', this.value)">
       </div>
     </div>
 
-    <!-- GRID DE DOCUMENTOS -->
-    <div class="docs-grid" id="docs-grid">
+    <div class="docs-grid" id="grid-materiales">
 
-      <!-- PLANTILLA para cada documento:
-
-      <div class="doc-card reveal" data-tipo="informe" data-titulo="título del documento">
+      <!-- PLANTILLA:
+      <div class="doc-card reveal" data-titulo="título del documento">
         <div class="doc-card-top">
           <div class="doc-icon" style="background:rgba(145,17,126,0.09);">
             <i data-lucide="file-text" style="color:var(--purple);"></i>
           </div>
           <div class="doc-type-col">
-            <span class="doc-type-tag" style="color:var(--purple);">Informe</span>
-            <h4>Título del Documento</h4>
+            <span class="doc-type-tag" style="color:var(--purple);">Guía</span>
+            <h4>Título del Material</h4>
           </div>
         </div>
         <p>Descripción breve del contenido.</p>
@@ -447,300 +346,119 @@
           </a>
         </div>
       </div>
-
       -->
 
+      <div class="empty-resources">
+         <i data-lucide="newspaper"></i>
+        <h4>Próximamente</h4>
+        <p>Los materiales y guías del proyecto estarán disponibles aquí a medida que avance el consorcio.</p>
+      </div>
+
     </div>
-
-   <!-- VIDEO MULTIMEDIA -->
-<div class="doc-card reveal" data-tipo="multimedia" data-titulo="Video Lanzamiento Nacional FIDUCA">
-  
-  <div class="doc-card-top">
-    <div class="doc-icon" style="background:rgba(234,117,4,0.10);">
-      <i data-lucide="video" style="color:var(--gold);"></i>
-    </div>
-
-    <div class="doc-type-col">
-      <span class="doc-type-tag" style="color:var(--gold);">Multimedia</span>
-      <h4>En la Comunidad de Camarón Arriba, UDELAS Extensión de Chiriquí dio a conocer el Proyecto FIDUCA</h4>
-    </div>
-  </div>
-
-  <p>
-   Una iniciativa cofinanciada por la Unión Europea 🇪🇺 que busca impulsar, capacitar y visibilizar los emprendimientos locales, especialmente los liderados por jóvenes.
-​Esta visita se realizó con el propósito evaluar y recopilar elementos para la ejecución del proyecto directamente desde la realidad, necesidades y vivencias de las comunidades indígenas.
-​Tuvimos la oportunidad de conversar con la Sra. Juliana Herrera, quien nos recordó el verdadero valor de estas piezas:
-​"Estas ventas y la confección de productos trascienden generaciones; son un método de cultivar nuestras costumbres y, a la vez, de generar economía para nuestras familias".
-  </p>
-
-  <!-- VIDEO -->
-  <div style="
-    margin-top:16px;
-    border-radius:12px;
-    overflow:hidden;
-    background:#000;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    min-height:420px;
-  ">
-    
-    <video controls playsinline style="
-      width:100%;
-      max-width:260px;
-      border-radius:10px;
-      background:black;
-    ">
-      <source src="Estilos/videos/lv_0_20260515154320.mp4" type="video/mp4">
-      Tu navegador no soporta videos HTML5.
-    </video>
-
-  </div>
-
-  <div class="doc-meta">
-    <span class="doc-wp-tag">Multimedia</span>
-    <span class="doc-date">2026</span>
-
-    <a href="Estilos/videos/lv_0_20260515154320.mp4" download class="doc-dl-btn">
-      <i data-lucide="download"></i> Descargar
-    </a>
-  </div>
-
-</div>
-
   </section>
 </div>
 
 
-<!-- ═══════════ TAB 2 – ENLACES ═══════════ -->
-<div id="tab-enlaces" class="tab-panel">
+<!-- ═══════════ TAB 2 – VIDEOS Y MULTIMEDIA ═══════════ -->
+<div id="tab-multimedia" class="tab-panel">
   <section class="section-block bg-white">
 
-    <div class="reveal from-up" style="margin-bottom:48px;">
-      <span class="section-label-small">Recursos externos</span>
-      <h2 class="section-h2">Enlaces de Interés</h2>
-      <p class="section-lead">Selección de fuentes, programas e iniciativas relacionadas con los temas centrales de FIDUCA.</p>
-    </div>
-
-    <!-- Categoría: Financiación y Programas UE -->
-    <div class="cat-section-header reveal from-left">
-      <div class="cat-icon-badge" style="background:rgba(0,51,153,0.08);">
-        <i data-lucide="euro" style="color:#0033cc; width:20px; height:20px;"></i>
+    <div class="recursos-header reveal from-up">
+      <div>
+        <span class="section-label-small">Recursos del Proyecto</span>
+        <h2 class="section-h2">Videos y Multimedia</h2>
+        <p class="section-lead">Videos, webinars y cápsulas formativas producidas en el marco del proyecto FIDUCA.</p>
       </div>
-      <h3>Financiación y Programas UE</h3>
-      <span>3 enlaces</span>
-    </div>
-    <div class="enlaces-grid">
-
-      <a href="https://erasmus-plus.ec.europa.eu/" target="_blank" class="enlace-card reveal" style="transition-delay:0.05s">
-        <div class="enlace-icon-wrap" style="background:rgba(0,51,153,0.08);">
-          <i data-lucide="globe-2" style="color:#0033cc; width:22px;height:22px;"></i>
-        </div>
-        <div class="enlace-info">
-          <span class="enlace-cat" style="color:#0033cc;">Programa EU</span>
-          <h4>Erasmus+ — Capacity Building in Higher Education</h4>
-          <p>Programa de la Unión Europea que financia proyectos de modernización de la educación superior en todo el mundo.</p>
-        </div>
-        <div class="enlace-ext"><i data-lucide="external-link"></i></div>
-      </a>
-
-      <a href="https://www.eacea.ec.europa.eu/scholarships_en" target="_blank" class="enlace-card reveal" style="transition-delay:0.12s">
-        <div class="enlace-icon-wrap" style="background:rgba(0,51,153,0.08);">
-          <i data-lucide="library" style="color:#0033cc; width:22px;height:22px;"></i>
-        </div>
-        <div class="enlace-info">
-          <span class="enlace-cat" style="color:#0033cc;">Programa EU</span>
-          <h4>EACEA — Agencia Ejecutiva de la UE</h4>
-          <p>Información sobre distintas opciones de para estudiantes. </p>
-        </div>
-        <div class="enlace-ext"><i data-lucide="external-link"></i></div>
-      </a>
-
-      <a href="https://webgate.ec.europa.eu/erasmus-esc/index/" target="_blank" class="enlace-card reveal" style="transition-delay:0.20s">
-        <div class="enlace-icon-wrap" style="background:rgba(0,51,153,0.08);">
-          <i data-lucide="leaf" style="color:#0033cc; width:22px;height:22px;"></i>
-        </div>
-        <div class="enlace-info">
-          <span class="enlace-cat" style="color:#0033cc;">Política UE</span>
-          <h4>Cómo aplicar para el programa</h4>
-          <p>Aquí puedes solicitar participar en las acciones de Erasmus+ y del Cuerpo Europeo de Solidaridad gestionadas por las Agencias Nacionales de Erasmus+.</p>
-        </div>
-        <div class="enlace-ext"><i data-lucide="external-link"></i></div>
-      </a>
-
-    </div>
-
-    <!-- Categoría: ODS y Desarrollo -->
-    <div class="cat-section-header reveal from-left" style="margin-top:52px;">
-      <div class="cat-icon-badge" style="background:rgba(0,77,28,0.09);">
-        <i data-lucide="target" style="color:var(--green); width:20px;height:20px;"></i>
+      <div class="search-box">
+        <i data-lucide="search"></i>
+        <input type="text" placeholder="Buscar video…" oninput="buscarEnTab('grid-multimedia', this.value)">
       </div>
-      <h3>ODS y Desarrollo Sostenible</h3>
-      <span>2 enlaces</span>
     </div>
 
-    <div class="enlaces-grid">
-      <a href="https://sdgs.un.org/" target="_blank" class="enlace-card reveal" style="transition-delay:0.05s">
-        <div class="enlace-icon-wrap" style="background:rgba(0,77,28,0.09);">
-          <i data-lucide="circle-dot" style="color:var(--green); width:22px;height:22px;"></i>
-        </div>
-        <div class="enlace-info">
-          <span class="enlace-cat" style="color:var(--green);">Naciones Unidas</span>
-          <h4>Objetivos de Desarrollo Sostenible — ONU</h4>
-          <p>Los 17 ODS de la Agenda 2030 que guían las acciones de FIDUCA hacia el desarrollo sostenible e inclusivo.</p>
-        </div>
-        <div class="enlace-ext"><i data-lucide="external-link"></i></div>
-      </a>
+    <div class="docs-grid" id="grid-multimedia">
 
-      <a href="https://www.cepal.org/es" target="_blank" class="enlace-card reveal" style="transition-delay:0.12s">
-        <div class="enlace-icon-wrap" style="background:rgba(0,77,28,0.09);">
-          <i data-lucide="trending-up" style="color:var(--green); width:22px;height:22px;"></i>
+      <!-- VIDEO: Lanzamiento Camarón Arriba -->
+      <div class="doc-card video-card reveal" data-titulo="Video Lanzamiento Nacional FIDUCA Camarón Arriba UDELAS Chiriquí">
+        <div class="doc-card-top">
+          <div class="doc-icon" style="background:rgba(234,117,4,0.10);">
+            <i data-lucide="video" style="color:var(--gold);"></i>
+          </div>
+          <div class="doc-type-col">
+            <span class="doc-type-tag" style="color:var(--gold);">Video</span>
+            <h4>En la Comunidad de Camarón Arriba, UDELAS Extensión de Chiriquí dio a conocer el Proyecto FIDUCA</h4>
+          </div>
         </div>
-        <div class="enlace-info">
-          <span class="enlace-cat" style="color:var(--green);">Organismo Internacional</span>
-          <h4>CEPAL — Comisión Económica para América Latina</h4>
-          <p>Organismo de referencia para datos, informes y análisis sobre desarrollo económico y social en América Latina.</p>
+        <p>
+          Una iniciativa cofinanciada por la Unión Europea 🇪🇺 que busca impulsar, capacitar y visibilizar los emprendimientos locales, especialmente los liderados por jóvenes.
+          Esta visita se realizó con el propósito de evaluar y recopilar elementos para la ejecución del proyecto directamente desde la realidad, necesidades y vivencias de las comunidades indígenas.
+          Tuvimos la oportunidad de conversar con la Sra. Juliana Herrera, quien nos recordó el verdadero valor de estas piezas:
+          <em>"Estas ventas y la confección de productos trascienden generaciones; son un método de cultivar nuestras costumbres y, a la vez, de generar economía para nuestras familias"</em>.
+        </p>
+        <div class="video-wrapper">
+          <video controls playsinline>
+            <source src="Estilos/videos/lv_0_20260515154320.mp4" type="video/mp4">
+            Tu navegador no soporta videos HTML5.
+          </video>
         </div>
-        <div class="enlace-ext"><i data-lucide="external-link"></i></div>
-      </a>
-
-    </div>
-
-    <!-- Categoría: Emprendimiento e Innovación -->
-    <div class="cat-section-header reveal from-left" style="margin-top:52px;">
-      <div class="cat-icon-badge" style="background:rgba(234,117,4,0.09);">
-        <i data-lucide="lightbulb" style="color:var(--gold); width:20px;height:20px;"></i>
+        <div class="doc-meta">
+          <span class="doc-wp-tag">Multimedia</span>
+          <span class="doc-date">2026</span>
+          <a href="Estilos/videos/lv_0_20260515154320.mp4" download class="doc-dl-btn">
+            <i data-lucide="download"></i> Descargar
+          </a>
+        </div>
       </div>
-      <h3>Emprendimiento e Innovación</h3>
-      <span>2 enlaces</span>
-    </div>
-    <div class="enlaces-grid">
-
-      <a href="https://www.giz.de/en/worldwide/35167.html" target="_blank" class="enlace-card reveal" style="transition-delay:0.12s">
-        <div class="enlace-icon-wrap" style="background:rgba(234,117,4,0.09);">
-          <i data-lucide="users-2" style="color:var(--gold); width:22px;height:22px;"></i>
-        </div>
-        <div class="enlace-info">
-          <span class="enlace-cat" style="color:var(--gold);">Cooperación</span>
-          <h4>GIZ — Emprendimiento Indígena</h4>
-          <p>Programas de la agencia alemana GIZ sobre desarrollo económico en comunidades indígenas de Latinoamérica.</p>
-        </div>
-        <div class="enlace-ext"><i data-lucide="external-link"></i></div>
-      </a>
-
-      <a href="https://finnova.eu/raices-arranca-como-proyecto-de-cooperacion-ue-america-latina-para-la-sostenibilidad-del-patrimonio-artesanal-en-comunidades-indigenas-de-peru-y-colombia/" target="_blank" class="enlace-card reveal" style="transition-delay:0.20s">
-        <div class="enlace-icon-wrap" style="background:rgba(234,117,4,0.09);">
-          <i data-lucide="handshake" style="color:var(--gold); width:22px;height:22px;"></i>
-        </div>
-        <div class="enlace-info">
-          <span class="enlace-cat" style="color:var(--gold);">RAICES</span>
-          <h4>RAICES — Pueblos Indígenas y Sostenibilidad</h4>
-          <p>Informes, convenios y recursos de la Organización Internacional del Trabajo sobre derechos y empleabilidad indígena.</p>
-        </div>
-        <div class="enlace-ext"><i data-lucide="external-link"></i></div>
-      </a>
 
     </div>
-
   </section>
 </div>
 
 
-<!-- ═══════════ TAB 3 – HERRAMIENTAS ═══════════ -->
-<div id="tab-herramientas" class="tab-panel">
+<!-- ═══════════ TAB 3 – INVESTIGACIONES Y PUBLICACIONES ═══════════ -->
+<div id="tab-investigaciones" class="tab-panel">
   <section class="section-block bg-light">
 
-    <div class="reveal from-up" style="margin-bottom:48px;">
-      <span class="section-label-small">Recursos digitales</span>
-      <h2 class="section-h2">Herramientas de Apoyo</h2>
-      <p class="section-lead">Plataformas, bases de datos y herramientas digitales de utilidad para investigadores, docentes y emprendedores vinculados al proyecto.</p>
-    </div>
-
-    <!-- Investigación y bibliografía -->
-    <div class="cat-section-header reveal from-left">
-      <div class="cat-icon-badge" style="background:rgba(145,17,126,0.09);">
-        <i data-lucide="search" style="color:var(--purple); width:20px;height:20px;"></i>
+    <div class="recursos-header reveal from-up">
+      <div>
+        <span class="section-label-small">Recursos del Proyecto</span>
+        <h2 class="section-h2">Investigaciones y Publicaciones</h2>
+        <p class="section-lead">Estudios, artículos, informes y documentos técnicos producidos por el consorcio FIDUCA.</p>
       </div>
-      <h3>Investigación y Bibliografía</h3>
-    </div>
-    <div class="tools-grid">
-
-      <a href="https://scholar.google.com/" target="_blank" class="tool-card reveal" style="transition-delay:0.05s">
-        <div class="tool-top">
-          <div class="tool-logo" style="background:rgba(0,51,153,0.08);">
-            <i data-lucide="graduation-cap" style="color:#0033cc; width:24px; height:24px;"></i>
-          </div>          
-          <h4>Google Scholar</h4>
-        </div>
-        <p>Motor de búsqueda especializado en literatura científica y académica de acceso abierto.</p>
-        <span class="tool-tag" style="background:rgba(0,51,153,0.08); color:#0033cc;">Gratuito</span>
-      </a>
-
-      <a href="https://www.scopus.com/" target="_blank" class="tool-card reveal" style="transition-delay:0.12s">
-        <div class="tool-top">
-<div class="tool-logo" style="background:rgba(0,51,153,0.08);">
-            <i data-lucide="database-search" style="color:#cc7700; width:24px; height:24px;"></i>
-          </div>          
-          <h4>Scopus</h4>
-        </div>
-        <p>Base de datos bibliométrica de Elsevier con cobertura amplia de revistas científicas internacionales.</p>
-        <span class="tool-tag" style="background:rgba(234,117,4,0.09); color:var(--gold);">Acceso institucional</span>
-      </a>
-
-      <a href="https://www.zotero.org/" target="_blank" class="tool-card reveal" style="transition-delay:0.20s">
-        <div class="tool-top">
-<div class="tool-logo" style="background:rgba(0,51,153,0.08);">
-            <i data-lucide="book" style="color:#358b0eb1; width:24px; height:24px;"></i>
-          </div>                    
-          <h4>Zotero</h4>
-        </div>
-        <p>Gestor de referencias bibliográficas gratuito y de código abierto, ideal para trabajos colaborativos.</p>
-        <span class="tool-tag" style="background:rgba(0,77,28,0.09); color:var(--green);">Gratuito</span>
-      </a>
-
-    </div>
-
-    <!-- Colaboración y gestión -->
-    <div class="cat-section-header reveal from-left" style="margin-top:52px;">
-      <div class="cat-icon-badge" style="background:rgba(69,210,197,0.10);">
-        <i data-lucide="layout-dashboard" style="color:#1a7a74; width:20px;height:20px;"></i>
+      <div class="search-box">
+        <i data-lucide="search"></i>
+        <input type="text" placeholder="Buscar publicación…" oninput="buscarEnTab('grid-investigaciones', this.value)">
       </div>
-      <h3>Colaboración y Gestión de Proyectos</h3>
     </div>
-    <div class="tools-grid">
 
-      <a href="https://miro.com/" target="_blank" class="tool-card reveal" style="transition-delay:0.05s">
-        <div class="tool-top">
-<div class="tool-logo" style="background:rgba(0,51,153,0.08);">
-            <i data-lucide="pencil" style="color:#14a344; width:24px; height:24px;"></i>
-          </div>                    
-          <h4>Miro</h4>
-        </div>
-        <p>Pizarra digital colaborativa para talleres virtuales, mapas conceptuales y sesiones de ideación con equipos distribuidos.</p>
-        <span class="tool-tag" style="background:rgba(69,210,197,0.10); color:#1a7a74;">Freemium</span>
-      </a>
+    <div class="docs-grid" id="grid-investigaciones">
 
-      <a href="https://teams.microsoft.com/" target="_blank" class="tool-card reveal" style="transition-delay:0.12s">
-        <div class="tool-top">
-<div class="tool-logo" style="background:rgba(0,51,153,0.08);">
-            <i data-lucide="handshake" style="color:#084370; width:24px; height:24px;"></i>
-          </div>                    
-          <h4>Microsoft Teams</h4>
+      <!-- PLANTILLA:
+      <div class="doc-card reveal" data-titulo="Título del estudio">
+        <div class="doc-card-top">
+          <div class="doc-icon" style="background:rgba(0,77,28,0.09);">
+            <i data-lucide="file-text" style="color:var(--green);"></i>
+          </div>
+          <div class="doc-type-col">
+            <span class="doc-type-tag" style="color:var(--green);">Informe</span>
+            <h4>Título del Documento</h4>
+          </div>
         </div>
-        <p>Plataforma de comunicación y videoconferencias usada para reuniones periódicas del consorcio FIDUCA.</p>
-        <span class="tool-tag" style="background:rgba(3, 27, 77, 0.08); color:#0f0c4f;">Institucional</span>
-      </a>
+        <p>Descripción breve.</p>
+        <div class="doc-meta">
+          <span class="doc-wp-tag">WP2</span>
+          <span class="doc-date">2026</span>
+          <a href="Estilos/docs/archivo.pdf" download class="doc-dl-btn">
+            <i data-lucide="download"></i> Descargar
+          </a>
+        </div>
+      </div>
+      -->
 
-      <a href="https://drive.google.com/" target="_blank" class="tool-card reveal" style="transition-delay:0.20s">
-        <div class="tool-top">
-<div class="tool-logo" style="background:rgba(0,51,153,0.08);">
-            <i data-lucide="folder-archive" style="color:#cc8800; width:24px; height:24px;"></i>
-          </div>                   
-           <h4>Google Drive</h4>
-        </div>
-        <p>Almacenamiento en la nube y edición colaborativa de documentos compartidos entre los socios del consorcio.</p>
-        <span class="tool-tag" style="background:rgba(234,117,4,0.09); color:var(--gold);">Gratuito</span>
-      </a>
+      <div class="empty-resources">
+         <i data-lucide="arrows-up-from-line"></i>
+        <h4>Próximamente</h4>
+        <p>Las investigaciones y publicaciones del proyecto estarán disponibles aquí a medida que avance el consorcio.</p>
+      </div>
 
     </div>
   </section>
@@ -788,7 +506,6 @@
         <li><a href="noticias.html"><strong>Publicaciones</strong></a></li>
         <li><a href="recursos.html"><strong>Repositorio</strong></a></li>
         <li><a href="galeria.html"><strong>Galería</strong></a></li>
-        <li><a href="recursos.html#tab-herramientas"><strong>Herramientas</strong></a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -822,40 +539,15 @@ function switchTab(id, btn) {
   }, 50);
 }
 
-function filtrarDocs(tipo, btn) {
-  document.querySelectorAll('.recursos-header .filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  const cards = document.querySelectorAll('.doc-card');
-  let visible = 0;
-  cards.forEach(card => {
-    const show = tipo === 'todos' || card.dataset.tipo === tipo;
-    card.style.display = show ? '' : 'none';
-    if (show) visible++;
-  });
-  document.getElementById('docs-empty').style.display = (visible === 0) ? 'block' : 'none';
-}
-
-function buscarDocs(query) {
+function buscarEnTab(gridId, query) {
   const q = query.toLowerCase().trim();
-  const cards = document.querySelectorAll('.doc-card');
-  let visible = 0;
+  const cards = document.querySelectorAll('#' + gridId + ' .doc-card');
   cards.forEach(card => {
     const titulo = (card.dataset.titulo || '').toLowerCase();
     const texto  = card.innerText.toLowerCase();
-    const show   = !q || titulo.includes(q) || texto.includes(q);
-    card.style.display = show ? '' : 'none';
-    if (show) visible++;
+    card.style.display = (!q || titulo.includes(q) || texto.includes(q)) ? '' : 'none';
   });
-  document.getElementById('docs-empty').style.display = (visible === 0) ? 'block' : 'none';
 }
-
-// Mostrar empty state si no hay docs al cargar
-document.addEventListener('DOMContentLoaded', () => {
-  const cards = document.querySelectorAll('.doc-card');
-  if (cards.length === 0) {
-    document.getElementById('docs-empty').style.display = 'block';
-  }
-});
 </script>
 <script src="Estilos/scripts.js"></script>
 <script>lucide.createIcons();</script>
