@@ -414,7 +414,7 @@
           <button class="filter-btn" onclick="filtrarDocs('informe', this)">Informes</button>
           <button class="filter-btn" onclick="filtrarDocs('guia', this)">Guías</button>
           <button class="filter-btn" onclick="filtrarDocs('material', this)">Materiales</button>
-          <button class="filter-btn" onclick="filtrarDocs('publicacion', this)">Publicaciones</button>
+          <button class="filter-btn" onclick="filtrarDocs('multimedia', this)">Multimedia</button>
         </div>
         <div class="search-box">
           <i data-lucide="search"></i>
@@ -452,12 +452,61 @@
 
     </div>
 
-    <!-- Empty state — visible mientras no haya documentos -->
-    <div class="empty-resources" id="docs-empty">
-      <i data-lucide="folder-open" style="width:56px;height:56px;color:var(--slate);opacity:0.25;display:block;margin:0 auto 20px;"></i>
-      <h4>Repositorio en construcción</h4>
-      <p>Los documentos del proyecto se irán publicando a medida que avance FIDUCA. Vuelve pronto.</p>
+   <!-- VIDEO MULTIMEDIA -->
+<div class="doc-card reveal" data-tipo="multimedia" data-titulo="Video Lanzamiento Nacional FIDUCA">
+  
+  <div class="doc-card-top">
+    <div class="doc-icon" style="background:rgba(234,117,4,0.10);">
+      <i data-lucide="video" style="color:var(--gold);"></i>
     </div>
+
+    <div class="doc-type-col">
+      <span class="doc-type-tag" style="color:var(--gold);">Multimedia</span>
+      <h4>En la Comunidad de Camarón Arriba, UDELAS Extensión de Chiriquí dio a conocer el Proyecto FIDUCA</h4>
+    </div>
+  </div>
+
+  <p>
+   Una iniciativa cofinanciada por la Unión Europea 🇪🇺 que busca impulsar, capacitar y visibilizar los emprendimientos locales, especialmente los liderados por jóvenes.
+​Esta visita se realizó con el propósito evaluar y recopilar elementos para la ejecución del proyecto directamente desde la realidad, necesidades y vivencias de las comunidades indígenas.
+​Tuvimos la oportunidad de conversar con la Sra. Juliana Herrera, quien nos recordó el verdadero valor de estas piezas:
+​"Estas ventas y la confección de productos trascienden generaciones; son un método de cultivar nuestras costumbres y, a la vez, de generar economía para nuestras familias".
+  </p>
+
+  <!-- VIDEO -->
+  <div style="
+    margin-top:16px;
+    border-radius:12px;
+    overflow:hidden;
+    background:#000;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:420px;
+  ">
+    
+    <video controls playsinline style="
+      width:100%;
+      max-width:260px;
+      border-radius:10px;
+      background:black;
+    ">
+      <source src="Estilos/videos/lv_0_20260515154320.mp4" type="video/mp4">
+      Tu navegador no soporta videos HTML5.
+    </video>
+
+  </div>
+
+  <div class="doc-meta">
+    <span class="doc-wp-tag">Multimedia</span>
+    <span class="doc-date">2026</span>
+
+    <a href="Estilos/videos/lv_0_20260515154320.mp4" download class="doc-dl-btn">
+      <i data-lucide="download"></i> Descargar
+    </a>
+  </div>
+
+</div>
 
   </section>
 </div>
