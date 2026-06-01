@@ -296,10 +296,7 @@
 
 <!-- TABS -->
 <div class="tabs-bar">
-  <button class="tab-btn active" onclick="switchTab('materiales', this)">
-    <i data-lucide="book-open"></i> Materiales y Guías
-  </button>
-  <button class="tab-btn" onclick="switchTab('multimedia', this)">
+  <button class="tab-btn active" onclick="switchTab('multimedia', this)">
     <i data-lucide="play-circle"></i> Videos y Multimedia
   </button>
   <button class="tab-btn" onclick="switchTab('investigaciones', this)">
@@ -308,59 +305,8 @@
 </div>
 
 
-<!-- ═══════════ TAB 1 – MATERIALES Y GUÍAS ═══════════ -->
-<div id="tab-materiales" class="tab-panel active">
-  <section class="section-block bg-light">
-
-    <div class="recursos-header reveal from-up">
-      <div>
-        <span class="section-label-small">Recursos del Proyecto</span>
-        <h2 class="section-h2">Materiales y Guías</h2>
-        <p class="section-lead">Manuales, guías prácticas y plantillas generadas por el consorcio FIDUCA.</p>
-      </div>
-      <div class="search-box">
-        <i data-lucide="search"></i>
-        <input type="text" placeholder="Buscar material…" oninput="buscarEnTab('grid-materiales', this.value)">
-      </div>
-    </div>
-
-    <div class="docs-grid" id="grid-materiales">
-
-      <!-- PLANTILLA:
-      <div class="doc-card reveal" data-titulo="título del documento">
-        <div class="doc-card-top">
-          <div class="doc-icon" style="background:rgba(145,17,126,0.09);">
-            <i data-lucide="file-text" style="color:var(--purple);"></i>
-          </div>
-          <div class="doc-type-col">
-            <span class="doc-type-tag" style="color:var(--purple);">Guía</span>
-            <h4>Título del Material</h4>
-          </div>
-        </div>
-        <p>Descripción breve del contenido.</p>
-        <div class="doc-meta">
-          <span class="doc-wp-tag">WP1</span>
-          <span class="doc-date">2026</span>
-          <a href="Estilos/docs/archivo.pdf" download class="doc-dl-btn">
-            <i data-lucide="download"></i> Descargar
-          </a>
-        </div>
-      </div>
-      -->
-
-      <div class="empty-resources">
-         <i data-lucide="newspaper"></i>
-        <h4>Próximamente</h4>
-        <p>Los materiales y guías del proyecto estarán disponibles aquí a medida que avance el proyecto.</p>
-      </div>
-
-    </div>
-  </section>
-</div>
-
-
-<!-- ═══════════ TAB 2 – VIDEOS Y MULTIMEDIA ═══════════ -->
-<div id="tab-multimedia" class="tab-panel">
+<!-- ═══════════ TAB 1 – VIDEOS Y MULTIMEDIA ═══════════ -->
+<div id="tab-multimedia" class="tab-panel active">
   <section class="section-block bg-white">
 
     <div class="recursos-header reveal from-up">
@@ -414,7 +360,7 @@
 </div>
 
 
-<!-- ═══════════ TAB 3 – INVESTIGACIONES Y PUBLICACIONES ═══════════ -->
+<!-- ═══════════ TAB 2 – INVESTIGACIONES Y PUBLICACIONES ═══════════ -->
 <div id="tab-investigaciones" class="tab-panel">
   <section class="section-block bg-light">
 
@@ -422,7 +368,7 @@
       <div>
         <span class="section-label-small">Recursos del Proyecto</span>
         <h2 class="section-h2">Investigaciones y Publicaciones</h2>
-        <p class="section-lead">Estudios, artículos, informes y documentos técnicos producidos por el consorcio FIDUCA.</p>
+        <p class="section-lead">Estudios, artículos e informes producidos por el consorcio FIDUCA.</p>
       </div>
       <div class="search-box">
         <i data-lucide="search"></i>
