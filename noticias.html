@@ -1,66 +1,106 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <script defer src="https://cloud.umami.is/script.js" data-website-id="ccf536f8-50f4-4fff-8bbd-48a8a7bbe34c">
-  </script>
-  
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="ccf536f8-50f4-4fff-8bbd-48a8a7bbe34c"></script>
   <link rel="icon" type="image/png" href="/Estilos/img/FIDUCA_logo_sinnombre.png">
-<script src="https://unpkg.com/lucide@latest"></script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Noticias — FIDUCA</title>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="Estilos/styles.css">
-<style>
-.noticias-section { padding: 50px 60px 80px; }
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Noticias — FIDUCA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Estilos/styles.css">
+  <style>
+    .noticias-section {
+      padding: 50px 60px 80px;
+    }
 
-.noticias-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
-  margin-top: 32px;
-}
+    .noticias-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 32px;
+    }
 
-/* Tarjeta destacada: ocupa 2 columnas */
-.news-card.destacada {
-  grid-column: span 2;
-}
-.news-card.destacada .news-img {
-  height: 260px;
-}
-.news-card.destacada .news-body h3 {
-  font-size: 22px;
-}
+    /* ── Card base ── */
+    .news-card {
+      display: flex;
+      flex-direction: column;
+      border-radius: 12px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      background: var(--white, #fff);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .news-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.13);
+    }
 
-.news-card.media {
-  grid-column: span 2;
-}
-.news-card.media .news-img {
-  height: 200px;
-}
-.news-card.media .news-body h3 {
-  font-size: 18px;
-}
+    /* ── Image sizes by card type ── */
+    .news-card .news-img {
+      width: 100%;
+      object-fit: cover;
+      display: block;
+      height: 180px;         /* corta por defecto */
+    }
+    .news-card.destacada .news-img {
+      height: 260px;
+    }
+    .news-card.media .news-img {
+      height: 220px;
+    }
 
-.empty-state {
-  text-align: center;
-  padding: 80px 20px;
-  color: var(--slate);
-  grid-column: 1 / -1;
-}
-.empty-state span {
-  font-size: 48px;
-  display: block;
-  margin-bottom: 16px;
-}
+    /* ── Span modifiers ── */
+    .news-card.destacada {
+      grid-column: span 2;
+    }
+    .news-card.media {
+      grid-column: span 2;
+    }
 
-@media (max-width: 768px) {
-  .noticias-section { padding: 40px 20px 60px; }
-  .noticias-grid { grid-template-columns: 1fr; }
-  .news-card.destacada,
-  .news-card.media { grid-column: span 1; }
-}
-</style>
+    /* ── Body ── */
+    .news-body {
+      padding: 18px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      gap: 8px;
+    }
+    .news-body h3 {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.4;
+    }
+    .news-card.destacada .news-body h3 {
+      font-size: 22px;
+    }
+    .news-card.media .news-body h3 {
+      font-size: 18px;
+    }
+    .news-body p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.6;
+      flex: 1;
+    }
+    .news-date {
+      margin-top: auto;
+      font-size: 12px;
+      opacity: 0.6;
+    }
+
+    @media (max-width: 768px) {
+      .noticias-section { padding: 40px 20px 60px; }
+      .noticias-grid { grid-template-columns: 1fr; }
+      .news-card.destacada,
+      .news-card.media { grid-column: span 1; }
+      .news-card.destacada .news-img,
+      .news-card.media .news-img,
+      .news-card .news-img { height: 200px; }
+    }
+  </style>
 </head>
 <body>
 <div class="page-wrapper">
@@ -70,8 +110,8 @@
   <div class="logo-wrap">
     <img src="Estilos/img/LOGO-UE-Full_color.png" alt="UE_logo" style="height:90px; width:auto;">
     <a href="index.html" style="display:inline-block;">
-    <img src="Estilos/img/logo-fiduca-full-color.png" alt="FIDUCA_logo" style="height:85px; width:auto;">
-  </a>
+      <img src="Estilos/img/logo-fiduca-full-color.png" alt="FIDUCA_logo" style="height:85px; width:auto;">
+    </a>
   </div>
   <ul class="nav-links">
     <li><a href="index.html">Proyecto</a></li>
@@ -111,55 +151,37 @@
 <!-- GRID DE NOTICIAS -->
 <section class="noticias-section">
   <div class="noticias-grid" id="noticias-grid">
-    <a href="https://www.instagram.com/reel/DYe4eEfvvRz/"
-       class="news-card reveal from-left"
-       data-cat="Difusión"
-       style="transition-delay:0.05s"
-       target="_blank">
-      <img src="Estilos/img/Fotos noticias/logo_udelas.png" class="news-img">
-      <div class="news-body">
-        <span class="news-tag">Difusión</span>
-        <h3>CEn la Comunidad de Camarón Arriba, UDELAS Extensión de Chiriquí dio a conocer el Proyecto FIDUCA</h3>
-        <p>​Esta visita se realizó con el propósito evaluar y recopilar elementos para la ejecución del proyecto directamente desde la realidad, necesidades y vivencias de las comunidades indígenas.
-</p>
-        <span class="news-date">19 de mayo de 2026</span>
-      </div>
-    </a>
- 
-    <!-- NUEVA 2 (span 1) -->
-    <a href="https://www.instagram.com/p/DYN0ufCERQn/"
-       class="news-card reveal"
-       data-cat="Difusión"
-       style="transition-delay:0.15s"
-       target="_blank">
-      <img src="Estilos/img/Fotos noticias/MarielaLanzamiento.JPG" class="news-img">
-      <div class="news-body">
-        <span class="news-tag">Difusión</span>
-        <h3>La Universidad Tecnológica de Panamá (UTP) realizó el lanzamiento oficial del proyecto FIDUCA</h3>
-        <p>Por primera vez en su historia, la UTP asume la coordinación general de un proyecto de esta magnitud, diseñado para fortalecer la investigación transdisciplinaria y el emprendimiento en las universidades de Centroamérica.
 
-El proyecto es ejecutado por un consorcio de 12 instituciones de Panamá, Centroamérica y Europa, bajo la dirección de la Dra. Mariela Salgado Canto, investigadora del @cinemi_utp .
-</p>
-        <span class="news-date">11 de mayo 2026</span>
-      </div>
-    </a>
-     <div style="visibility:hidden;" aria-hidden="true"></div>
     <!--
       PATRÓN DE LAYOUT (3 columnas):
-      Fila 1: [DESTACADA  span2] [CORTA  span1]
-      Fila 2: [CORTA span1] [CORTA span1] [CORTA span1]
-      Fila 3: [CORTA span1] [MEDIA span2]
-      Fila 4: [CORTA span1] [CORTA span1] [CORTA span1]
+      Fila 1: [DESTACADA span2]  [CORTA span1]
+      Fila 2: [CORTA span1]      [CORTA span1]  [CORTA span1]
+      Fila 3: [CORTA span1]      [DESTACADA span2]
+      Fila 4: [CORTA span1]      [CORTA span1]  [CORTA span1]
+      Fila 5: [CORTA span1]      [CORTA span1]
     -->
 
     <!-- FILA 1 ─────────────────────────────── -->
-
+    <!-- 12. MEDIA (span 2) -->
+    <a href="https://www.linkedin.com/posts/albertotejero_fiduca-tongjiabruniversity-competenciasabremprendedoras-ugcPost-7474483006611783680--gKY/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAL2bgwBlnvNWvAZ7ohYQnQfjeNZv0ueQPE"
+       class="news-card media reveal"
+       data-cat="Difusión"
+       style="transition-delay:0.15s"
+       target="_blank">
+      <img src="Estilos/img/Fotos noticias/shangai.jpg" class="news-img" alt="Shangai Tongji University">
+      <div class="news-body">
+        <span class="news-tag">Difusión</span>
+        <h3>Post realizado por UPM — Presentación del proyecto FIDUCA en la Tongji University de Shanghái</h3>
+        <p>El pasado lunes 15 de junio se realizó la presentación del proyecto FIDUCA en la Tongji University de Shanghái (China), dentro del seminario "Entrepreneurship in rural areas and indigenous communities", impartido para la comunidad universitaria de la SEM (School of Economics and Management).</p>
+        <span class="news-date">15 de junio de 2026</span>
+      </div>
+    </a>
     <!-- 1. DESTACADA (span 2) -->
     <a href="https://cinemi.utp.ac.pa/ver-noticias/utp-lidera-proyecto-internacional-fiduca-para-fortalecer-la-innovacion-y-la-investigacion"
        class="news-card destacada reveal from-left"
        data-cat="Difusión"
        target="_blank">
-      <img src="Estilos/img/Fotos noticias/utpLidera.jpeg" class="news-img" style="height:260px;">
+      <img src="Estilos/img/Fotos noticias/utpLidera.jpeg" class="news-img" alt="UTP lidera FIDUCA">
       <div class="news-body">
         <span class="news-tag">Difusión</span>
         <h3>UTP lidera proyecto internacional FIDUCA para fortalecer la innovación y la investigación transdisciplinaria</h3>
@@ -174,7 +196,7 @@ El proyecto es ejecutado por un consorcio de 12 instituciones de Panamá, Centro
        data-cat="Difusión"
        style="transition-delay:0.15s"
        target="_blank">
-      <img src="Estilos/img/Fotos noticias/Foto Grupal CTEC KOM CR.jpeg" class="news-img">
+      <img src="Estilos/img/Fotos noticias/Foto Grupal CTEC KOM CR.jpeg" class="news-img" alt="ELTE FIDUCA">
       <div class="news-body">
         <span class="news-tag">Difusión</span>
         <h3>Innovációs projekt indult Közép-Amerikában az ELTE részvételével</h3>
@@ -189,9 +211,9 @@ El proyecto es ejecutado por un consorcio de 12 instituciones de Panamá, Centro
     <a href="https://www.linkedin.com/posts/albertotejero_fiduca-comunidadesabrrurales-pueblosabrindaedgenas-ugcPost-7430671937976233984-ikml"
        class="news-card reveal"
        data-cat="Difusión"
-       style="transition-delay:0.1s"
+       style="transition-delay:0.05s"
        target="_blank">
-      <img src="Estilos/img/Fotos noticias/LinkedIn-Logo.wine.png" class="news-img">
+      <img src="Estilos/img/Fotos noticias/LinkedIn-Logo.wine.png" class="news-img" alt="LinkedIn UPM">
       <div class="news-body">
         <span class="news-tag">Difusión</span>
         <h3>Post realizado por la UPM en LinkedIn</h3>
@@ -204,9 +226,9 @@ El proyecto es ejecutado por un consorcio de 12 instituciones de Panamá, Centro
     <a href="http://usonsonate.edu.sv/news"
        class="news-card reveal"
        data-cat="Difusión"
-       style="transition-delay:0.2s"
+       style="transition-delay:0.1s"
        target="_blank">
-      <img src="Estilos/img/Fotos noticias/Foto Grupal CTEC KOM CR.jpeg" class="news-img">
+      <img src="Estilos/img/Fotos noticias/Foto Grupal CTEC KOM CR.jpeg" class="news-img" alt="Universidad de Sonsonate">
       <div class="news-body">
         <span class="news-tag">Difusión</span>
         <h3>La Universidad de Sonsonate se proyecta al mundo con el lanzamiento del proyecto FIDUCA</h3>
@@ -219,9 +241,9 @@ El proyecto es ejecutado por un consorcio de 12 instituciones de Panamá, Centro
     <a href="https://www.galileo.edu/historias-de-exito/fiduca-ugalileo-participa-en-proyecto-de-innovacion-social-y-emprendimiento-tecnologico-financiado-por-la-ue/"
        class="news-card reveal"
        data-cat="Difusión"
-       style="transition-delay:0.3s"
+       style="transition-delay:0.2s"
        target="_blank">
-      <img src="Estilos/img/Fotos noticias/Fotos-verticales-articulos-Galileo-1.png" class="news-img">
+      <img src="Estilos/img/Fotos noticias/Fotos-verticales-articulos-Galileo-1.png" class="news-img" alt="Universidad Galileo">
       <div class="news-body">
         <span class="news-tag">Difusión</span>
         <h3>FIDUCA: UGalileo participa en proyecto de innovación social financiado por la UE</h3>
@@ -236,9 +258,9 @@ El proyecto es ejecutado por un consorcio de 12 instituciones de Panamá, Centro
     <a href="https://www.ues.edu.sv/ues-es-parte-del-proyecto-fiduca-para-impulsar-el-desarrollo-sostenible-en-centro-america/"
        class="news-card reveal"
        data-cat="Difusión"
-       style="transition-delay:0.1s"
+       style="transition-delay:0.05s"
        target="_blank">
-      <img src="Estilos/img/Fotos noticias/utpLidera.jpeg" class="news-img">
+      <img src="Estilos/img/Fotos noticias/utpLidera.jpeg" class="news-img" alt="UES FIDUCA">
       <div class="news-body">
         <span class="news-tag">Difusión</span>
         <h3>UES es parte del proyecto FIDUCA para impulsar el desarrollo sostenible en Centro América</h3>
@@ -251,9 +273,9 @@ El proyecto es ejecutado por un consorcio de 12 instituciones de Panamá, Centro
     <a href="https://www.tec.ac.cr/tec-impulsa-emprendimientos-indigenas-limon-cartago-apoyo-union-europea"
        class="news-card destacada reveal"
        data-cat="Difusión"
-       style="transition-delay:0.2s"
+       style="transition-delay:0.15s"
        target="_blank">
-      <img src="Estilos/img/Fotos noticias/tec_publica.webp" class="news-img" style="height:260px;">
+      <img src="Estilos/img/Fotos noticias/tec_publica.webp" class="news-img" alt="TEC Costa Rica">
       <div class="news-body">
         <span class="news-tag">Difusión</span>
         <h3>TEC impulsa emprendimientos indígenas en Limón y Cartago con apoyo de la Unión Europea</h3>
@@ -268,9 +290,9 @@ El proyecto es ejecutado por un consorcio de 12 instituciones de Panamá, Centro
     <a href="https://principal.url.edu.gt/facultades/facultad-de-ciencias-economicas-y-empresariales/landivar-asume-rol-estrategico-en-proyecto-europeo-para-fortalecer-emprendimiento-indigena-en-guatemala/"
        class="news-card reveal"
        data-cat="Difusión"
-       style="transition-delay:0.1s"
+       style="transition-delay:0.05s"
        target="_blank">
-      <img src="Estilos/img/Fotos noticias/kom-url.webp" class="news-img">
+      <img src="Estilos/img/Fotos noticias/kom-url.webp" class="news-img" alt="Landívar Guatemala">
       <div class="news-body">
         <span class="news-tag">Difusión</span>
         <h3>Landívar asume rol estratégico en proyecto europeo para fortalecer emprendimiento indígena en Guatemala</h3>
@@ -283,14 +305,46 @@ El proyecto es ejecutado por un consorcio de 12 instituciones de Panamá, Centro
     <a href="https://www.upm.es/UPM/SalaPrensa/Noticias_de_investigacion?fmt=detail&prefmt=articulo&id=CON25909"
        class="news-card reveal"
        data-cat="Difusión"
-       style="transition-delay:0.2s"
+       style="transition-delay:0.1s"
        target="_blank">
-      <img src="Estilos/img/Fotos noticias/upm_noticia.jpeg" class="news-img">
+      <img src="Estilos/img/Fotos noticias/upm_noticia.jpeg" class="news-img" alt="UPM noticia">
       <div class="news-body">
         <span class="news-tag">Difusión</span>
         <h3>Fortalecer la innovación y la transformación digital</h3>
         <p>La Universidad Politécnica de Madrid participa en el proyecto FIDUCA impulsando la cooperación internacional entre instituciones de educación superior.</p>
         <span class="news-date">02 Mar 2026</span>
+      </div>
+    </a>
+
+    <!-- 10. CORTA (span 1) -->
+    <a href="https://www.instagram.com/p/DYN0ufCERQn/"
+       class="news-card reveal"
+       data-cat="Difusión"
+       style="transition-delay:0.2s"
+       target="_blank">
+      <img src="Estilos/img/Fotos noticias/MarielaLanzamiento.JPG" class="news-img" alt="Lanzamiento UTP FIDUCA">
+      <div class="news-body">
+        <span class="news-tag">Difusión</span>
+        <h3>La UTP realizó el lanzamiento oficial del proyecto FIDUCA</h3>
+        <p>Por primera vez en su historia, la UTP asume la coordinación general de un proyecto de esta magnitud, diseñado para fortalecer la investigación transdisciplinaria y el emprendimiento en las universidades de Centroamérica.</p>
+        <span class="news-date">11 de mayo 2026</span>
+      </div>
+    </a>
+
+    <!-- FILA 5 ─────────────────────────────── -->
+
+    <!-- 11. CORTA (span 1) -->
+    <a href="https://www.instagram.com/reel/DYe4eEfvvRz/"
+       class="news-card reveal from-left"
+       data-cat="Difusión"
+       style="transition-delay:0.05s"
+       target="_blank">
+      <img src="Estilos/img/Fotos noticias/logo_udelas.png" class="news-img" alt="UDELAS Chiriquí">
+      <div class="news-body">
+        <span class="news-tag">Difusión</span>
+        <h3>En la Comunidad de Camarón Arriba, UDELAS Chiriquí dio a conocer el Proyecto FIDUCA</h3>
+        <p>Esta visita se realizó con el propósito de evaluar y recopilar elementos para la ejecución del proyecto directamente desde la realidad y vivencias de las comunidades indígenas.</p>
+        <span class="news-date">19 de mayo de 2026</span>
       </div>
     </a>
 
@@ -310,7 +364,6 @@ El proyecto es ejecutado por un consorcio de 12 instituciones de Panamá, Centro
         <span><strong>★ ★ ★ ★ ★ ★</strong></span>
         <span style="color:rgba(255,255,255,0.3); margin-left:10px; font-size:12px;"><strong>Cofinanciado por la UE</strong></span>
       </div>
-      <!-- REDES SOCIALES -->
       <div class="footer-social">
         <a href="https://www.instagram.com/proyecto.fiduca" target="_blank" class="social-btn" title="Instagram">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
