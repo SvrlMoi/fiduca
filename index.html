@@ -521,7 +521,10 @@ The project opens new horizons for our Innovation and Entrepreneurship minor, in
 .ev-cal-evento.ev-tipo-taller  { background: var(--gold); }
 .ev-cal-evento.ev-tipo-reunion { background: var(--navy); }
 .ev-cal-evento.ev-tipo-webinar { background: var(--teal); color: var(--navy); }
-
+.ev-cal-evento.es-continuacion {
+  opacity: 0.7;
+  text-align: center;
+}
 @media (max-width: 640px) {
   .ev-cal-wrap    { padding: 16px; }
   .ev-cal-header  { padding: 12px 14px; }
@@ -634,7 +637,22 @@ const fiducaEventos = [
     titulo: "Reunión del consorcio FIDUCA",
     lugar: "Madrid, España",
     hora: "9:00 AM – 5:00 PM"
-  }
+  },
+    {
+    fecha: "2026-05-11T09:00:00-05:00",
+    fechaFin: "2026-05-11T17:00:00-05:00",
+    tipo: "reunion",
+    titulo: "Lanzamiento Nacional de FIDUCA en Panamá",
+    lugar: "Ciudad de Panamá, Panamá",
+    hora: "10:30 AM – 12:00 PM"
+  },
+{
+  fecha: "2026-02-10T09:00:00-05:00",
+  fechaFin: "2026-02-13T17:00:00-05:00",
+  tipo: "reunion",
+  titulo: "KOM FIDUCA COSTA RICA",
+  lugar: "San José, Costa Rica",
+},
 ];
 
 const fiducaTipoLabel = { taller: "Taller", reunion: "Reunión", webinar: "Webinar" };
@@ -652,8 +670,12 @@ function fiducaRenderEventos() {
   if (!grid) return;
 
   const ahora = new Date();
-  const ordenados = [...fiducaEventos].sort((a, b) => new Date(a.fecha) - new Date(b.fecha));
-  const visibles = ordenados.filter(ev => fiducaFiltroActivo === 'todos' || ev.tipo === fiducaFiltroActivo);
+const ordenados = [...fiducaEventos].sort((a, b) => {
+  const aPasado = new Date(a.fechaFin || a.fecha) < ahora;
+  const bPasado = new Date(b.fechaFin || b.fecha) < ahora;
+  if (aPasado !== bPasado) return aPasado ? -1 : 1;
+  return new Date(a.fecha) - new Date(b.fecha);
+});  const visibles = ordenados.filter(ev => fiducaFiltroActivo === 'todos' || ev.tipo === fiducaFiltroActivo);
 
   grid.innerHTML = visibles.map(ev => {
     const esPasado = new Date(ev.fecha) < ahora;
@@ -755,13 +777,21 @@ function fiducaRenderCalendario() {
   const totalCeldas = Math.ceil((offsetInicio + diasEnMes) / 7) * 7;
 
   const eventosPorDia = {};
-  fiducaEventos.forEach(ev => {
-    const f = new Date(ev.fecha);
-    if (f.getFullYear() === año && f.getMonth() === mes) {
-      const key = f.getDate();
-      (eventosPorDia[key] = eventosPorDia[key] || []).push(ev);
+fiducaEventos.forEach(ev => {
+  const inicio = new Date(ev.fecha);
+  const fin = ev.fechaFin ? new Date(ev.fechaFin) : inicio;
+  const cursor = new Date(inicio.getFullYear(), inicio.getMonth(), inicio.getDate());
+  const finDia = new Date(fin.getFullYear(), fin.getMonth(), fin.getDate());
+
+  while (cursor <= finDia) {
+    if (cursor.getFullYear() === año && cursor.getMonth() === mes) {
+      const esInicio = cursor.getDate() === inicio.getDate() && cursor.getMonth() === inicio.getMonth();
+      const key = cursor.getDate();
+      (eventosPorDia[key] = eventosPorDia[key] || []).push({ ...ev, esInicio });
     }
-  });
+    cursor.setDate(cursor.getDate() + 1);
+  }
+});
 
   let html = '';
   for (let i = 0; i < totalCeldas; i++) {
@@ -778,8 +808,7 @@ function fiducaRenderCalendario() {
     html += `
       <div class="ev-cal-dia ${esHoy ? 'is-hoy' : ''}">
         <span class="ev-cal-num">${numDia}</span>
-        ${eventosDia.map(ev => `<span class="ev-cal-evento ev-tipo-${ev.tipo}" title="${ev.titulo}">${ev.titulo}</span>`).join('')}
-      </div>
+${eventosDia.map(ev => `<span class="ev-cal-evento ev-tipo-${ev.tipo} ${ev.esInicio ? '' : 'es-continuacion'}" title="${ev.titulo}">${ev.esInicio ? ev.titulo : '···'}</span>`).join('')}      </div>
     `;
   }
 
