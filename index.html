@@ -525,9 +525,15 @@ The project opens new horizons for our Innovation and Entrepreneurship minor, in
 .ev-cal-evento.ev-tipo-webinar { background: var(--teal); color: var(--navy); }
 
 @media (max-width: 640px) {
-  .ev-cal-nav h4 { font-size: 16px; min-width: 130px; }
-  .ev-cal-dia { min-height: 58px; }
-  .ev-cal-evento { font-size: 0; padding: 0; height: 7px; border-radius: 50%; width: 7px; box-shadow: none; }
+  .ev-cal-wrap    { padding: 16px; }
+  .ev-cal-header  { padding: 12px 14px; }
+  .ev-cal-nav     { width: 100%; justify-content: space-between; gap: 8px; }
+  .ev-cal-nav h4  { min-width: 0; flex: 1; font-size: 15px; }
+  .ev-cal-nav button { width: 28px; height: 28px; flex-shrink: 0; }
+  .ev-cal-grid    { gap: 4px; }
+  .ev-cal-dia     { min-height: 58px; padding: 4px; border-radius: 8px; }
+  .ev-cal-diassemana span { font-size: 9px; padding-bottom: 4px; }
+  .ev-cal-evento  { font-size: 0; padding: 0; height: 7px; border-radius: 50%; width: 7px; box-shadow: none; }
 }
 .ev-countdown {
   display: none;
