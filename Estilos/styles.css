@@ -434,14 +434,14 @@
   }
   .footer-about h3 { color: var(--navy); font-size: 18px; margin-bottom: 12px; }
   .footer-about p { font-size: 14px; color:var(--light); line-height: 1.8; }
-  .footer-col h4 { font-size: 14px; color: var(--gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 18px; }
+  .footer-col h4 { font-size: 14px; color: var(--light); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 18px; }
   .footer-col ul { list-style: none; }
   .footer-col ul li { margin-bottom: 10px; }
-  .footer-col ul a { text-decoration: none; color:var(--gold); font-size: 13px; transition: color .2s; }
+  .footer-col ul a { text-decoration: none; color:var(--light); font-size: 13px; transition: color .2s; }
   .footer-col ul a:hover { color: rgba(255,255,255,0.8); }
   .footer-bottom {
     display: flex; align-items: center; justify-content: space-between;
-    font-size: 16px; color: var(--gold);
+    font-size: 16px; color:#7e899c;
   }
 
   /* ── ANIMACIONES ── */
@@ -891,7 +891,7 @@ img { max-width: 100%; height: auto; display: block; }
   }
   .social-btn {
     display: inline-flex; align-items: center; gap: 7px;
-    background: rgba(28, 211, 218, 0.378);
+    background: var(--teal);
     border: 1px solid rgba(255,255,255,0.15);
     color:var(--slate);
     text-decoration: none; font-size: 12px; font-weight: 600;
