@@ -11,6 +11,7 @@
 <title>Resultados – FIDUCA</title>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="Estilos/styles.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
 /* ── VARIABLES DE PÁGINA ── */
 :root {
@@ -30,7 +31,7 @@
   background: var(--gold);
   position: relative;
   overflow: hidden;
-  padding: 90px 60px 80px;
+  padding: 70px 60px 65px;
 }
 .res-hero::before {
   content: '';
@@ -49,16 +50,24 @@
 }
 .res-hero-inner {
   position: relative; z-index: 2;
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 80px; align-items: center;
+  display: grid; grid-template-columns: 1.15fr 0.85fr;
+  gap: 50px; align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 .res-hero-text .section-label { color: var(--white); margin-bottom: 14px; }
 .res-hero-text h1 {
-  font-size: clamp(36px, 4vw, 54px); font-weight: 900;
-  color: white; line-height: 1.12; margin-bottom: 20px;
+  font-size: clamp(32px, 3.8vw, 50px); font-weight: 900;
+  color: white; line-height: 1.15; margin-bottom: 18px;
 }
 .res-hero-text h1 em { font-style: normal; color: var(--white); }
-.res-hero-text p { font-size: 16px; color: rgba(255, 255, 255, 0.724); line-height: 1.85; max-width: 480px; }
+.res-hero-text p {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.75;
+  max-width: 520px;
+  margin-bottom: 0;
+}
 
 /* KPIs en hero */
 .res-kpi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -311,9 +320,13 @@
 .reveal.visible    { opacity: 1; transform: translate(0,0); }
 
 /* ── RESPONSIVE ── */
+@media (max-width: 992px) {
+  .res-hero { padding: 50px 30px 45px; }
+  .res-hero-inner { grid-template-columns: 1fr; gap: 36px; }
+}
 @media (max-width: 768px) {
-  .res-hero { padding: 60px 20px 50px; }
-  .res-hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  .res-hero { padding: 45px 20px 35px; }
+  .res-hero-inner { grid-template-columns: 1fr; gap: 30px; }
   .res-kpi-grid { grid-template-columns: 1fr 1fr; }
   .tabs-bar { padding: 0 20px; }
   .section-block { padding: 50px 20px 60px; }
@@ -385,6 +398,253 @@
   background: var(--navy);
   transform: translateY(-2px);
 }
+
+/* ── DASHBOARD DE IMPACTO LOADER & LAYOUT ── */
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.dashboard-header {
+  margin-bottom: 32px;
+}
+
+/* Loader / Skeleton */
+.dashboard-loader-box {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 60px 20px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(65, 9, 56, 0.04);
+}
+.dashboard-spinner {
+  width: 44px;
+  height: 44px;
+  border: 4px solid rgba(145,17,126,0.15);
+  border-top-color: var(--purple);
+  border-radius: 50%;
+  margin: 0 auto 16px;
+  animation: spinDashboard 0.8s linear infinite;
+}
+@keyframes spinDashboard {
+  to { transform: rotate(360deg); }
+}
+.dashboard-loader-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--slate);
+}
+
+/* Progreso Global */
+.dashboard-progress-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 24px 28px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 20px rgba(65, 9, 56, 0.04);
+}
+.dashboard-progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.dashboard-progress-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--navy);
+}
+.dashboard-progress-pct {
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--purple);
+}
+.dashboard-progress-track {
+  background: var(--light);
+  border-radius: 10px;
+  height: 14px;
+  overflow: hidden;
+}
+.dashboard-progress-fill {
+  background: linear-gradient(90deg, var(--purple), var(--gold));
+  height: 100%;
+  border-radius: 10px;
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Main Cards Grid */
+.dashboard-main-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.dashboard-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 4px 20px rgba(65, 9, 56, 0.04);
+  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+}
+.dashboard-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(65, 9, 56, 0.08);
+  border-color: rgba(145, 17, 126, 0.25);
+}
+.dashboard-card-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.dashboard-card-info {
+  display: flex;
+  flex-direction: column;
+}
+.dashboard-card-value {
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--navy);
+  line-height: 1.1;
+}
+.dashboard-card-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--slate);
+  margin-top: 4px;
+}
+
+/* Subvalores de Comunidades */
+.dashboard-subvalues {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.dashboard-subvalues strong {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--navy);
+}
+.dashboard-subvalues small {
+  font-size: 11px;
+  color: var(--slate);
+}
+.dashboard-subvalues .divider {
+  color: rgba(65,9,56,0.2);
+  font-size: 16px;
+}
+
+/* Section Card Full - Roles */
+.dashboard-card-full {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: 0 4px 20px rgba(65, 9, 56, 0.04);
+}
+.dashboard-card-subtitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 18px;
+}
+.roles-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.role-mini-card {
+  background: var(--light);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.2s, border-color 0.2s;
+}
+.role-mini-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(145,17,126,0.25);
+}
+.role-icon {
+  font-size: 22px;
+  margin-bottom: 6px;
+}
+.role-num {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--purple);
+}
+.role-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--slate);
+  margin-top: 4px;
+}
+
+/* Charts Grid */
+.dashboard-charts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+.dashboard-chart-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(65, 9, 56, 0.04);
+}
+.dashboard-chart-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 20px;
+  align-self: flex-start;
+}
+.chart-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 992px) {
+  .dashboard-main-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .roles-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .dashboard-main-cards {
+    grid-template-columns: 1fr;
+  }
+  .roles-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .dashboard-charts-grid {
+    grid-template-columns: 1fr;
+  }
+}
 </style>
 </head>
 <body>
@@ -398,14 +658,15 @@
 <img src="Estilos/img/logo-fiduca-full-color.png" alt="FIDUCA_logo">
   </a>  </div>
   <ul class="nav-links">
-    <li><a href="index.html">Proyecto</a></li>
-    <li><a href="equipo.html">Socios</a></li>
-    <li><a href="resultados.html" class="activo">Resultados</a></li>
-    <li><a href="recursos.html">Recursos</a></li>
-    <li><a href="noticias.html">Noticias</a></li>
-    <li><a href="galeria.html">Galería</a></li>
-    <li><a href="contacto.html" class="nav-cta">Contacto</a></li>
+    <li><a href="index.html" data-i18n="navegacion.inicio">Proyecto</a></li>
+    <li><a href="equipo.html" data-i18n="navegacion.socios">Socios</a></li>
+    <li><a href="resultados.html" class="activo" data-i18n="navegacion.resultados">Resultados</a></li>
+    <li><a href="recursos.html" data-i18n="navegacion.recursos">Recursos</a></li>
+    <li><a href="noticias.html" data-i18n="navegacion.noticias">Noticias</a></li>
+    <li><a href="galeria.html" data-i18n="navegacion.galeria">Galería</a></li>
+    <li><a href="contacto.html" class="nav-cta" data-i18n="navegacion.contacto">Contacto</a></li>
   </ul>
+  <button class="lang-switch" id="btn-idioma">ES | EN</button>
 </nav>
 
 <!-- HERO -->
@@ -413,26 +674,26 @@
   <div class="res-hero-grid"></div>
   <div class="res-hero-inner">
     <div class="res-hero-text reveal from-left">
-      <span class="section-label">Resultados del Proyecto</span>
-      <h1>Avances y <em>Logros</em><br>del Consorcio<br>FIDUCA</h1>
-      <p>Seguimiento en tiempo real del progreso del proyecto: paquetes de trabajo, entregables e indicadores de impacto para las comunidades centroamericanas.</p>
+      <span class="section-label" data-i18n="resultados.hero_label">Resultados del Proyecto</span>
+      <h1 data-i18n="resultados.hero_titulo">Avances y <em>Logros</em><br>del Consorcio<br>FIDUCA</h1>
+      <p data-i18n="resultados.hero_desc">Seguimiento en tiempo real del progreso del proyecto: paquetes de trabajo, entregables e indicadores de impacto para las comunidades centroamericanas.</p>
     </div>
     <div class="res-kpi-grid">
       <div class="res-kpi reveal" style="transition-delay:0.10s">
         <div class="res-kpi-num">12</div>
-        <div class="res-kpi-label">Instituciones<br>socias</div>
+        <div class="res-kpi-label" data-i18n="resultados.kpi_socias">Instituciones<br>socias</div>
       </div>
       <div class="res-kpi reveal" style="transition-delay:0.20s">
         <div class="res-kpi-num">5</div>
-        <div class="res-kpi-label">Paquetes de<br>trabajo</div>
+        <div class="res-kpi-label" data-i18n="resultados.kpi_paquetes">Paquetes de<br>trabajo</div>
       </div>
       <div class="res-kpi reveal" style="transition-delay:0.30s">
         <div class="res-kpi-num">36</div>
-        <div class="res-kpi-label">Meses de<br>duración</div>
+        <div class="res-kpi-label" data-i18n="resultados.kpi_duracion">Meses de<br>duración</div>
       </div>
       <div class="res-kpi reveal" style="transition-delay:0.40s">
         <div class="res-kpi-num">2026</div>
-        <div class="res-kpi-label">Año de<br>inicio</div>
+        <div class="res-kpi-label" data-i18n="resultados.kpi_inicio">Año de<br>inicio</div>
       </div>
     </div>
   </div>
@@ -441,18 +702,145 @@
 
 <!-- BREADCRUMB -->
 <div class="breadcrumb">
-  <a href="index.html">Inicio</a>
+  <a href="index.html" data-i18n="navegacion.breadcrumb_inicio">Inicio</a>
   <span>›</span>
-  <span style="color:var(--navy); opacity:1; font-weight:600;">Resultados</span>
+  <span data-i18n="navegacion.resultados" style="color:var(--navy); opacity:1; font-weight:600;">Resultados</span>
 </div>
+
+<hr class="purple-divider">
+
+<!-- SECCIÓN SEMÁNTICA: DASHBOARD DE IMPACTO -->
+<section id="dashboard-impacto" class="section-block bg-light">
+  <div class="dashboard-container">
+    <div class="dashboard-header reveal from-left">
+      <span class="section-label-small" data-i18n="dashboard.tag_indicadores">Indicadores en Tiempo Real</span>
+      <h2 class="section-h2" data-i18n="secciones.dashboard">Dashboard de Impacto</h2>
+      <p class="section-lead" data-i18n="dashboard.subtitulo">Métricas de impacto y alcance regional del proyecto FIDUCA</p>
+    </div>
+
+    <!-- Estado de Carga (Loader / Skeleton) visible por defecto -->
+    <div id="dashboard-loader" class="dashboard-loader-box">
+      <div class="dashboard-spinner"></div>
+      <p class="dashboard-loader-text">Cargando datos en tiempo real...</p>
+    </div>
+
+    <!-- Contenido del Dashboard (Oculto inicialmente) -->
+    <div id="dashboard-content" style="display: none;">
+      
+      <!-- Progreso Global -->
+      <div class="dashboard-progress-card reveal">
+        <div class="dashboard-progress-header">
+          <span class="dashboard-progress-title" data-i18n="dashboard.avance_global">Avance Global del Proyecto</span>
+          <span id="val-avance" class="dashboard-progress-pct">0%</span>
+        </div>
+        <div class="dashboard-progress-track">
+          <div id="barra-avance" class="dashboard-progress-fill" style="width: 0%;"></div>
+        </div>
+      </div>
+
+      <!-- Tarjetas de Métricas Principales -->
+      <div class="dashboard-main-cards reveal">
+        <div class="dashboard-card">
+          <div class="dashboard-card-icon" style="background: rgba(145,17,126,0.1); color: var(--purple);">
+            <i data-lucide="users"></i>
+          </div>
+          <div class="dashboard-card-info">
+            <span id="val-participantes" class="dashboard-card-value">0</span>
+            <span class="dashboard-card-label" data-i18n="dashboard.total_participantes">Total de Participantes</span>
+          </div>
+        </div>
+
+        <div class="dashboard-card">
+          <div class="dashboard-card-icon" style="background: rgba(234,117,4,0.1); color: var(--gold);">
+            <i data-lucide="globe"></i>
+          </div>
+          <div class="dashboard-card-info">
+            <span id="val-paises" class="dashboard-card-value">0</span>
+            <span class="dashboard-card-label" data-i18n="dashboard.paises_impactados">Países Impactados</span>
+          </div>
+        </div>
+
+        <div class="dashboard-card">
+          <div class="dashboard-card-icon" style="background: rgba(0,77,28,0.1); color: var(--green);">
+            <i data-lucide="award"></i>
+          </div>
+          <div class="dashboard-card-info">
+            <span id="val-capacitaciones" class="dashboard-card-value">0</span>
+            <span class="dashboard-card-label" data-i18n="dashboard.capacitaciones_realizadas">Capacitaciones Realizadas</span>
+          </div>
+        </div>
+
+        <!-- Tarjeta de Comunidades Impactadas -->
+        <div class="dashboard-card">
+          <div class="dashboard-card-icon" style="background: rgba(26,122,116,0.1); color: #1a7a74;">
+            <i data-lucide="map-pin"></i>
+          </div>
+          <div class="dashboard-card-info">
+            <div class="dashboard-subvalues">
+              <div><strong id="val-indigenas">0</strong> <small data-i18n="dashboard.indigenas">Indígenas</small></div>
+              <div class="divider">|</div>
+              <div><strong id="val-rurales">0</strong> <small data-i18n="dashboard.rurales">Rurales</small></div>
+            </div>
+            <span class="dashboard-card-label" data-i18n="dashboard.comunidades_impactadas">Comunidades Impactadas</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sección de Roles de Participantes -->
+      <div class="dashboard-card-full reveal" style="margin-top: 24px;">
+        <h4 class="dashboard-card-subtitle" data-i18n="dashboard.roles_titulo">Desglose de Participación por Roles</h4>
+        <div class="roles-cards-grid">
+          <div class="role-mini-card">
+            <span class="role-icon">🎓</span>
+            <span id="val-docentes" class="role-num">0</span>
+            <span class="role-name" data-i18n="dashboard.docentes">Docentes</span>
+          </div>
+          <div class="role-mini-card">
+            <span class="role-icon">🔬</span>
+            <span id="val-investigadores" class="role-num">0</span>
+            <span class="role-name" data-i18n="dashboard.investigadores">Investigadores</span>
+          </div>
+          <div class="role-mini-card">
+            <span class="role-icon">📚</span>
+            <span id="val-estudiantes" class="role-num">0</span>
+            <span class="role-name" data-i18n="dashboard.estudiantes">Estudiantes</span>
+          </div>
+          <div class="role-mini-card">
+            <span class="role-icon">🤝</span>
+            <span id="val-aliados" class="role-num">0</span>
+            <span class="role-name" data-i18n="dashboard.aliados_externos">Aliados Externos</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gráficos Interactivos (Género y Roles) -->
+      <div class="dashboard-charts-grid reveal" style="margin-top: 28px;">
+        <div class="dashboard-chart-card">
+          <h3 class="dashboard-chart-title" data-i18n="dashboard.distribucion_genero">Distribución por Género</h3>
+          <div class="chart-wrapper">
+            <canvas id="graficoGenero"></canvas>
+          </div>
+        </div>
+
+        <div class="dashboard-chart-card">
+          <h3 class="dashboard-chart-title" data-i18n="dashboard.participantes_rol">Participantes por Rol</h3>
+          <div class="chart-wrapper">
+            <canvas id="graficoRoles"></canvas>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 <hr class="purple-divider">
 
 <!-- TABS -->
 <div class="tabs-bar">
-  <button class="tab-btn active" onclick="switchTab('wp', this)">Paquetes de Trabajo</button>
-  <button class="tab-btn" onclick="switchTab('avances', this)">Avances</button>
-  <button class="tab-btn" onclick="switchTab('impacto', this)">Impacto</button>
+  <button class="tab-btn active" onclick="switchTab('wp', this)" data-i18n="resultados.tab_wp">Paquetes de Trabajo</button>
+  <button class="tab-btn" onclick="switchTab('avances', this)" data-i18n="resultados.tab_avances">Avances</button>
+  <button class="tab-btn" onclick="switchTab('impacto', this)" data-i18n="resultados.tab_impacto">Impacto</button>
 </div>
 
 
@@ -461,24 +849,24 @@
 
     <div class="wp-intro-grid">
       <div class="reveal from-left">
-        <span class="section-label-small">Avances del Proyecto</span>
-        <h2 class="section-h2">Paquetes de Trabajo</h2>
-        <p class="section-lead">FIDUCA se organiza en cinco paquetes de trabajo interconectados que cubren desde la gestión institucional hasta la transferencia de resultados a la comunidad.</p>
+        <span class="section-label-small" data-i18n="resultados.avances_label">Avances del Proyecto</span>
+        <h2 class="section-h2" data-i18n="resultados.wp_titulo">Paquetes de Trabajo</h2>
+        <p class="section-lead" data-i18n="resultados.wp_desc">FIDUCA se organiza en cinco paquetes de trabajo interconectados que cubren desde la gestión institucional hasta la transferencia de resultados a la comunidad.</p>
         <div class="wp-legend">
-          <div class="wp-legend-item"><div class="wp-legend-dot" style="background:var(--green)"></div><span>En curso</span></div>
-          <div class="wp-legend-item"><div class="wp-legend-dot" style="background:var(--gold)"></div><span>Planificado</span></div>
-          <div class="wp-legend-item"><div class="wp-legend-dot" style="background:var(--purple)"></div><span>Completado</span></div>
+          <div class="wp-legend-item"><div class="wp-legend-dot" style="background:var(--green)"></div><span data-i18n="resultados.leg_en_curso">En curso</span></div>
+          <div class="wp-legend-item"><div class="wp-legend-dot" style="background:var(--gold)"></div><span data-i18n="resultados.leg_planificado">Planificado</span></div>
+          <div class="wp-legend-item"><div class="wp-legend-dot" style="background:var(--purple)"></div><span data-i18n="resultados.leg_completado">Completado</span></div>
         </div>
       </div>
       <div class="reveal from-right">
-        <p class="section-lead">El proyecto tiene una duración de <strong>36 meses</strong> (2026–2028). Los paquetes de trabajo se solapan estratégicamente para maximizar la sinergia entre actividades de gestión, capacitación y fortalecimiento de emprendimientos indígenas centroamericanos.</p>
+        <p class="section-lead" data-i18n="resultados.wp_desc_duracion">El proyecto tiene una duración de <strong>36 meses</strong> (2026–2028). Los paquetes de trabajo se solapan estratégicamente para maximizar la sinergia entre actividades de gestión, capacitación y fortalecimiento de emprendimientos indígenas centroamericanos.</p>
         <div class="progress-box">
-          <span class="progress-box-label">Progreso Global</span>
+          <span class="progress-box-label" data-i18n="resultados.progreso_global">Progreso Global</span>
           <div class="progress-track">
             <div class="progress-fill" style="width:12%;"></div>
           </div>
           <div class="progress-labels">
-            <span>Inicio del proyecto</span>
+            <span data-i18n="resultados.inicio_proyecto">Inicio del proyecto</span>
             <span class="progress-pct">12%</span>
           </div>
         </div>
@@ -490,12 +878,12 @@
       <div class="wp-row reveal" style="transition-delay:0.05s">
         <div class="wp-num-col"><div class="wp-num wp-c1">WP1</div><div class="wp-line"></div></div>
         <div class="wp-info">
-          <h4>Project Management, Coordinación y Calidad</h4>
-          <p>Establecer mecanismos de gestión, seguimiento y presupuesto. Proceso de contratación de servicios externos y de control de calidad. Auditoría para evaluación de resultados.</p>
-          <span class="wp-status-badge badge-ongoing">● En curso</span>
+          <h4 data-i18n="resultados.wp1_titulo">Project Management, Coordinación y Calidad</h4>
+          <p data-i18n="resultados.wp1_desc">Establecer mecanismos de gestión, seguimiento y presupuesto. Proceso de contratación de servicios externos y de control de calidad. Auditoría para evaluación de resultados.</p>
+          <span class="wp-status-badge badge-ongoing" data-i18n="resultados.badge_en_curso">● En curso</span>
         </div>
         <div class="wp-bar-col">
-          <div class="wp-bar-meta">Duración: Meses 1–36</div>
+          <div class="wp-bar-meta" data-i18n="resultados.duracion_meses_1_36">Duración: Meses 1–36</div>
           <div class="wp-bar-track">
             <div class="wp-bar-fill wp-c1" style="left:0%; width:100%;"></div>
           </div>
@@ -506,12 +894,12 @@
       <div class="wp-row reveal" style="transition-delay:0.10s">
         <div class="wp-num-col"><div class="wp-num wp-c2">WP2</div><div class="wp-line"></div></div>
         <div class="wp-info">
-          <h4>Infraestructura de I+D del Emprendimiento en las Universidades Centroamericanas</h4>
-          <p>Fortalecimiento de recursos y conocimientos de docentes e investigadores para la I+D del emprendimiento inclusivo, con enfoque en poblaciones vulnerables.</p>
-          <span class="wp-status-badge badge-ongoing">● En curso</span>
+          <h4 data-i18n="resultados.wp2_titulo">Infraestructura de I+D del Emprendimiento en las Universidades Centroamericanas</h4>
+          <p data-i18n="resultados.wp2_desc">Fortalecimiento de recursos y conocimientos de docentes e investigadores para la I+D del emprendimiento inclusivo, con enfoque en poblaciones vulnerables.</p>
+          <span class="wp-status-badge badge-ongoing" data-i18n="resultados.badge_en_curso">● En curso</span>
         </div>
         <div class="wp-bar-col">
-          <div class="wp-bar-meta">Duración: Meses 3–24</div>
+          <div class="wp-bar-meta" data-i18n="resultados.duracion_meses_3_24">Duración: Meses 3–24</div>
           <div class="wp-bar-track">
             <div class="wp-bar-fill wp-c2" style="left:5.5%; width:58.3%;"></div>
           </div>
@@ -522,12 +910,12 @@
       <div class="wp-row reveal" style="transition-delay:0.15s">
         <div class="wp-num-col"><div class="wp-num wp-c3">WP3</div><div class="wp-line"></div></div>
         <div class="wp-info">
-          <h4>Contenidos y Metodologías de Formación para Población en Vulnerabilidad</h4>
-          <p>Desarrollo de contenidos y metodologías de capacitación para poblaciones vulnerables: emprendimiento, innovación, tecnología, mercado, finanzas, administración y propiedad intelectual.</p>
-          <span class="wp-status-badge badge-planned">○ Planificado</span>
+          <h4 data-i18n="resultados.wp3_titulo">Contenidos y Metodologías de Formación para Población en Vulnerabilidad</h4>
+          <p data-i18n="resultados.wp3_desc">Desarrollo de contenidos y metodologías de capacitación para poblaciones vulnerables: emprendimiento, innovación, tecnología, mercado, finanzas, administración y propiedad intelectual.</p>
+          <span class="wp-status-badge badge-planned" data-i18n="resultados.badge_planificado">○ Planificado</span>
         </div>
         <div class="wp-bar-col">
-          <div class="wp-bar-meta">Duración: Meses 13–30</div>
+          <div class="wp-bar-meta" data-i18n="resultados.duracion_meses_13_30">Duración: Meses 13–30</div>
           <div class="wp-bar-track"><div class="wp-bar-fill wp-c3" style="left:33.3%; width:47.2%;"></div></div>
           <div class="wp-bar-months"><span>M1</span><span>M6</span><span>M12</span><span>M18</span><span>M24</span><span>M30</span><span>M36</span></div>
         </div>
@@ -536,12 +924,12 @@
       <div class="wp-row reveal" style="transition-delay:0.20s">
         <div class="wp-num-col"><div class="wp-num wp-c4">WP4</div><div class="wp-line"></div></div>
         <div class="wp-info">
-          <h4>Implementación de las Capacitaciones y Formación de Capital Humano</h4>
-          <p>Formación de formadores en universidades centroamericanas. Generación de capacidades emprendedoras en la población vulnerable. Selección de los mejores proyectos emprendedores (ETNOLab).</p>
-          <span class="wp-status-badge badge-planned">○ Planificado</span>
+          <h4 data-i18n="resultados.wp4_titulo">Implementación de las Capacitaciones y Formación de Capital Humano</h4>
+          <p data-i18n="resultados.wp4_desc">Formación de formadores en universidades centroamericanas. Generación de capacidades emprendedoras en la población vulnerable. Selección de los mejores proyectos emprendedores (ETNOLab).</p>
+          <span class="wp-status-badge badge-planned" data-i18n="resultados.badge_planificado">○ Planificado</span>
         </div>
         <div class="wp-bar-col">
-          <div class="wp-bar-meta">Duración: Meses 20–32</div>
+          <div class="wp-bar-meta" data-i18n="resultados.duracion_meses_20_32">Duración: Meses 20–32</div>
           <div class="wp-bar-track"><div class="wp-bar-fill wp-c4" style="left:52.8%; width:33.3%;"></div></div>
           <div class="wp-bar-months"><span>M1</span><span>M6</span><span>M12</span><span>M18</span><span>M24</span><span>M30</span><span>M36</span></div>
         </div>
@@ -550,12 +938,12 @@
       <div class="wp-row reveal" style="transition-delay:0.25s">
         <div class="wp-num-col"><div class="wp-num wp-c5">WP5</div><div class="wp-line"></div></div>
         <div class="wp-info">
-          <h4>Difusión, Impacto y Sostenibilidad de FIDUCA</h4>
-          <p>Difundir los avances y resultados del proyecto. Ejecutar el ETNOLab. Desarrollar la conferencia internacional de cierre. Crear el Plan de Sostenibilidad.</p>
-          <span class="wp-status-badge badge-planned">○ Planificado</span>
+          <h4 data-i18n="resultados.wp5_titulo">Difusión, Impacto y Sostenibilidad de FIDUCA</h4>
+          <p data-i18n="resultados.wp5_desc">Difundir los avances y resultados del proyecto. Ejecutar el ETNOLab. Desarrollar la conferencia internacional de cierre. Crear el Plan de Sostenibilidad.</p>
+          <span class="wp-status-badge badge-planned" data-i18n="resultados.badge_planificado">○ Planificado</span>
         </div>
         <div class="wp-bar-col">
-          <div class="wp-bar-meta">Duración: Meses 1–36</div>
+          <div class="wp-bar-meta" data-i18n="resultados.duracion_meses_1_36">Duración: Meses 1–36</div>
           <div class="wp-bar-track"><div class="wp-bar-fill wp-c5" style="left:0%; width:100%;"></div></div>
           <div class="wp-bar-months"><span>M1</span><span>M6</span><span>M12</span><span>M18</span><span>M24</span><span>M30</span><span>M36</span></div>
         </div>
@@ -572,19 +960,9 @@
 
     <div class="entregables-header reveal from-up">
       <div>
-        <span class="section-label-small">Seguimiento del Proyecto</span>
-        <h2 class="section-h2">Avances del Proyecto</h2>
+        <span class="section-label-small" data-i18n="resultados.avances_label">Seguimiento del Proyecto</span>
+        <h2 class="section-h2" data-i18n="resultados.wp_titulo">Avances del Proyecto</h2>
       </div>
-      <!-- Filtros listos para cuando haya contenido — descomenta cuando añadas cards -->
-      <!--
-      <div class="filter-bar-inline">
-        <button class="filter-btn active" onclick="filterEntregables('todos', this)">Todos</button>
-        <button class="filter-btn" onclick="filterEntregables('analisis', this)">Diagnóstico</button>
-        <button class="filter-btn" onclick="filterEntregables('formacion', this)">Formación</button>
-        <button class="filter-btn" onclick="filterEntregables('metodologia', this)">Metodología</button>
-        <button class="filter-btn" onclick="filterEntregables('plataforma', this)">Plataformas</button>
-      </div>
-      -->
     </div>
 
     <!-- ── EMPTY STATE ── -->
@@ -599,13 +977,13 @@
           </svg>
         </div>
 
-        <h3 class="avances-empty-title">Los avances se publicarán próximamente</h3>
-        <p class="avances-empty-desc">
+        <h3 class="avances-empty-title" data-i18n="resultados.avances_empty_titulo">Los avances se publicarán próximamente</h3>
+        <p class="avances-empty-desc" data-i18n="resultados.avances_empty_desc">
           A medida que los paquetes de trabajo vayan generando resultados,
           aquí encontrarás informes, entregables y documentos de seguimiento organizados por área temática.
         </p>
 
-        <a href="noticias.html" class="avances-cta-btn">Ver últimas noticias →</a>
+        <a href="noticias.html" class="avances-cta-btn" data-i18n="resultados.avances_cta">Ver últimas noticias →</a>
       </div>
     </div>
 
@@ -629,8 +1007,8 @@
 <!-- ═══════════ TAB 3 – IMPACTO ═══════════ -->
 <div id="tab-impacto" class="tab-panel">
   <section class="section-block bg-light">
-    <span class="section-label-small reveal from-up">Beneficiarios del Proyecto</span>
-    <h2 class="section-h2 reveal from-up" style="transition-delay:0.08s">Mapa de Actores</h2>
+    <span class="section-label-small reveal from-up" data-i18n="resultados.actores_label">Beneficiarios del Proyecto</span>
+    <h2 class="section-h2 reveal from-up" style="transition-delay:0.08s" data-i18n="resultados.actores_titulo">Mapa de Actores</h2>
 
     <div class="actores-grid">
 
@@ -639,8 +1017,8 @@
         <div class="actor-icon" style="background:rgba(145,17,126,0.09);">
           <i data-lucide="building-2"></i>
         </div>
-        <h4>Universidades</h4>
-        <p>Instituciones de educación superior que fortalecen sus capacidades investigadoras y docentes.</p>
+        <h4 data-i18n="resultados.actor_univ_titulo">Universidades</h4>
+        <p data-i18n="resultados.actor_univ_desc">Instituciones de educación superior que fortalecen sus capacidades investigadoras y docentes.</p>
         <span class="actor-count">12</span>
       </div>
 
@@ -649,8 +1027,8 @@
         <div class="actor-icon" style="background:rgba(0,77,28,0.08);">
           <i data-lucide="graduation-cap"></i>
         </div>
-        <h4>Jóvenes Indígenas</h4>
-        <p>Estudiantes y emprendedores de comunidades indígenas centroamericanas.</p>
+        <h4 data-i18n="resultados.actor_jovenes_titulo">Jóvenes Indígenas</h4>
+        <p data-i18n="resultados.actor_jovenes_desc">Estudiantes y emprendedores de comunidades indígenas centroamericanas.</p>
         <span class="actor-count">300+</span>
       </div>
 
@@ -659,8 +1037,8 @@
         <div class="actor-icon" style="background:rgba(234,117,4,0.09);">
           <i data-lucide="user-cog"></i>
         </div>
-        <h4>Docentes</h4>
-        <p>Profesores universitarios formados en metodologías innovadoras e interculturales.</p>
+        <h4 data-i18n="resultados.actor_docentes_titulo">Docentes</h4>
+        <p data-i18n="resultados.actor_docentes_desc">Profesores universitarios formados en metodologías innovadoras e interculturales.</p>
         <span class="actor-count">120+</span>
       </div>
 
@@ -669,8 +1047,8 @@
         <div class="actor-icon" style="background:rgba(69,210,197,0.1);">
           <i data-lucide="sprout"></i>
         </div>
-        <h4>Comunidades</h4>
-        <p>Comunidades indígenas de Panamá, Costa Rica y El Salvador como receptoras directas del impacto.</p>
+        <h4 data-i18n="resultados.actor_comunidades_titulo">Comunidades</h4>
+        <p data-i18n="resultados.actor_comunidades_desc">Comunidades indígenas de Panamá, Costa Rica y El Salvador como receptoras directas del impacto.</p>
         <span class="actor-count">15+</span>
       </div>
 
@@ -683,40 +1061,40 @@
   <section class="section-block bg-white">
     <div class="impacto-grid">
       <div class="reveal from-left">
-        <span class="section-label-small">Indicadores de Impacto</span>
-        <h2 class="section-h2">Progreso por Objetivo</h2>
-        <p class="section-lead" style="margin-top:12px;">Seguimiento de los indicadores clave establecidos en el acuerdo de financiación con la Unión Europea.</p>
+        <span class="section-label-small" data-i18n="resultados.impacto_indicadores_label">Indicadores de Impacto</span>
+        <h2 class="section-h2" data-i18n="resultados.impacto_indicadores_titulo">Progreso por Objetivo</h2>
+        <p class="section-lead" style="margin-top:12px;" data-i18n="resultados.impacto_indicadores_desc">Seguimiento de los indicadores clave establecidos en el acuerdo de financiación con la Unión Europea.</p>
       </div>
       <div class="impacto-list reveal from-right">
         <div>
-          <div class="impacto-bar-header"><span>Fortalecimiento Universitario</span><span>12%</span></div>
+          <div class="impacto-bar-header"><span data-i18n="resultados.imp_fort_univ">Fortalecimiento Universitario</span><span>12%</span></div>
           <div class="impacto-bar-bg"><div class="impacto-bar-fill" style="width:12%; background:var(--purple);"></div></div>
-          <div class="impacto-meta">Meta: 12 universidades reforzadas · WP1, WP2, WP3</div>
+          <div class="impacto-meta" data-i18n="resultados.imp_fort_univ_meta">Meta: 12 universidades reforzadas · WP1, WP2, WP3</div>
         </div>
         <div>
-          <div class="impacto-bar-header"><span>Docentes Formados</span><span>0%</span></div>
+          <div class="impacto-bar-header"><span data-i18n="resultados.imp_docentes">Docentes Formados</span><span>0%</span></div>
           <div class="impacto-bar-bg"><div class="impacto-bar-fill" style="width:2%; background:var(--green);"></div></div>
-          <div class="impacto-meta">Meta: 120 docentes capacitados · WP3</div>
+          <div class="impacto-meta" data-i18n="resultados.imp_docentes_meta">Meta: 120 docentes capacitados · WP3</div>
         </div>
         <div>
-          <div class="impacto-bar-header"><span>Jóvenes Beneficiados</span><span>0%</span></div>
+          <div class="impacto-bar-header"><span data-i18n="resultados.imp_jovenes">Jóvenes Beneficiados</span><span>0%</span></div>
           <div class="impacto-bar-bg"><div class="impacto-bar-fill" style="width:2%; background:#1a7a74;"></div></div>
-          <div class="impacto-meta">Meta: 300 jóvenes indígenas · WP4</div>
+          <div class="impacto-meta" data-i18n="resultados.imp_jovenes_meta">Meta: 300 jóvenes indígenas · WP4</div>
         </div>
         <div>
-          <div class="impacto-bar-header"><span>Emprendimientos Generados</span><span>0%</span></div>
+          <div class="impacto-bar-header"><span data-i18n="resultados.imp_emprend">Emprendimientos Generados</span><span>0%</span></div>
           <div class="impacto-bar-bg"><div class="impacto-bar-fill" style="width:2%; background:var(--gold);"></div></div>
-          <div class="impacto-meta">Meta: 60 emprendimientos sostenibles · WP4</div>
+          <div class="impacto-meta" data-i18n="resultados.imp_emprend_meta">Meta: 60 emprendimientos sostenibles · WP4</div>
         </div>
         <div>
-          <div class="impacto-bar-header"><span>Publicaciones Científicas</span><span>8%</span></div>
+          <div class="impacto-bar-header"><span data-i18n="resultados.imp_publi">Publicaciones Científicas</span><span>8%</span></div>
           <div class="impacto-bar-bg"><div class="impacto-bar-fill" style="width:8%; background:var(--purple);"></div></div>
-          <div class="impacto-meta">Meta: 12 publicaciones indexadas · WP5</div>
+          <div class="impacto-meta" data-i18n="resultados.imp_publi_meta">Meta: 12 publicaciones indexadas · WP5</div>
         </div>
         <div>
-          <div class="impacto-bar-header"><span>Materiales Didácticos</span><span>0%</span></div>
+          <div class="impacto-bar-header"><span data-i18n="resultados.imp_didactico">Materiales Didácticos</span><span>0%</span></div>
           <div class="impacto-bar-bg"><div class="impacto-bar-fill" style="width:2%; background:var(--gold);"></div></div>
-          <div class="impacto-meta">Meta: 8 módulos curriculares · WP3</div>
+          <div class="impacto-meta" data-i18n="resultados.imp_didactico_meta">Meta: 8 módulos curriculares · WP3</div>
         </div>
       </div>
     </div>
@@ -733,14 +1111,14 @@
       <div class="publi-card main reveal from-left">
         <div class="publi-tag-row">
           <span class="publi-type-tag nota">Nota de Prensa</span>
-          <span class="publi-destacado">Destacado</span>
+          <span class="publi-destacado" data-i18n="comun.destacado_tag">Destacado</span>
         </div>
         <h3>UTP lidera proyecto internacional FIDUCA para fortalecer la innovación y la investigación transdisciplinaria en Centroamérica</h3>
         <p>La Universidad Tecnológica de Panamá asume el liderazgo de FIDUCA, un consorcio de doce universidades centroamericanas y europeas financiado por la Unión Europea a través del programa Erasmus+.</p>
         <div class="publi-authors">Universidad Tecnológica de Panamá · CINEMI</div>
         <div class="publi-footer">
           <span class="publi-date">11 de febrero de 2026</span>
-          <a href="https://cinemi.utp.ac.pa/ver-noticias/utp-lidera-proyecto-internacional-fiduca-para-fortalecer-la-innovacion-y-la-investigacion" class="publi-dl-btn" target="_blank">Leer noticia →</a>
+          <a href="https://cinemi.utp.ac.pa/ver-noticias/utp-lidera-proyecto-internacional-fiduca-para-fortalecer-la-innovacion-y-la-investigacion" class="publi-dl-btn" data-i18n="comun.btn_leer_noticia" target="_blank">Leer noticia →</a>
         </div>
       </div>
 
@@ -751,7 +1129,7 @@
           <p>Revisión bibliográfica sobre el estado del arte del emprendimiento en comunidades indígenas.</p>
           <div class="publi-footer">
             <span class="publi-date">En preparación · 2026</span>
-            <span class="publi-prox">Próximamente</span>
+            <span class="publi-prox" data-i18n="comun.proximamente_tag">Próximamente</span>
           </div>
         </div>
         <div class="publi-card side">
@@ -760,7 +1138,7 @@
           <p>Documentación del encuentro inaugural del consorcio celebrado en Panamá.</p>
           <div class="publi-footer">
             <span class="publi-date">Enero 2026</span>
-            <span class="publi-prox">Próximamente</span>
+            <span class="publi-prox" data-i18n="comun.proximamente_tag">Próximamente</span>
           </div>
         </div>
       </div>
@@ -770,7 +1148,7 @@
       <div class="publi-empty-icon">📬</div>
       <h4>Más publicaciones próximamente</h4>
       <p>A medida que el proyecto avance, esta sección se irá completando con artículos científicos, informes técnicos, guías metodológicas y recursos didácticos de libre acceso.</p>
-      <a href="noticias.html" class="btn-sm">Ver todas las noticias</a>
+      <a href="noticias.html" class="btn-sm" data-i18n="comun.btn_ver_todas_noticias">Ver todas las noticias</a>
     </div>
   </section>
 </div>
@@ -779,11 +1157,11 @@
 <footer>
   <div class="footer-top">
     <div class="footer-about">
-      <h3><strong>Proyecto FIDUCA</strong></h3>
-      <p><strong>Proyecto de investigación cofinanciado por la Unión Europea a través del programa Erasmus+ (2026–2028). El contenido de esta página es responsabilidad exclusiva del consorcio y no representa la posición oficial de la UE.</strong></p>
+      <h3 data-i18n="footer.proyecto_titulo"><strong>Proyecto FIDUCA</strong></h3>
+      <p><strong data-i18n="footer.derechos">Proyecto de investigación cofinanciado por la Unión Europea a través del programa Erasmus+ (2026–2028). El contenido de esta página es responsabilidad exclusiva del consorcio y no representa la posición oficial de la UE.</strong></p>
       <div style="margin-top:16px;" class="eu-flag">
         <span><strong>★ ★ ★ ★ ★ ★</strong></span>
-        <span style="color:rgba(0,0,0,0.3); margin-left:10px; font-size:12px;"><strong>Cofinanciado por la UE</strong></span>
+        <span style="color:rgba(0,0,0,0.3); margin-left:10px; font-size:12px;" data-i18n="footer.cofinanciado"><strong>Cofinanciado por la UE</strong></span>
       </div>
       <div class="footer-social">
         <a href="https://www.instagram.com/proyecto.fiduca" target="_blank" class="social-btn" title="Instagram">
@@ -801,35 +1179,35 @@
       </div>
     </div>
     <div class="footer-col">
-      <h4><strong>Proyecto</strong></h4>
+      <h4 data-i18n="footer.col_proyecto"><strong>Proyecto</strong></h4>
       <ul>
-        <li><a href="index.html"><strong>Acerca de</strong></a></li>
-        <li><a href="index.html#objetivos"><strong>Objetivos</strong></a></li>
-        <li><a href="resultados.html"><strong>Resultados</strong></a></li>
-        <li><a href="equipo.html"><strong>Socios</strong></a></li>
+        <li><a href="index.html" data-i18n="footer.link_acerca"><strong>Acerca de</strong></a></li>
+        <li><a href="index.html#objetivos" data-i18n="footer.link_objetivos"><strong>Objetivos</strong></a></li>
+        <li><a href="resultados.html" data-i18n="footer.link_resultados"><strong>Resultados</strong></a></li>
+        <li><a href="equipo.html" data-i18n="footer.link_socios"><strong>Socios</strong></a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4><strong>Recursos</strong></h4>
+      <h4 data-i18n="footer.col_recursos"><strong>Recursos</strong></h4>
       <ul>
-        <li><a href="noticias.html"><strong>Publicaciones</strong></a></li>
-        <li><a href="#"><strong>Informes</strong></a></li>
-        <li><a href="galeria.html"><strong>Galería</strong></a></li>
-        <li><a href="recursos.html"><strong>Recursos</strong></a></li>
+        <li><a href="noticias.html" data-i18n="footer.link_publicaciones"><strong>Publicaciones</strong></a></li>
+        <li><a href="resultados.html" data-i18n="footer.link_informes"><strong>Informes</strong></a></li>
+        <li><a href="galeria.html" data-i18n="footer.link_galeria"><strong>Galería</strong></a></li>
+        <li><a href="recursos.html" data-i18n="footer.link_recursos"><strong>Recursos</strong></a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4><strong>Legal</strong></h4>
+      <h4 data-i18n="footer.col_legal"><strong>Legal</strong></h4>
       <ul>
-        <li><a href="#"><strong>Política de privacidad</strong></a></li>
-        <li><a href="#"><strong>Aviso legal</strong></a></li>
-        <li><a href="#"><strong>Accesibilidad</strong></a></li>
-        <li><a href="#"><strong>Cookies</strong></a></li>
+        <li><a href="#" data-i18n="footer.link_privacidad"><strong>Política de privacidad</strong></a></li>
+        <li><a href="#" data-i18n="footer.link_aviso"><strong>Aviso legal</strong></a></li>
+        <li><a href="#" data-i18n="footer.link_accesibilidad"><strong>Accesibilidad</strong></a></li>
+        <li><a href="#" data-i18n="footer.link_cookies"><strong>Cookies</strong></a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <span><strong>© 2026 FIDUCA Consortium · Grant Agreement 101094522</strong></span>
+    <span><strong>© 2026 FIDUCA Consortium · Grant Agreement 101094522</strong><a href="/admin/" class="footer-admin-link" style="opacity: 0.6; text-decoration: none; font-size: 0.85em; margin-left: 10px;" data-i18n="footer.link_gestion">Gestión</a></span>
   </div>
 </footer>
 
@@ -858,6 +1236,11 @@ function filterEntregables(tipo, btn) {
 }
 </script>
 <script src="Estilos/scripts.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    cargarIndicadores();
+  });
+</script>
 <script>lucide.createIcons();</script>
 </body>
 </html>

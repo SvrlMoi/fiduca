@@ -240,14 +240,15 @@
 <img src="Estilos/img/logo-fiduca-full-color.png" alt="FIDUCA_logo">
   </a>  </div>
   <ul class="nav-links">
-    <li><a href="index.html">Proyecto</a></li>
-    <li><a href="equipo.html" class="activo">Socios</a></li>
-    <li><a href="resultados.html">Resultados</a></li>
-    <li><a href="recursos.html">Recursos</a></li>
-    <li><a href="noticias.html">Noticias</a></li>
-    <li><a href="galeria.html">Galería</a></li>
-    <li><a href="contacto.html" class="nav-cta">Contacto</a></li>
+    <li><a href="index.html" data-i18n="navegacion.inicio">Proyecto</a></li>
+    <li><a href="equipo.html" class="activo" data-i18n="navegacion.socios">Socios</a></li>
+    <li><a href="resultados.html" data-i18n="navegacion.resultados">Resultados</a></li>
+    <li><a href="recursos.html" data-i18n="navegacion.recursos">Recursos</a></li>
+    <li><a href="noticias.html" data-i18n="navegacion.noticias">Noticias</a></li>
+    <li><a href="galeria.html" data-i18n="navegacion.galeria">Galería</a></li>
+    <li><a href="contacto.html" class="nav-cta" data-i18n="navegacion.contacto">Contacto</a></li>
   </ul>
+  <button class="lang-switch" id="btn-idioma">ES | EN</button>
 </nav>
 <hr class="purple-divider">
 
@@ -256,26 +257,26 @@
   <div class="eq-hero-grid"></div>
   <div class="eq-hero-inner">
     <div class="eq-hero-text reveal from-left">
-      <span class="section-label">Consorcio FIDUCA</span>
-      <h1>Equipo &amp; Socios<br>del Proyecto</h1>
-      <p>Un consorcio de 12 instituciones de 7 países trabaja de forma colaborativa para fortalecer la innovación y el emprendimiento en comunidades indígenas centroamericanas.</p>
+      <span class="section-label" data-i18n="equipo.hero_label">Consorcio FIDUCA</span>
+      <h1 data-i18n="equipo.hero_titulo">Equipo &amp; Socios<br>del Proyecto</h1>
+      <p data-i18n="equipo.hero_desc">Un consorcio de 12 instituciones de 7 países trabaja de forma colaborativa para fortalecer la innovación y el emprendimiento en comunidades indígenas centroamericanas.</p>
     </div>
     <div class="eq-kpi-grid">
       <div class="eq-kpi reveal" style="transition-delay:0.10s">
         <div class="eq-kpi-num">12</div>
-        <div class="eq-kpi-label">Instituciones<br>socias</div>
+        <div class="eq-kpi-label" data-i18n="equipo.kpi_instituciones">Instituciones<br>socias</div>
       </div>
       <div class="eq-kpi reveal" style="transition-delay:0.20s">
         <div class="eq-kpi-num">7</div>
-        <div class="eq-kpi-label">Países<br>participantes</div>
+        <div class="eq-kpi-label" data-i18n="equipo.kpi_paises">Países<br>participantes</div>
       </div>
       <div class="eq-kpi reveal" style="transition-delay:0.30s">
         <div class="eq-kpi-num">50+</div>
-        <div class="eq-kpi-label">Investigadores<br>y técnicos</div>
+        <div class="eq-kpi-label" data-i18n="equipo.kpi_investigadores">Investigadores<br>y técnicos</div>
       </div>
       <div class="eq-kpi reveal" style="transition-delay:0.40s">
         <div class="eq-kpi-num">3</div>
-        <div class="eq-kpi-label">Miembros<br>Asociados</div>
+        <div class="eq-kpi-label" data-i18n="equipo.kpi_asociados">Miembros<br>Asociados</div>
       </div>
     </div>
   </div>
@@ -283,53 +284,53 @@
 
 <!-- BREADCRUMB -->
 <div class="breadcrumb">
-  <a href="index.html">Inicio</a>
+  <a href="index.html" data-i18n="navegacion.breadcrumb_inicio">Inicio</a>
   <span>›</span>
-  <span style="color:var(--navy); opacity:1; font-weight:600;">Equipo &amp; Socios</span>
+  <span data-i18n="navegacion.socios" style="color:var(--navy); opacity:1; font-weight:600;">Equipo &amp; Socios</span>
 </div>
 
 <hr class="purple-divider">
 
 <!-- ── PAÍSES ── -->
 <section class="section-block bg-white">
-  <span class="section-label-small reveal from-up">Cobertura Geográfica</span>
-  <h2 class="section-h2 reveal from-up" style="transition-delay:0.08s">Países Participantes</h2>
-  <p class="section-lead reveal from-up" style="transition-delay:0.14s">El consorcio abarca instituciones de Centroamérica y Europa, unidos por un objetivo común.</p>
+  <span class="section-label-small reveal from-up" data-i18n="equipo.paises_label">Cobertura Geográfica</span>
+  <h2 class="section-h2 reveal from-up" style="transition-delay:0.08s" data-i18n="equipo.paises_titulo">Países Participantes</h2>
+  <p class="section-lead reveal from-up" style="transition-delay:0.14s" data-i18n="equipo.paises_desc">El consorcio abarca instituciones de Centroamérica y Europa, unidos por un objetivo común.</p>
   <div class="countries-grid">
     <div class="country-card reveal" style="transition-delay:0.05s">
       <span class="country-flag">🇵🇦</span>
       <div class="country-name">Panamá</div>
-      <div class="country-count">3 socios · UTP, UDELAS, FCDS</div>
+      <div class="country-count" data-i18n="equipo.paises_count_3_panama">3 socios · UTP, UDELAS, FCDS</div>
     </div>
     <div class="country-card reveal" style="transition-delay:0.10s">
       <span class="country-flag">🇨🇷</span>
       <div class="country-name">Costa Rica</div>
-      <div class="country-count">2 socios · TEC, UNED</div>
+      <div class="country-count" data-i18n="equipo.paises_count_2_cr">2 socios · TEC, UNED</div>
     </div>
     <div class="country-card reveal" style="transition-delay:0.15s">
       <span class="country-flag">🇸🇻</span>
       <div class="country-name">El Salvador</div>
-      <div class="country-count">2 socios · UES, USO</div>
+      <div class="country-count" data-i18n="equipo.paises_count_2_sv">2 socios · UES, USO</div>
     </div>
     <div class="country-card reveal" style="transition-delay:0.20s">
       <span class="country-flag">🇬🇹</span>
       <div class="country-name">Guatemala</div>
-      <div class="country-count">2 socios · UGAL, URL</div>
+      <div class="country-count" data-i18n="equipo.paises_count_2_gt">2 socios · UGAL, URL</div>
     </div>
     <div class="country-card reveal" style="transition-delay:0.25s">
       <span class="country-flag">🇪🇸</span>
       <div class="country-name">España</div>
-      <div class="country-count">1 socio · UPM</div>
+      <div class="country-count" data-i18n="equipo.paises_count_1_es">1 socio · UPM</div>
     </div>
     <div class="country-card reveal" style="transition-delay:0.30s">
       <span class="country-flag">🇫🇷</span>
       <div class="country-name">Francia</div>
-      <div class="country-count">1 socio · ULL</div>
+      <div class="country-count" data-i18n="equipo.paises_count_1_fr">1 socio · ULL</div>
     </div>
     <div class="country-card reveal" style="transition-delay:0.35s">
       <span class="country-flag">🇭🇺</span>
       <div class="country-name">Hungría</div>
-      <div class="country-count">1 socio · ELTE</div>
+      <div class="country-count" data-i18n="equipo.paises_count_1_hu">1 socio · ELTE</div>
     </div>
   </div>
 </section>
@@ -340,9 +341,9 @@
 <section class="section-block bg-light">
   <div class="socios-intro reveal from-left">
     <div>
-      <span class="section-label-small">Instituciones</span>
-      <h2 class="section-h2">Socios del Consorcio</h2>
-      <p>Las 12 instituciones que conforman el consorcio FIDUCA, distribuidas en 7 países de Centroamérica y Europa.</p>
+      <span class="section-label-small" data-i18n="equipo.socios_label">Instituciones</span>
+      <h2 class="section-h2" data-i18n="secciones.socios">Socios del Consorcio</h2>
+      <p data-i18n="equipo.socios_desc">Las 12 instituciones que conforman el consorcio FIDUCA, distribuidas en 7 países de Centroamérica y Europa.</p>
     </div>
   </div>
 
@@ -358,15 +359,15 @@
           </div>
           <div class="socio-info">
             <h3>Universidad Tecnológica de Panamá</h3>
-            <span class="partner-num">Coordinador · P1</span>
+            <span class="partner-num" data-i18n="equipo.partner_coord">Coordinador · P1</span>
           </div>
         </div>
         <div class="socio-divider"></div>
         <div class="socio-chip">
             <i data-lucide="map-pin" style="color: var(--gold); width:20px; height:20px;"></i>
-          <span><span class="chip-label">País:</span> Panamá</span>
+          <span><span class="chip-label" data-i18n="equipo.pais_tag">País:</span> Panamá</span>
         </div>
-        <span class="coord-badge">Institución Coordinadora</span>
+        <span class="coord-badge" data-i18n="equipo.coord_badge">Institución Coordinadora</span>
       </div>
     </a>
 
@@ -386,7 +387,7 @@
         <div class="socio-divider"></div>
         <div class="socio-chip">
             <i data-lucide="map-pin" style="color: var(--gold); width:20px; height:20px;"></i>
-          <span><span class="chip-label">País:</span> Panamá</span>
+          <span><span class="chip-label" data-i18n="equipo.pais_tag">País:</span> Panamá</span>
         </div>
       </div>
     </a>
@@ -407,7 +408,7 @@
         <div class="socio-divider"></div>
         <div class="socio-chip">
             <i data-lucide="map-pin" style="color: var(--gold); width:20px; height:20px;"></i>
-          <span><span class="chip-label">País:</span> Panamá</span>
+          <span><span class="chip-label" data-i18n="equipo.pais_tag">País:</span> Panamá</span>
         </div>
       </div>
     </a>
@@ -428,7 +429,7 @@
         <div class="socio-divider"></div>
         <div class="socio-chip">
             <i data-lucide="map-pin" style="color: var(--gold); width:20px; height:20px;"></i>
-          <span><span class="chip-label">País:</span> Costa Rica</span>
+          <span><span class="chip-label" data-i18n="equipo.pais_tag">País:</span> Costa Rica</span>
         </div>
       </div>
     </a>
@@ -449,7 +450,7 @@
         <div class="socio-divider"></div>
         <div class="socio-chip">
             <i data-lucide="map-pin" style="color: var(--gold); width:20px; height:20px;"></i>
-          <span><span class="chip-label">País:</span> Costa Rica</span>
+          <span><span class="chip-label" data-i18n="equipo.pais_tag">País:</span> Costa Rica</span>
         </div>
       </div>
     </a>
@@ -470,7 +471,7 @@
         <div class="socio-divider"></div>
         <div class="socio-chip">
             <i data-lucide="map-pin" style="color: var(--gold); width:20px; height:20px;"></i>
-          <span><span class="chip-label">País:</span> El Salvador</span>
+          <span><span class="chip-label" data-i18n="equipo.pais_tag">País:</span> El Salvador</span>
         </div>
       </div>
     </a>
@@ -491,7 +492,7 @@
         <div class="socio-divider"></div>
         <div class="socio-chip">
             <i data-lucide="map-pin" style="color: var(--gold); width:20px; height:20px;"></i>
-          <span><span class="chip-label">País:</span> El Salvador</span>
+          <span><span class="chip-label" data-i18n="equipo.pais_tag">País:</span> El Salvador</span>
         </div>
       </div>
     </a>
@@ -512,7 +513,7 @@
         <div class="socio-divider"></div>
         <div class="socio-chip">
             <i data-lucide="map-pin" style="color: var(--gold); width:20px; height:20px;"></i>
-          <span><span class="chip-label">País:</span> Guatemala</span>
+          <span><span class="chip-label" data-i18n="equipo.pais_tag">País:</span> Guatemala</span>
         </div>
       </div>
     </a>
@@ -533,7 +534,7 @@
         <div class="socio-divider"></div>
         <div class="socio-chip">
             <i data-lucide="map-pin" style="color: var(--gold); width:20px; height:20px;"></i>
-          <span><span class="chip-label">País:</span> Guatemala</span>
+          <span><span class="chip-label" data-i18n="equipo.pais_tag">País:</span> Guatemala</span>
         </div>
       </div>
     </a>
@@ -554,7 +555,7 @@
         <div class="socio-divider"></div>
         <div class="socio-chip">
             <i data-lucide="map-pin" style="color: var(--gold); width:20px; height:20px;"></i>
-          <span><span class="chip-label">País:</span> Hungría</span>
+          <span><span class="chip-label" data-i18n="equipo.pais_tag">País:</span> Hungría</span>
         </div>
       </div>
     </a>
@@ -575,7 +576,7 @@
         <div class="socio-divider"></div>
         <div class="socio-chip">
             <i data-lucide="map-pin" style="color: var(--gold); width:20px; height:20px;"></i>
-          <span><span class="chip-label">País:</span> España</span>
+          <span><span class="chip-label" data-i18n="equipo.pais_tag">País:</span> España</span>
         </div>
       </div>
     </a>
@@ -596,7 +597,7 @@
         <div class="socio-divider"></div>
         <div class="socio-chip">
             <i data-lucide="map-pin" style="color: var(--gold); width:20px; height:20px;"></i>
-          <span><span class="chip-label">País:</span> Francia</span>
+          <span><span class="chip-label" data-i18n="equipo.pais_tag">País:</span> Francia</span>
         </div>
       </div>
     </a>
@@ -609,9 +610,9 @@
 <!-- ── ASOCIADOS ── -->
 <section class="associated-section">
   <div class="associated-intro reveal from-up">
-    <span class="section-label-small">Instituciones Vinculadas</span>
-    <h2 class="section-h2">Miembros Asociados</h2>
-    <p class="section-lead" style="max-width:480px; margin: 8px auto 0;">Entidades que colaboran con el consorcio y amplían el alcance del proyecto en la región.</p>
+    <span class="section-label-small" data-i18n="equipo.asoc_label">Instituciones Vinculadas</span>
+    <h2 class="section-h2" data-i18n="equipo.asoc_titulo">Miembros Asociados</h2>
+    <p class="section-lead" style="max-width:480px; margin: 8px auto 0;" data-i18n="equipo.asoc_desc">Entidades que colaboran con el consorcio y amplían el alcance del proyecto en la región.</p>
   </div>
 
   <div class="associated-grid">
@@ -624,13 +625,13 @@
           </div>
           <div class="socio-info">
             <h3>Universidad de Panamá</h3>
-            <span class="partner-num">Miembro asociado</span>
+            <span class="partner-num" data-i18n="equipo.partner_asociado">Miembro asociado</span>
           </div>
         </div>
         <div class="socio-divider"></div>
         <div class="socio-chip">
             <i data-lucide="map-pin" style="color: var(--gold); width:20px; height:20px;"></i>
-          <span><span class="chip-label">País:</span> Panamá</span>
+          <span><span class="chip-label" data-i18n="equipo.pais_tag">País:</span> Panamá</span>
         </div>
       </div>
     </a>
@@ -644,13 +645,13 @@
           </div>
           <div class="socio-info">
             <h3>Universidad Nacional Autónoma de Honduras</h3>
-            <span class="partner-num">Miembro asociado</span>
+            <span class="partner-num" data-i18n="equipo.partner_asociado">Miembro asociado</span>
           </div>
         </div>
         <div class="socio-divider"></div>
         <div class="socio-chip">
             <i data-lucide="map-pin" style="color: var(--gold); width:20px; height:20px;"></i>
-          <span><span class="chip-label">País:</span> Honduras</span>
+          <span><span class="chip-label" data-i18n="equipo.pais_tag">País:</span> Honduras</span>
         </div>
       </div>
     </a>
@@ -664,13 +665,13 @@
           </div>
           <div class="socio-info">
             <h3>Secretaría Nacional de Ciencia y Tecnología</h3>
-            <span class="partner-num">Miembro asociado</span>
+            <span class="partner-num" data-i18n="equipo.partner_asociado">Miembro asociado</span>
           </div>
         </div>
         <div class="socio-divider"></div>
         <div class="socio-chip">
             <i data-lucide="map-pin" style="color: var(--gold); width:20px; height:20px;"></i>
-          <span><span class="chip-label">País:</span> Panamá</span>
+          <span><span class="chip-label" data-i18n="equipo.pais_tag">País:</span> Panamá</span>
         </div>
       </div>
     </a>
@@ -683,11 +684,11 @@
 <footer>
   <div class="footer-top">
     <div class="footer-about">
-      <h3><strong>Proyecto FIDUCA</strong></h3>
-      <p><strong>Proyecto de investigación cofinanciado por la Unión Europea a través del programa Erasmus+ (2026–2028). El contenido de esta página es responsabilidad exclusiva del consorcio y no representa la posición oficial de la UE.</strong></p>
+      <h3 data-i18n="footer.proyecto_titulo"><strong>Proyecto FIDUCA</strong></h3>
+      <p><strong data-i18n="footer.derechos">Proyecto de investigación cofinanciado por la Unión Europea a través del programa Erasmus+ (2026–2028). El contenido de esta página es responsabilidad exclusiva del consorcio y no representa la posición oficial de la UE.</strong></p>
       <div style="margin-top:16px;" class="eu-flag">
         <span><strong>★ ★ ★ ★ ★ ★</strong></span>
-        <span style="color:rgba(0,0,0,0.35); margin-left:10px; font-size:12px;"><strong>Cofinanciado por la UE</strong></span>
+        <span style="color:rgba(0,0,0,0.35); margin-left:10px; font-size:12px;" data-i18n="footer.cofinanciado"><strong>Cofinanciado por la UE</strong></span>
       </div>
       <div class="footer-social">
         <a href="https://www.instagram.com/proyecto.fiduca" target="_blank" class="social-btn" title="Instagram">
@@ -705,35 +706,35 @@
       </div>
     </div>
     <div class="footer-col">
-      <h4><strong>Proyecto</strong></h4>
+      <h4 data-i18n="footer.col_proyecto"><strong>Proyecto</strong></h4>
       <ul>
-        <li><a href="index.html"><strong>Acerca de</strong></a></li>
-        <li><a href="index.html#objetivos"><strong>Objetivos</strong></a></li>
-        <li><a href="resultados.html"><strong>Resultados</strong></a></li>
-        <li><a href="equipo.html"><strong>Socios</strong></a></li>
+        <li><a href="index.html" data-i18n="footer.link_acerca"><strong>Acerca de</strong></a></li>
+        <li><a href="index.html#objetivos" data-i18n="footer.link_objetivos"><strong>Objetivos</strong></a></li>
+        <li><a href="resultados.html" data-i18n="footer.link_resultados"><strong>Resultados</strong></a></li>
+        <li><a href="equipo.html" data-i18n="footer.link_socios"><strong>Socios</strong></a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4><strong>Recursos</strong></h4>
+      <h4 data-i18n="footer.col_recursos"><strong>Recursos</strong></h4>
       <ul>
-        <li><a href="noticias.html"><strong>Publicaciones</strong></a></li>
-        <li><a href="recursos.html"><strong>Repositorio</strong></a></li>
-        <li><a href="galeria.html"><strong>Galería</strong></a></li>
-        <li><a href="recursos.html"><strong>Recursos</strong></a></li>
+        <li><a href="noticias.html" data-i18n="footer.link_publicaciones"><strong>Publicaciones</strong></a></li>
+        <li><a href="resultados.html" data-i18n="footer.link_informes"><strong>Informes</strong></a></li>
+        <li><a href="galeria.html" data-i18n="footer.link_galeria"><strong>Galería</strong></a></li>
+        <li><a href="recursos.html" data-i18n="footer.link_recursos"><strong>Recursos</strong></a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4><strong>Legal</strong></h4>
+      <h4 data-i18n="footer.col_legal"><strong>Legal</strong></h4>
       <ul>
-        <li><a href="#"><strong>Política de privacidad</strong></a></li>
-        <li><a href="#"><strong>Aviso legal</strong></a></li>
-        <li><a href="#"><strong>Accesibilidad</strong></a></li>
-        <li><a href="#"><strong>Cookies</strong></a></li>
+        <li><a href="#" data-i18n="footer.link_privacidad"><strong>Política de privacidad</strong></a></li>
+        <li><a href="#" data-i18n="footer.link_aviso"><strong>Aviso legal</strong></a></li>
+        <li><a href="#" data-i18n="footer.link_accesibilidad"><strong>Accesibilidad</strong></a></li>
+        <li><a href="#" data-i18n="footer.link_cookies"><strong>Cookies</strong></a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <span><strong>© 2026 FIDUCA Consortium · Grant Agreement 101094522</strong></span>
+    <span><strong>© 2026 FIDUCA Consortium · Grant Agreement 101094522</strong><a href="/admin/" class="footer-admin-link" style="opacity: 0.6; text-decoration: none; font-size: 0.85em; margin-left: 10px;" data-i18n="footer.link_gestion">Gestión</a></span>
   </div>
 </footer>
 

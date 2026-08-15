@@ -249,14 +249,15 @@
 <img src="Estilos/img/logo-fiduca-full-color.png" alt="FIDUCA_logo">
   </a>  </div>
   <ul class="nav-links">
-    <li><a href="index.html">Proyecto</a></li>
-    <li><a href="equipo.html">Socios</a></li>
-    <li><a href="resultados.html">Resultados</a></li>
-    <li><a href="recursos.html" class="activo">Recursos</a></li>
-    <li><a href="noticias.html">Noticias</a></li>
-    <li><a href="galeria.html">Galería</a></li>
-    <li><a href="contacto.html" class="nav-cta">Contacto</a></li>
+    <li><a href="index.html" data-i18n="navegacion.inicio">Proyecto</a></li>
+    <li><a href="equipo.html" data-i18n="navegacion.socios">Socios</a></li>
+    <li><a href="resultados.html" data-i18n="navegacion.resultados">Resultados</a></li>
+    <li><a href="recursos.html" class="activo" data-i18n="navegacion.recursos">Recursos</a></li>
+    <li><a href="noticias.html" data-i18n="navegacion.noticias">Noticias</a></li>
+    <li><a href="galeria.html" data-i18n="navegacion.galeria">Galería</a></li>
+    <li><a href="contacto.html" class="nav-cta" data-i18n="navegacion.contacto">Contacto</a></li>
   </ul>
+  <button class="lang-switch" id="btn-idioma">ES | EN</button>
 </nav>
 <hr class="purple-divider">
 
@@ -265,26 +266,26 @@
   <div class="rec-hero-grid"></div>
   <div class="rec-hero-inner">
     <div class="rec-hero-text reveal from-left">
-      <span class="section-label">Repositorio de Recursos</span>
-      <h1>Documentos, videos<br>y <em>publicaciones</em><br>del proyecto</h1>
-      <p>Accede a los materiales generados por el consorcio FIDUCA: manuales, guías prácticas, multimedia, estudios e informes de investigación.</p>
+      <span class="section-label" data-i18n="recursos.hero_label">Repositorio de Recursos</span>
+      <h1 data-i18n="recursos.hero_titulo">Documentos, videos<br>y <em>publicaciones</em><br>del proyecto</h1>
+      <p data-i18n="recursos.hero_desc">Accede a los materiales generados por el consorcio FIDUCA: manuales, guías prácticas, multimedia, estudios e informes de investigación.</p>
     </div>
     <div class="rec-kpi-grid">
       <div class="rec-kpi reveal" style="transition-delay:0.10s">
         <div class="rec-kpi-num">0</div>
-        <div class="rec-kpi-label">Materiales<br>y Guías</div>
+        <div class="rec-kpi-label" data-i18n="recursos.kpi_materiales">Materiales<br>y Guías</div>
       </div>
       <div class="rec-kpi reveal" style="transition-delay:0.20s">
         <div class="rec-kpi-num">1</div>
-        <div class="rec-kpi-label">Videos y<br>Multimedia</div>
+        <div class="rec-kpi-label" data-i18n="recursos.kpi_videos">Videos y<br>Multimedia</div>
       </div>
       <div class="rec-kpi reveal" style="transition-delay:0.30s">
         <div class="rec-kpi-num">WP 1–5</div>
-        <div class="rec-kpi-label">Paquetes de<br>trabajo</div>
+        <div class="rec-kpi-label" data-i18n="recursos.kpi_paquetes">Paquetes de<br>trabajo</div>
       </div>
       <div class="rec-kpi reveal" style="transition-delay:0.40s">
         <div class="rec-kpi-num">2026</div>
-        <div class="rec-kpi-label">Año de<br>inicio</div>
+        <div class="rec-kpi-label" data-i18n="recursos.kpi_inicio">Año de<br>inicio</div>
       </div>
     </div>
   </div>
@@ -292,9 +293,9 @@
 
 <!-- BREADCRUMB -->
 <div class="breadcrumb">
-  <a href="index.html">Inicio</a>
+  <a href="index.html" data-i18n="navegacion.breadcrumb_inicio">Inicio</a>
   <span>›</span>
-  <span style="color:var(--navy); opacity:1; font-weight:600;">Recursos</span>
+  <span data-i18n="navegacion.recursos" style="color:var(--navy); opacity:1; font-weight:600;">Recursos</span>
 </div>
 
 <hr class="purple-divider">
@@ -302,10 +303,10 @@
 <!-- TABS -->
 <div class="tabs-bar">
   <button class="tab-btn active" onclick="switchTab('multimedia', this)">
-    <i data-lucide="play-circle"></i> Videos y Multimedia
+    <i data-lucide="play-circle"></i> <span data-i18n="recursos.tab_videos">Videos y Multimedia</span>
   </button>
   <button class="tab-btn" onclick="switchTab('investigaciones', this)">
-    <i data-lucide="file-search"></i> Investigaciones y Publicaciones
+    <i data-lucide="file-search"></i> <span data-i18n="recursos.tab_investigaciones">Investigaciones y Publicaciones</span>
   </button>
 </div>
 
@@ -316,13 +317,13 @@
 
     <div class="recursos-header reveal from-up">
       <div>
-        <span class="section-label-small">Recursos del Proyecto</span>
-        <h2 class="section-h2">Videos y Multimedia</h2>
-        <p class="section-lead">Videos, webinars y cápsulas formativas producidas en el marco del proyecto FIDUCA.</p>
+        <span class="section-label-small" data-i18n="recursos.seccion_label">Recursos del Proyecto</span>
+        <h2 class="section-h2" data-i18n="recursos.seccion_videos_titulo">Videos y Multimedia</h2>
+        <p class="section-lead" data-i18n="recursos.seccion_videos_desc">Videos, webinars y cápsulas formativas producidas en el marco del proyecto FIDUCA.</p>
       </div>
       <div class="search-box">
         <i data-lucide="search"></i>
-        <input type="text" placeholder="Buscar video…" oninput="buscarEnTab('grid-multimedia', this.value)">
+        <input type="text" placeholder="Buscar video…" data-i18n-placeholder="recursos.placeholder_video" oninput="buscarEnTab('grid-multimedia', this.value)">
       </div>
     </div>
 
@@ -335,11 +336,11 @@
             <i data-lucide="video" style="color:var(--gold);"></i>
           </div>
           <div class="doc-type-col">
-            <span class="doc-type-tag" style="color:var(--gold);">Video</span>
-            <h4>En la Comunidad de Camarón Arriba, UDELAS Extensión de Chiriquí dio a conocer el Proyecto FIDUCA</h4>
+            <span class="doc-type-tag" style="color:var(--gold);" data-i18n="recursos.video_tipo">Video</span>
+            <h4 data-i18n="recursos.video_titulo">En la Comunidad de Camarón Arriba, UDELAS Extensión de Chiriquí dio a conocer el Proyecto FIDUCA</h4>
           </div>
         </div>
-        <p>
+        <p data-i18n="recursos.video_desc">
           Una iniciativa cofinanciada por la Unión Europea 🇪🇺 que busca impulsar, capacitar y visibilizar los emprendimientos locales, especialmente los liderados por jóvenes.
           Esta visita se realizó con el propósito de evaluar y recopilar elementos para la ejecución del proyecto directamente desde la realidad, necesidades y vivencias de las comunidades indígenas.
           Tuvimos la oportunidad de conversar con la Sra. Juliana Herrera, quien nos recordó el verdadero valor de estas piezas:
@@ -352,10 +353,10 @@
           </video>
         </div>
         <div class="doc-meta">
-          <span class="doc-wp-tag">Multimedia</span>
+          <span class="doc-wp-tag" data-i18n="recursos.video_tag_multimedia">Multimedia</span>
           <span class="doc-date">2026</span>
           <a href="Estilos/videos/lv_0_20260515154320.mp4" download class="doc-dl-btn">
-            <i data-lucide="download"></i> Descargar
+            <i data-lucide="download"></i> <span data-i18n="comun.btn_descargar">Descargar</span>
           </a>
         </div>
       </div>
@@ -371,44 +372,22 @@
 
     <div class="recursos-header reveal from-up">
       <div>
-        <span class="section-label-small">Recursos del Proyecto</span>
-        <h2 class="section-h2">Investigaciones y Publicaciones</h2>
-        <p class="section-lead">Estudios, artículos e informes producidos por el consorcio FIDUCA.</p>
+        <span class="section-label-small" data-i18n="recursos.seccion_label">Recursos del Proyecto</span>
+        <h2 class="section-h2" data-i18n="recursos.seccion_inv_titulo">Investigaciones y Publicaciones</h2>
+        <p class="section-lead" data-i18n="recursos.seccion_inv_desc">Estudios, artículos e informes producidos por el consorcio FIDUCA.</p>
       </div>
       <div class="search-box">
         <i data-lucide="search"></i>
-        <input type="text" placeholder="Buscar publicación…" oninput="buscarEnTab('grid-investigaciones', this.value)">
+        <input type="text" placeholder="Buscar publicación…" data-i18n-placeholder="recursos.placeholder_pub" oninput="buscarEnTab('grid-investigaciones', this.value)">
       </div>
     </div>
 
     <div class="docs-grid" id="grid-investigaciones">
 
-      <!-- PLANTILLA:
-      <div class="doc-card reveal" data-titulo="Título del estudio">
-        <div class="doc-card-top">
-          <div class="doc-icon" style="background:rgba(0,77,28,0.09);">
-            <i data-lucide="file-text" style="color:var(--green);"></i>
-          </div>
-          <div class="doc-type-col">
-            <span class="doc-type-tag" style="color:var(--green);">Informe</span>
-            <h4>Título del Documento</h4>
-          </div>
-        </div>
-        <p>Descripción breve.</p>
-        <div class="doc-meta">
-          <span class="doc-wp-tag">WP2</span>
-          <span class="doc-date">2026</span>
-          <a href="Estilos/docs/archivo.pdf" download class="doc-dl-btn">
-            <i data-lucide="download"></i> Descargar
-          </a>
-        </div>
-      </div>
-      -->
-
       <div class="empty-resources">
          <i data-lucide="arrows-up-from-line"></i>
-        <h4>Próximamente</h4>
-        <p>Las investigaciones y publicaciones del proyecto estarán disponibles aquí a medida que avance el proyecto.</p>
+        <h4 data-i18n="recursos.proximamente_titulo">Próximamente</h4>
+        <p data-i18n="recursos.proximamente_desc">Las investigaciones y publicaciones del proyecto estarán disponibles aquí a medida que avance el proyecto.</p>
       </div>
 
     </div>
@@ -421,11 +400,11 @@
 <footer>
   <div class="footer-top">
     <div class="footer-about">
-      <h3><strong>Proyecto FIDUCA</strong></h3>
-      <p><strong>Proyecto de investigación cofinanciado por la Unión Europea a través del programa Erasmus+ (2026–2028). El contenido de esta página es responsabilidad exclusiva del consorcio y no representa la posición oficial de la UE.</strong></p>
+      <h3 data-i18n="footer.proyecto_titulo"><strong>Proyecto FIDUCA</strong></h3>
+      <p><strong data-i18n="footer.derechos">Proyecto de investigación cofinanciado por la Unión Europea a través del programa Erasmus+ (2026–2028). El contenido de esta página es responsabilidad exclusiva del consorcio y no representa la posición oficial de la UE.</strong></p>
       <div style="margin-top:16px;" class="eu-flag">
         <span><strong>★ ★ ★ ★ ★ ★</strong></span>
-        <span style="color:rgba(0,0,0,0.3); margin-left:10px; font-size:12px;"><strong>Cofinanciado por la UE</strong></span>
+        <span style="color:rgba(0,0,0,0.3); margin-left:10px; font-size:12px;" data-i18n="footer.cofinanciado"><strong>Cofinanciado por la UE</strong></span>
       </div>
       <div class="footer-social">
         <a href="https://www.instagram.com/proyecto.fiduca" target="_blank" class="social-btn" title="Instagram">
@@ -443,34 +422,34 @@
       </div>
     </div>
     <div class="footer-col">
-      <h4><strong>Proyecto</strong></h4>
+      <h4 data-i18n="footer.col_proyecto"><strong>Proyecto</strong></h4>
       <ul>
-        <li><a href="index.html"><strong>Acerca de</strong></a></li>
-        <li><a href="index.html#objetivos"><strong>Objetivos</strong></a></li>
-        <li><a href="resultados.html"><strong>Resultados</strong></a></li>
-        <li><a href="equipo.html"><strong>Socios</strong></a></li>
+        <li><a href="index.html" data-i18n="footer.link_acerca"><strong>Acerca de</strong></a></li>
+        <li><a href="index.html#objetivos" data-i18n="footer.link_objetivos"><strong>Objetivos</strong></a></li>
+        <li><a href="resultados.html" data-i18n="footer.link_resultados"><strong>Resultados</strong></a></li>
+        <li><a href="equipo.html" data-i18n="footer.link_socios"><strong>Socios</strong></a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4><strong>Recursos</strong></h4>
+      <h4 data-i18n="footer.col_recursos"><strong>Recursos</strong></h4>
       <ul>
-        <li><a href="noticias.html"><strong>Publicaciones</strong></a></li>
-        <li><a href="recursos.html"><strong>Repositorio</strong></a></li>
-        <li><a href="galeria.html"><strong>Galería</strong></a></li>
+        <li><a href="noticias.html" data-i18n="footer.link_publicaciones"><strong>Publicaciones</strong></a></li>
+        <li><a href="recursos.html" data-i18n="footer.link_recursos"><strong>Repositorio</strong></a></li>
+        <li><a href="galeria.html" data-i18n="footer.link_galeria"><strong>Galería</strong></a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4><strong>Legal</strong></h4>
+      <h4 data-i18n="footer.col_legal"><strong>Legal</strong></h4>
       <ul>
-        <li><a href="#"><strong>Política de privacidad</strong></a></li>
-        <li><a href="#"><strong>Aviso legal</strong></a></li>
-        <li><a href="#"><strong>Accesibilidad</strong></a></li>
-        <li><a href="#"><strong>Cookies</strong></a></li>
+        <li><a href="#" data-i18n="footer.link_privacidad"><strong>Política de privacidad</strong></a></li>
+        <li><a href="#" data-i18n="footer.link_aviso"><strong>Aviso legal</strong></a></li>
+        <li><a href="#" data-i18n="footer.link_accesibilidad"><strong>Accesibilidad</strong></a></li>
+        <li><a href="#" data-i18n="footer.link_cookies"><strong>Cookies</strong></a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <span><strong>© 2026 FIDUCA Consortium · Grant Agreement 101094522</strong></span>
+    <span><strong>© 2026 FIDUCA Consortium · Grant Agreement 101094522</strong><a href="/admin/" class="footer-admin-link" style="opacity: 0.6; text-decoration: none; font-size: 0.85em; margin-left: 10px;" data-i18n="footer.link_gestion">Gestión</a></span>
   </div>
 </footer>
 

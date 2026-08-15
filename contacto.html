@@ -17,35 +17,34 @@
 
 <nav>
   <div class="logo-wrap">
-    <img src="Estilos/img/LOGO-UE-Full_color.png" alt="UE_logo">
-              <a href="index.html" style="display:inline-block;">
-<img src="Estilos/img/logo-fiduca-full-color.png" alt="FIDUCA_logo">
-  </a>
+    <img src="Estilos/img/LOGO-UE-Full_color.png" alt="UE_logo" style="height:75px; width:auto;">
+    <img src="Estilos/img/logo-fiduca-full-color.png" alt="FIDUCA_logo" style="height:75px; width:auto;">
   </div>
   <ul class="nav-links">
-    <li><a href="index.html">Proyecto</a></li>
-     <li><a href="equipo.html">Socios</a></li>
-    <li><a href="resultados.html">Resultados</a></li>
-    <li><a href="recursos.html">Recursos</a></li>
-    <li><a href="noticias.html">Noticias</a></li>
-    <li><a href="galeria.html">Galeria</a></li>
-    <li><a href="contacto.html" class="nav-cta activo">Contacto</a></li>
+    <li><a href="index.html" data-i18n="navegacion.inicio">Proyecto</a></li>
+    <li><a href="equipo.html" data-i18n="navegacion.socios">Socios</a></li>
+    <li><a href="resultados.html" data-i18n="navegacion.resultados">Resultados</a></li>
+    <li><a href="recursos.html" data-i18n="navegacion.recursos">Recursos</a></li>
+    <li><a href="noticias.html" data-i18n="navegacion.noticias">Noticias</a></li>
+    <li><a href="galeria.html" data-i18n="navegacion.galeria">Galería</a></li>
+    <li><a href="contacto.html" class="nav-cta activo" data-i18n="navegacion.contacto">Contacto</a></li>
   </ul>
+  <button class="lang-switch" id="btn-idioma">ES | EN</button>
 </nav>  
 
 <section class="page-hero">
   <div class="page-hero-grid"></div>
   <div class="page-hero-inner">
-    <span class="section-label">Contáctanos</span>
-    <h1>¿Tienes alguna consulta sobre FIDUCA?</h1>
-    <p>Escríbenos y nuestro equipo coordinador te responderá a la brevedad.</p>
+    <span class="section-label" data-i18n="contacto.hero_label">Contáctanos</span>
+    <h1 data-i18n="contacto.hero_titulo">¿Tienes alguna consulta sobre FIDUCA?</h1>
+    <p data-i18n="contacto.hero_desc">Escríbenos y nuestro equipo coordinador te responderá a la brevedad.</p>
   </div>
 </section>
 
 <div class="breadcrumb">
-  <a href="index.html">Inicio</a>
+  <a href="index.html" data-i18n="navegacion.breadcrumb_inicio">Inicio</a>
   <span>›</span>
-  <span>Contacto</span>
+  <span data-i18n="navegacion.contacto">Contacto</span>
 </div>
 
 <section class="contact-main-section">
@@ -56,23 +55,23 @@
       <div class="contact-person-card">
         <div class="team-avatar" style="background:#197a74; width:70px; height:70px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:22px; font-weight:700; color:white; margin-bottom:16px;">MS</div>
         <h3>Dra. Mariela Salgado C.</h3>
-        <span class="role-pill role-coord">Coordinadora del Proyecto</span>
+        <span class="role-pill role-coord" data-i18n="contacto.coord_rol">Coordinadora del Proyecto</span>
         <p style="margin-top:12px; color:var(--slate); font-size:14px; line-height:1.7;">Universidad Tecnológica de Panamá</p>
       </div>
 
       <div class="contact-details">
-        <h4>Información de Contacto</h4>
+        <h4 data-i18n="contacto.info_titulo">Información de Contacto</h4>
         <div class="contact-item">
           <span class="contact-icon">✉️</span>
           <div>
-            <span class="contact-label">Correo electrónico</span>
+            <span class="contact-label" data-i18n="contacto.email_label">Correo electrónico</span>
             <a href="mailto:fiduca.project@utp.ac.pa">fiduca.project@utp.ac.pa</a>
           </div>
         </div>
         <div class="contact-item">
           <span class="contact-icon">📍</span>
           <div>
-            <span class="contact-label">Ubicación</span>
+            <span class="contact-label" data-i18n="contacto.ubicacion_label">Ubicación</span>
             <span>Universidad Tecnológica de Panamá<br>Ciudad de Panamá, Panamá</span>
           </div>
         </div>
@@ -90,8 +89,8 @@
 
     <div class="contact-form-col">
       <div class="contact-form-card">
-        <h3>Envíanos un mensaje</h3>
-        <p style="color:var(--slate); font-size:14px; margin-bottom:28px;">Completa el formulario y recibirás respuesta en menos de 48 horas hábiles.</p>
+        <h3 data-i18n="contacto.form_titulo">Envíanos un mensaje</h3>
+        <p style="color:var(--slate); font-size:14px; margin-bottom:28px;" data-i18n="contacto.form_desc">Completa el formulario y recibirás respuesta en menos de 48 horas hábiles.</p>
 
         <form action="https://formsubmit.co/fiducaproyecto@gmail.com" method="POST" class="contact-form" id="contactForm">
           
@@ -101,42 +100,42 @@
 
           <div class="form-row">
             <div class="form-group">
-              <label for="nombre">Nombre completo *</label>
-              <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+              <label for="nombre" data-i18n="contacto.label_nombre">Nombre completo *</label>
+              <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" data-i18n-placeholder="contacto.placeholder_nombre" required>
             </div>
             <div class="form-group">
-              <label for="institucion">Institución / Organización</label>
-              <input type="text" id="institucion" name="institucion" placeholder="Tu institución">
+              <label for="institucion" data-i18n="contacto.label_institucion">Institución / Organización</label>
+              <input type="text" id="institucion" name="institucion" placeholder="Tu institución" data-i18n-placeholder="contacto.placeholder_institucion">
             </div>
           </div>
           <div class="form-group">
-            <label for="email">Correo electrónico *</label>
-            <input type="email" id="email" name="email" placeholder="tu@correo.com" required>
+            <label for="email" data-i18n="contacto.label_email">Correo electrónico *</label>
+            <input type="email" id="email" name="email" placeholder="tu@correo.com" data-i18n-placeholder="contacto.placeholder_email" required>
           </div>
           <div class="form-group">
-            <label for="asunto">Asunto *</label>
+            <label for="asunto" data-i18n="contacto.label_asunto">Asunto *</label>
             <select id="asunto" name="asunto" required>
-              <option value="" disabled selected>Selecciona un tema</option>
-              <option value="Información general">Información general sobre FIDUCA</option>
-              <option value="Colaboración">Propuesta de colaboración</option>
-              <option value="Prensa">Prensa y medios</option>
-              <option value="Recursos">Acceso a recursos y publicaciones</option>
-              <option value="Otro">Otro</option>
+              <option value="" disabled selected data-i18n="contacto.select_asunto_placeholder">Selecciona un tema</option>
+              <option value="Información general" data-i18n="contacto.opt_general">Información general sobre FIDUCA</option>
+              <option value="Colaboración" data-i18n="contacto.opt_colaboracion">Propuesta de colaboración</option>
+              <option value="Prensa" data-i18n="contacto.opt_prensa">Prensa y medios</option>
+              <option value="Recursos" data-i18n="contacto.opt_recursos">Acceso a recursos y publicaciones</option>
+              <option value="Otro" data-i18n="contacto.opt_otro">Otro</option>
             </select>
           </div>
           <div class="form-group">
-            <label for="mensaje">Mensaje *</label>
-            <textarea id="mensaje" name="mensaje" rows="5" placeholder="Escribe tu consulta aquí..." required></textarea>
+            <label for="mensaje" data-i18n="contacto.label_mensaje">Mensaje *</label>
+            <textarea id="mensaje" name="mensaje" rows="5" placeholder="Escribe tu consulta aquí..." data-i18n-placeholder="contacto.placeholder_mensaje" required></textarea>
           </div>
           <div class="form-group form-check">
             <input type="checkbox" id="privacidad" name="privacidad" required>
-            <label for="privacidad">He leído y acepto la <a href="#">política de privacidad</a></label>
+            <label for="privacidad" data-i18n="contacto.privacidad_texto">He leído y acepto la <a href="#">política de privacidad</a></label>
           </div>
           <input type="text" name="_gotcha" style="display:none">
 
-          <button type="submit" class="btn-submit">Enviar mensaje →</button>
+          <button type="submit" class="btn-submit" data-i18n="contacto.btn_enviar">Enviar mensaje →</button>
           <div id="form-success" class="form-success" style="display:none">
-            ✅ ¡Mensaje enviado! Te responderemos pronto a <strong id="reply-email"></strong>
+            <span data-i18n="contacto.msg_exito">✅ ¡Mensaje enviado! Te responderemos pronto a</span> <strong id="reply-email"></strong>
           </div>
         </form>
       </div>
@@ -150,11 +149,11 @@
 <footer>
   <div class="footer-top">
     <div class="footer-about">
-      <h3><strong>Proyecto FIDUCA</strong></h3>
-      <p><strong>Proyecto de investigación cofinanciado por la Unión Europea a través del programa Erasmus+ (2026–2028). El contenido de esta página es responsabilidad exclusiva del consorcio y no representa la posición oficial de la UE.</strong></p>
+      <h3 data-i18n="footer.proyecto_titulo"><strong>Proyecto FIDUCA</strong></h3>
+      <p><strong data-i18n="footer.derechos">Proyecto de investigación cofinanciado por la Unión Europea a través del programa Erasmus+ (2026–2028). El contenido de esta página es responsabilidad exclusiva del consorcio y no representa la posición oficial de la UE.</strong></p>
       <div style="margin-top:16px;" class="eu-flag">
         <span><strong>★ ★ ★ ★ ★ ★</strong></span>
-        <span style="color:rgba(255,255,255,0.3); margin-left:10px; font-size:12px;"><strong>Cofinanciado por la UE</strong></span>
+        <span style="color:rgba(255,255,255,0.3); margin-left:10px; font-size:12px;" data-i18n="footer.cofinanciado"><strong>Cofinanciado por la UE</strong></span>
       </div>
       <div class="footer-social">
         <a href="https://www.instagram.com/proyecto.fiduca" target="_blank" class="social-btn" title="Instagram">
@@ -172,35 +171,35 @@
       </div>
     </div>
     <div class="footer-col">
-      <h4><strong>Proyecto</strong></h4>
+      <h4 data-i18n="footer.col_proyecto"><strong>Proyecto</strong></h4>
       <ul>
-        <li><a href="index.html"><strong>Acerca de</strong></a></li>
-        <li><a href="#"><strong>Objetivos</strong></a></li>
-        <li><a href="resultados.html"><strong>Resultados</strong></a></li>
-        <li><a href="equipo.html"><strong>Socios</strong></a></li>
+        <li><a href="index.html" data-i18n="footer.link_acerca"><strong>Acerca de</strong></a></li>
+        <li><a href="index.html#objetivos" data-i18n="footer.link_objetivos"><strong>Objetivos</strong></a></li>
+        <li><a href="resultados.html" data-i18n="footer.link_resultados"><strong>Resultados</strong></a></li>
+        <li><a href="equipo.html" data-i18n="footer.link_socios"><strong>Socios</strong></a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4><strong>Recursos</strong></h4>
+      <h4 data-i18n="footer.col_recursos"><strong>Recursos</strong></h4>
       <ul>
-        <li><a href="noticias.html"><strong>Publicaciones</strong></a></li>
-        <li><a href="#"><strong>Informes</strong></a></li>
-        <li><a href="galeria.html"><strong>Galería</strong></a></li> 
-        <li><a href="recursos.html"><strong>Recursos</strong></a></li>
+        <li><a href="noticias.html" data-i18n="footer.link_publicaciones"><strong>Publicaciones</strong></a></li>
+        <li><a href="resultados.html" data-i18n="footer.link_informes"><strong>Informes</strong></a></li>
+        <li><a href="galeria.html" data-i18n="footer.link_galeria"><strong>Galería</strong></a></li>
+        <li><a href="recursos.html" data-i18n="footer.link_recursos"><strong>Recursos</strong></a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4><strong>Legal</strong></h4>
+      <h4 data-i18n="footer.col_legal"><strong>Legal</strong></h4>
       <ul>
-        <li><a href="#"><strong>Política de privacidad</strong></a></li>
-        <li><a href="#"><strong>Aviso legal</strong></a></li>
-        <li><a href="#"><strong>Accesibilidad</strong></a></li>
-        <li><a href="#"><strong>Cookies</strong></a></li>
+        <li><a href="#" data-i18n="footer.link_privacidad"><strong>Política de privacidad</strong></a></li>
+        <li><a href="#" data-i18n="footer.link_aviso"><strong>Aviso legal</strong></a></li>
+        <li><a href="#" data-i18n="footer.link_accesibilidad"><strong>Accesibilidad</strong></a></li>
+        <li><a href="#" data-i18n="footer.link_cookies"><strong>Cookies</strong></a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <span><strong>© 2026 FIDUCA Consortium · Grant Agreement 101094522</strong></span>
+    <span><strong>© 2026 FIDUCA Consortium · Grant Agreement 101094522</strong><a href="/admin/" class="footer-admin-link" style="opacity: 0.6; text-decoration: none; font-size: 0.85em; margin-left: 10px;" data-i18n="footer.link_gestion">Gestión</a></span>
   </div>
 </footer>
 

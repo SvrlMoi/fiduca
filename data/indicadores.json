@@ -1,0 +1,20 @@
+{
+  "avance_global": 45,
+  "total_participantes": 1250,
+  "paises_impactados": 6,
+  "capacitaciones_realizadas": 34,
+  "distribucion_genero": {
+    "hombres": 580,
+    "mujeres": 670
+  },
+  "roles_participantes": {
+    "docentes": 120,
+    "investigadores": 85,
+    "estudiantes": 890,
+    "aliados_externos": 155
+  },
+  "comunidades_impactadas": {
+    "indigenas": 18,
+    "rurales": 14
+  }
+}

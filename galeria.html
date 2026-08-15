@@ -283,14 +283,15 @@
 <img src="Estilos/img/logo-fiduca-full-color.png" alt="FIDUCA_logo">
   </a>  </div>
   <ul class="nav-links">
-    <li><a href="index.html">Proyecto</a></li>
-    <li><a href="equipo.html">Socios</a></li>
-    <li><a href="resultados.html">Resultados</a></li>
-    <li><a href="recursos.html">Recursos</a></li>
-    <li><a href="noticias.html">Noticias</a></li>
-    <li><a href="galeria.html" class="activo">Galería</a></li>
-    <li><a href="contacto.html" class="nav-cta">Contacto</a></li>
+    <li><a href="index.html" data-i18n="navegacion.inicio">Proyecto</a></li>
+    <li><a href="equipo.html" data-i18n="navegacion.socios">Socios</a></li>
+    <li><a href="resultados.html" data-i18n="navegacion.resultados">Resultados</a></li>
+    <li><a href="recursos.html" data-i18n="navegacion.recursos">Recursos</a></li>
+    <li><a href="noticias.html" data-i18n="navegacion.noticias">Noticias</a></li>
+    <li><a href="galeria.html" class="activo" data-i18n="navegacion.galeria">Galería</a></li>
+    <li><a href="contacto.html" class="nav-cta" data-i18n="navegacion.contacto">Contacto</a></li>
   </ul>
+  <button class="lang-switch" id="btn-idioma">ES | EN</button>
 </nav>
 <hr class="purple-divider">
 
@@ -299,18 +300,18 @@
   <div class="galeria-hero-grid"></div>
   <div class="galeria-hero-inner">
     <div class="galeria-hero-text reveal from-left">
-      <span class="section-label">Galería FIDUCA</span>
-      <h1>Momentos que <em>construyen</em><br>comunidad</h1>
-      <p>Registro visual de los eventos, talleres y encuentros del consorcio FIDUCA en la región centroamericana y Europa.</p>
+      <span class="section-label" data-i18n="galeria.hero_label">Galería FIDUCA</span>
+      <h1 data-i18n="galeria.hero_titulo">Momentos que <em>construyen</em><br>comunidad</h1>
+      <p data-i18n="galeria.hero_desc">Registro visual de los eventos, talleres y encuentros del consorcio FIDUCA en la región centroamericana y Europa.</p>
     </div>
     <div class="galeria-kpis reveal from-right">
       <div class="galeria-kpi">
         <div class="galeria-kpi-num" id="kpi-eventos">1</div>
-        <div class="galeria-kpi-label">Eventos<br>registrados</div>
+        <div class="galeria-kpi-label" data-i18n="galeria.kpi_eventos">Eventos<br>registrados</div>
       </div>
       <div class="galeria-kpi">
         <div class="galeria-kpi-num" id="kpi-fotos">10</div>
-        <div class="galeria-kpi-label">Fotos<br>publicadas</div>
+        <div class="galeria-kpi-label" data-i18n="galeria.kpi_fotos">Fotos<br>publicadas</div>
       </div>
     </div>
   </div>
@@ -319,16 +320,16 @@
 
 <!-- BREADCRUMB -->
 <div class="breadcrumb">
-  <a href="index.html">Inicio</a>
+  <a href="index.html" data-i18n="navegacion.breadcrumb_inicio">Inicio</a>
   <span>›</span>
-  <span style="color:var(--navy); opacity:1; font-weight:600;">Galería</span>
+  <span data-i18n="navegacion.galeria" style="color:var(--navy); opacity:1; font-weight:600;">Galería</span>
 </div>
 
 
 <!-- FILTROS -->
 <div class="galeria-filter-wrap reveal from-up" style="transition-delay:0.1s">
-  <span class="filter-label">Filtrar por evento</span>
-  <button class="filter-btn active" onclick="filtrarGaleria(this, 'todos')">Todos</button>
+  <span class="filter-label" data-i18n="galeria.filtrar_label">Filtrar por evento</span>
+  <button class="filter-btn active" onclick="filtrarGaleria(this, 'todos')" data-i18n="galeria.filtro_todos">Todos</button>
   <button class="filter-btn" onclick="filtrarGaleria(this, 'kom-cr')">KOM Costa Rica</button>
 </div>
 
@@ -340,10 +341,10 @@
     <div class="evento-header reveal from-left">
       <div class="evento-badge">🇨🇷</div>
       <div class="evento-meta">
-        <h3>Kick-off Meeting — Costa Rica</h3>
-        <p>Primer encuentro presencial del consorcio FIDUCA · Enero 2026 · Costa Rica</p>
+        <h3 data-i18n="galeria.kom_titulo">Kick-off Meeting — Costa Rica</h3>
+        <p data-i18n="galeria.kom_desc">Primer encuentro presencial del consorcio FIDUCA · Enero 2026 · Costa Rica</p>
       </div>
-      <span class="evento-count" id="count-kom-cr">10 fotos</span>
+      <span class="evento-count" id="count-kom-cr" data-i18n="galeria.kom_count">10 fotos</span>
     </div>
 
     <div class="galeria-grid" id="grid-kom-cr">
@@ -355,156 +356,162 @@
              alt="Foto grupal KOM Costa Rica"
              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="galeria-placeholder" style="display:none;">
-      <i data-lucide="camara"></i>
+          <i data-lucide="camara"></i>
           Foto grupal — KOM Costa Rica
         </div>
         <div class="galeria-overlay">
           <div class="galeria-overlay-icon"><i data-lucide="zoom-in" style="width:16px;height:16px;color:#fff;"></i></div>
-          <span class="galeria-overlay-text">Foto grupal del consorcio · KOM Costa Rica</span>
+          <span class="galeria-overlay-text" data-i18n="galeria.foto1_overlay">Foto grupal del consorcio · KOM Costa Rica</span>
         </div>
       </div>
 
       <!-- Foto 2 -->
-     <div class="galeria-item wide reveal" style="transition-delay:0.05s"
-           onclick="openLightbox('kom-cr', 0)">
+      <div class="galeria-item wide reveal" style="transition-delay:0.05s"
+           onclick="openLightbox('kom-cr', 1)">
         <img src="Estilos/img/eventos/KOM Costa Rica/Foto de Integrantes del Comité de Gestión FIDUCA.jpeg"
-             alt="Foto grupal KOM Costa Rica"
+             alt="Foto integrantes Comité de Gestión"
              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="galeria-placeholder" style="display:none;">
-      <i data-lucide="camara"></i>
+          <i data-lucide="camara"></i>
           Foto integrantes del Comité de Gestión
         </div>
         <div class="galeria-overlay">
           <div class="galeria-overlay-icon"><i data-lucide="zoom-in" style="width:16px;height:16px;color:#fff;"></i></div>
-          <span class="galeria-overlay-text"> Foto integrantes del Comité de Gestión
-</span>
+          <span class="galeria-overlay-text" data-i18n="galeria.foto2_overlay">Foto integrantes del Comité de Gestión</span>
         </div>
       </div>
 
       <!-- Foto 3 -->
-     <div class="galeria-item wide reveal" style="transition-delay:0.05s"
-           onclick="openLightbox('kom-cr', 0)">
+      <div class="galeria-item wide reveal" style="transition-delay:0.05s"
+           onclick="openLightbox('kom-cr', 2)">
         <img src="Estilos/img/eventos/KOM Costa Rica/Foto Grupal KOM CR.jpg"
-             alt="Foto grupal KOM Costa Rica"
+             alt="Consorcio FIDUCA"
              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="galeria-placeholder" style="display:none;">
-      <i data-lucide="camara"></i>
-         Consorcio FIDUCA
+          <i data-lucide="camara"></i>
+          Consorcio FIDUCA
         </div>
         <div class="galeria-overlay">
           <div class="galeria-overlay-icon"><i data-lucide="zoom-in" style="width:16px;height:16px;color:#fff;"></i></div>
-          <span class="galeria-overlay-text"> Consorcio FIDUCA </span>
+          <span class="galeria-overlay-text" data-i18n="galeria.foto3_overlay">Consorcio FIDUCA</span>
         </div>
       </div>
 
       <!-- Foto 4 -->
-       <div class="galeria-item wide reveal" style="transition-delay:0.05s"
-           onclick="openLightbox('kom-cr', 0)">
+      <div class="galeria-item wide reveal" style="transition-delay:0.05s"
+           onclick="openLightbox('kom-cr', 3)">
         <img src="Estilos/img/eventos/KOM Costa Rica/Foto grupal Territorio Malecu.JPG"
              alt="malecu"
              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="galeria-placeholder" style="display:none;">
-      <i data-lucide="camara"></i>
-         Foto Grupal Territorio Malecu
+          <i data-lucide="camara"></i>
+          Foto Grupal Territorio Maleku
         </div>
         <div class="galeria-overlay">
           <div class="galeria-overlay-icon"><i data-lucide="zoom-in" style="width:16px;height:16px;color:#fff;"></i></div>
-          <span class="galeria-overlay-text"> Foto Grupal Territorio Malecu </span>
+          <span class="galeria-overlay-text" data-i18n="galeria.foto4_overlay">Foto Grupal Territorio Maleku</span>
         </div>
       </div>
       
       <!-- Foto 5 -->
-    <div class="galeria-item wide reveal" style="transition-delay:0.05s"
-           onclick="openLightbox('kom-cr', 0)">
+      <div class="galeria-item wide reveal" style="transition-delay:0.05s"
+           onclick="openLightbox('kom-cr', 4)">
         <img src="Estilos/img/eventos/KOM Costa Rica/IMG_8112.jpeg"
-             alt="Foto grupal KOM Costa Rica"
+             alt="Foto de Consorcio FIDUCA"
              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="galeria-placeholder" style="display:none;">
-      <i data-lucide="camara"></i>
-         Foto Grupal 
+          <i data-lucide="camara"></i>
+          Foto Grupal
         </div>
         <div class="galeria-overlay">
           <div class="galeria-overlay-icon"><i data-lucide="zoom-in" style="width:16px;height:16px;color:#fff;"></i></div>
-          <span class="galeria-overlay-text"> Foto de Consorcio FIDUCA  </span>
+          <span class="galeria-overlay-text" data-i18n="galeria.foto5_overlay">Foto de Consorcio FIDUCA</span>
         </div>
       </div>
 
       <!-- Foto 6 -->
-     <div class="galeria-item wide reveal" style="transition-delay:0.05s"
-           onclick="openLightbox('kom-cr', 0)">
+      <div class="galeria-item wide reveal" style="transition-delay:0.05s"
+           onclick="openLightbox('kom-cr', 5)">
         <img src="Estilos/img/eventos/KOM Costa Rica/Ritual de Fogata Territorio Malecu.JPG"
-             alt="Foto grupal KOM Costa Rica"
+             alt="Ritual Fogata Territorio Maleku"
              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="galeria-placeholder" style="display:none;">
-      <i data-lucide="camara"></i>
-Ritual Fogata Territorio Malecu        </div>
+          <i data-lucide="camara"></i>
+          Ritual Fogata Territorio Maleku
+        </div>
         <div class="galeria-overlay">
           <div class="galeria-overlay-icon"><i data-lucide="zoom-in" style="width:16px;height:16px;color:#fff;"></i></div>
-          <span class="galeria-overlay-text"> Ritual Fogata Territorio Malecu </span>
+          <span class="galeria-overlay-text" data-i18n="galeria.foto6_overlay">Ritual Fogata Territorio Maleku</span>
         </div>
       </div>
+
       <!-- Foto 7 -->
-       <div class="galeria-item wide reveal" style="transition-delay:0.05s"
-           onclick="openLightbox('kom-cr', 0)">
+      <div class="galeria-item wide reveal" style="transition-delay:0.05s"
+           onclick="openLightbox('kom-cr', 6)">
         <img src="Estilos/img/eventos/KOM Costa Rica/Taller de Plantas Territorio Malecu.JPG"
-             alt="Foto grupal KOM Costa Rica"
+             alt="Taller de Plantas Medicinales Territorio Maleku"
              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="galeria-placeholder" style="display:none;">
-      <i data-lucide="camara"></i>
-Taller de Plantas Medicinales Territorio Malecu      </div>
+          <i data-lucide="camara"></i>
+          Taller de Plantas Medicinales Territorio Maleku
+        </div>
         <div class="galeria-overlay">
           <div class="galeria-overlay-icon"><i data-lucide="zoom-in" style="width:16px;height:16px;color:#fff;"></i></div>
-          <span class="galeria-overlay-text"> Taller de Plantas Medicinales Territorio Malecu  </span>
+          <span class="galeria-overlay-text" data-i18n="galeria.foto7_overlay">Taller de Plantas Medicinales Territorio Maleku</span>
         </div>
       </div>
 
       <!-- Foto 8 -->
       <div class="galeria-item wide reveal" style="transition-delay:0.05s"
-           onclick="openLightbox('kom-cr', 0)">
+           onclick="openLightbox('kom-cr', 7)">
         <img src="Estilos/img/eventos/KOM Costa Rica/Turismo sostenible.jpeg"
              alt="turismo sostenible"
              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="galeria-placeholder" style="display:none;">
-      <i data-lucide="camara"></i>
-Turismo Sostenible    </div>
+          <i data-lucide="camara"></i>
+          Turismo Sostenible
+        </div>
         <div class="galeria-overlay">
           <div class="galeria-overlay-icon"><i data-lucide="zoom-in" style="width:16px;height:16px;color:#fff;"></i></div>
-          <span class="galeria-overlay-text"> Turismo Sostenible </span>
+          <span class="galeria-overlay-text" data-i18n="galeria.foto8_overlay">Turismo Sostenible</span>
         </div>
       </div>
+
       <!-- Foto 9 -->
-     <div class="galeria-item wide reveal" style="transition-delay:0.05s"
-           onclick="openLightbox('kom-cr', 0)">
+      <div class="galeria-item wide reveal" style="transition-delay:0.05s"
+           onclick="openLightbox('kom-cr', 8)">
         <img src="Estilos/img/eventos/KOM Costa Rica/Plantas.jpeg"
              alt="taller plantas 2"
              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="galeria-placeholder" style="display:none;">
-      <i data-lucide="camara"></i>
-Taller de Plantas Meidicnales  </div>
+          <i data-lucide="camara"></i>
+          Taller de Plantas Medicinales
+        </div>
         <div class="galeria-overlay">
           <div class="galeria-overlay-icon"><i data-lucide="zoom-in" style="width:16px;height:16px;color:#fff;"></i></div>
-          <span class="galeria-overlay-text"> Taller de Plantas Meidicnales </span>
+          <span class="galeria-overlay-text" data-i18n="galeria.foto9_overlay">Taller de Plantas Medicinales</span>
         </div>
       </div>
 
       <!-- Foto 10 -->
-    <div class="galeria-item wide reveal" style="transition-delay:0.05s"
-           onclick="openLightbox('kom-cr', 0)">
+      <div class="galeria-item wide reveal" style="transition-delay:0.05s"
+           onclick="openLightbox('kom-cr', 9)">
         <img src="Estilos/img/eventos/KOM Costa Rica/Presentacion proyecto.jpeg"
              alt="presentacion proyecto"
              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="galeria-placeholder" style="display:none;">
-      <i data-lucide="camara"></i>
-Presentación del Proyecto </div>
+          <i data-lucide="camara"></i>
+          Presentación del Proyecto
+        </div>
         <div class="galeria-overlay">
           <div class="galeria-overlay-icon"><i data-lucide="zoom-in" style="width:16px;height:16px;color:#fff;"></i></div>
-          <span class="galeria-overlay-text"> Presentación del Proyecto </span>
+          <span class="galeria-overlay-text" data-i18n="galeria.foto10_overlay">Presentación del Proyecto</span>
         </div>
       </div>
       
   <div class="galeria-empty" id="galeria-empty">
       <i data-lucide="camara"></i>
-    <p>No hay fotos disponibles para este filtro.</p>
+    <p data-i18n="comun.galeria_sin_fotos">No hay fotos disponibles para este filtro.</p>
   </div>
 
 </section>
@@ -512,7 +519,7 @@ Presentación del Proyecto </div>
 
 <!-- LIGHTBOX -->
 <div class="lightbox-overlay" id="lightbox-overlay" onclick="closeLightboxOnBg(event)">
-  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <button class="lightbox-close" onclick="closeLightbox()" aria-label="Cerrar" title="Cerrar">✕</button>
   <button class="lightbox-nav lightbox-prev" onclick="navLightbox(-1)">‹</button>
   <button class="lightbox-nav lightbox-next" onclick="navLightbox(1)">›</button>
   <div class="lightbox-inner">
@@ -526,11 +533,11 @@ Presentación del Proyecto </div>
 <footer>
   <div class="footer-top">
     <div class="footer-about">
-      <h3><strong>Proyecto FIDUCA</strong></h3>
-      <p><strong>Proyecto de investigación cofinanciado por la Unión Europea a través del programa Erasmus+ (2026–2028). El contenido de esta página es responsabilidad exclusiva del consorcio y no representa la posición oficial de la UE.</strong></p>
+      <h3 data-i18n="footer.proyecto_titulo"><strong>Proyecto FIDUCA</strong></h3>
+      <p><strong data-i18n="footer.derechos">Proyecto de investigación cofinanciado por la Unión Europea a través del programa Erasmus+ (2026–2028). El contenido de esta página es responsabilidad exclusiva del consorcio y no representa la posición oficial de la UE.</strong></p>
       <div style="margin-top:16px;" class="eu-flag">
         <span><strong>★ ★ ★ ★ ★ ★</strong></span>
-        <span style="color:rgba(255,255,255,0.3); margin-left:10px; font-size:12px;"><strong>Cofinanciado por la UE</strong></span>
+        <span style="color:rgba(255,255,255,0.3); margin-left:10px; font-size:12px;" data-i18n="footer.cofinanciado"><strong>Cofinanciado por la UE</strong></span>
       </div>
       <div class="footer-social">
         <a href="https://www.instagram.com/proyecto.fiduca" target="_blank" class="social-btn" title="Instagram">
@@ -548,35 +555,35 @@ Presentación del Proyecto </div>
       </div>
     </div>
     <div class="footer-col">
-      <h4><strong>Proyecto</strong></h4>
+      <h4 data-i18n="footer.col_proyecto"><strong>Proyecto</strong></h4>
       <ul>
-        <li><a href="index.html"><strong>Acerca de</strong></a></li>
-        <li><a href="index.html#objetivos"><strong>Objetivos</strong></a></li>
-        <li><a href="resultados.html"><strong>Resultados</strong></a></li>
-        <li><a href="equipo.html"><strong>Socios</strong></a></li>
+        <li><a href="index.html" data-i18n="footer.link_acerca"><strong>Acerca de</strong></a></li>
+        <li><a href="index.html#objetivos" data-i18n="footer.link_objetivos"><strong>Objetivos</strong></a></li>
+        <li><a href="resultados.html" data-i18n="footer.link_resultados"><strong>Resultados</strong></a></li>
+        <li><a href="equipo.html" data-i18n="footer.link_socios"><strong>Socios</strong></a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4><strong>Recursos</strong></h4>
+      <h4 data-i18n="footer.col_recursos"><strong>Recursos</strong></h4>
       <ul>
-        <li><a href="noticias.html"><strong>Publicaciones</strong></a></li>
-        <li><a href="#"><strong>Informes</strong></a></li>
-        <li><a href="galeria.html"><strong>Galería</strong></a></li>
-        <li><a href="recursos.html"><strong>Recursos</strong></a></li>
+        <li><a href="noticias.html" data-i18n="footer.link_publicaciones"><strong>Publicaciones</strong></a></li>
+        <li><a href="resultados.html" data-i18n="footer.link_informes"><strong>Informes</strong></a></li>
+        <li><a href="galeria.html" data-i18n="footer.link_galeria"><strong>Galería</strong></a></li>
+        <li><a href="recursos.html" data-i18n="footer.link_recursos"><strong>Recursos</strong></a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4><strong>Legal</strong></h4>
+      <h4 data-i18n="footer.col_legal"><strong>Legal</strong></h4>
       <ul>
-        <li><a href="#"><strong>Política de privacidad</strong></a></li>
-        <li><a href="#"><strong>Aviso legal</strong></a></li>
-        <li><a href="#"><strong>Accesibilidad</strong></a></li>
-        <li><a href="#"><strong>Cookies</strong></a></li>
+        <li><a href="#" data-i18n="footer.link_privacidad"><strong>Política de privacidad</strong></a></li>
+        <li><a href="#" data-i18n="footer.link_aviso"><strong>Aviso legal</strong></a></li>
+        <li><a href="#" data-i18n="footer.link_accesibilidad"><strong>Accesibilidad</strong></a></li>
+        <li><a href="#" data-i18n="footer.link_cookies"><strong>Cookies</strong></a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <span><strong>© 2026 FIDUCA Consortium · Grant Agreement 101094522</strong></span>
+    <span><strong>© 2026 FIDUCA Consortium · Grant Agreement 101094522</strong><a href="/admin/" class="footer-admin-link" style="opacity: 0.6; text-decoration: none; font-size: 0.85em; margin-left: 10px;" data-i18n="footer.link_gestion">Gestión</a></span>
   </div>
 </footer>
 
@@ -587,16 +594,16 @@ Presentación del Proyecto </div>
 
 const galeriaData = {
   'kom-cr': [
-    { src: 'Estilos/img/Fotos noticias/Foto Grupal CTEC KOM CR.jpeg', titulo: 'Foto grupal del consorcio', desc: 'Integrantes del consorcio FIDUCA durante el Kick-off Meeting en Costa Rica · Enero 2026' },
-    { src: null, titulo: 'Sesión inaugural', desc: 'Apertura oficial del Kick-off Meeting del proyecto FIDUCA' },
-    { src: null, titulo: 'Presentación de socios', desc: 'Cada institución presentó sus capacidades y rol en el consorcio' },
-    { src: null, titulo: 'Mesa de trabajo colaborativo', desc: 'Grupos de trabajo definiendo la hoja de ruta del proyecto' },
-    { src: null, titulo: 'Visita a comunidad indígena', desc: 'Reconocimiento de territorios y comunidades beneficiarias en Costa Rica' },
-    { src: null, titulo: 'Taller de planificación estratégica', desc: 'Definición conjunta de objetivos y paquetes de trabajo' },
-    { src: null, titulo: 'Coordinadora del proyecto', desc: 'Dra. Mariela Salgado (UTP) presentando la visión general de FIDUCA' },
-    { src: null, titulo: 'Socios europeos', desc: 'Participación de las universidades europeas del consorcio: UPM, ULL, ELTE' },
-    { src: null, titulo: 'Sesión de trabajo WP', desc: 'Trabajo en paralelo por paquetes: WP1, WP2 y WP5' },
-    { src: null, titulo: 'Clausura del KOM', desc: 'Cierre del Kick-off Meeting con compromisos institucionales firmados' }
+    { src: 'Estilos/img/Fotos noticias/Foto Grupal CTEC KOM CR.jpeg', titulo_es: 'Foto grupal del consorcio', titulo_en: 'Consortium Group Photo', desc_es: 'Integrantes del consorcio FIDUCA durante el Kick-off Meeting en Costa Rica · Enero 2026', desc_en: 'FIDUCA consortium members during the Kick-off Meeting in Costa Rica · January 2026' },
+    { src: 'Estilos/img/eventos/KOM Costa Rica/Foto de Integrantes del Comité de Gestión FIDUCA.jpeg', titulo_es: 'Foto integrantes del Comité de Gestión', titulo_en: 'Management Committee Members', desc_es: 'Miembros del Comité de Gestión reunidos para definir la gobernanza del proyecto FIDUCA', desc_en: 'Management Committee members meeting to establish FIDUCA project governance' },
+    { src: 'Estilos/img/eventos/KOM Costa Rica/Foto Grupal KOM CR.jpg', titulo_es: 'Consorcio FIDUCA', titulo_en: 'FIDUCA Consortium', desc_es: 'Representantes de las 12 instituciones socias durante las sesiones plenarias en Costa Rica', desc_en: 'Representatives of the 12 partner institutions during plenary sessions in Costa Rica' },
+    { src: 'Estilos/img/eventos/KOM Costa Rica/Foto grupal Territorio Malecu.JPG', titulo_es: 'Foto Grupal Territorio Maleku', titulo_en: 'Group Photo Maleku Territory', desc_es: 'Visita de campo y encuentro con la comunidad del Territorio Indígena Maleku', desc_en: 'Field visit and gathering with the community of the Maleku Indigenous Territory' },
+    { src: 'Estilos/img/eventos/KOM Costa Rica/IMG_8112.jpeg', titulo_es: 'Foto de Consorcio FIDUCA', titulo_en: 'FIDUCA Consortium Photo', desc_es: 'Equipo de investigadores y coordinadores de las universidades socias', desc_en: 'Team of researchers and coordinators from partner universities' },
+    { src: 'Estilos/img/eventos/KOM Costa Rica/Ritual de Fogata Territorio Malecu.JPG', titulo_es: 'Ritual Fogata Territorio Maleku', titulo_en: 'Campfire Ritual Maleku Territory', desc_es: 'Ceremonia ancestral de bienvenida compartida por los líderes de la comunidad Maleku', desc_en: 'Ancestral welcoming ceremony shared by leaders of the Maleku community' },
+    { src: 'Estilos/img/eventos/KOM Costa Rica/Taller de Plantas Territorio Malecu.JPG', titulo_es: 'Taller de Plantas Medicinales Territorio Maleku', titulo_en: 'Medicinal Plants Workshop Maleku Territory', desc_es: 'Intercambio de saberes tradicionales sobre botánica y medicina comunitaria', desc_en: 'Exchange of traditional knowledge on community botany and medicine' },
+    { src: 'Estilos/img/eventos/KOM Costa Rica/Turismo sostenible.jpeg', titulo_es: 'Turismo Sostenible', titulo_en: 'Sustainable Tourism', desc_es: 'Exploración de iniciativas de etnoturismo y emprendimiento juvenil comunitario', desc_en: 'Exploration of ethno-tourism and community youth entrepreneurship initiatives' },
+    { src: 'Estilos/img/eventos/KOM Costa Rica/Plantas.jpeg', titulo_es: 'Taller de Plantas Medicinales', titulo_en: 'Medicinal Plants Workshop', desc_es: 'Demostración de productos naturales elaborados por emprendedoras locales', desc_en: 'Demonstration of natural products crafted by local women entrepreneurs' },
+    { src: 'Estilos/img/eventos/KOM Costa Rica/Presentacion proyecto.jpeg', titulo_es: 'Presentación del Proyecto', titulo_en: 'Project Presentation', desc_es: 'Presentación institucional de las metas y paquetes de trabajo de FIDUCA', desc_en: 'Institutional presentation of FIDUCA goals and work packages' }
   ]
 };
 
@@ -636,18 +643,24 @@ function renderLightbox() {
   const wrap  = document.getElementById('lightbox-img-wrap');
   const cap   = document.getElementById('lightbox-caption');
   const counter = document.getElementById('lightbox-counter');
+  const lang = localStorage.getItem('idiomaActivo') || 'es';
+
+  const titulo = lang === 'en' ? (foto.titulo_en || foto.titulo_es) : foto.titulo_es;
+  const desc = lang === 'en' ? (foto.desc_en || foto.desc_es) : foto.desc_es;
+  const placeholderText = lang === 'en' ? 'Image available soon' : 'Imagen próximamente disponible';
 
   if (foto.src) {
-    wrap.innerHTML = `<img src="${foto.src}" alt="${foto.titulo}">`;
+    wrap.innerHTML = `<img src="${foto.src}" alt="${titulo}">`;
   } else {
     wrap.innerHTML = `
       <div class="lightbox-placeholder">
       <i data-lucide="camara"></i>
-        <span>Imagen próximamente disponible</span>
+        <span>${placeholderText}</span>
       </div>`;
+    if (typeof lucide !== 'undefined') lucide.createIcons();
   }
 
-  cap.innerHTML = `<strong>${foto.titulo}</strong>${foto.desc}`;
+  cap.innerHTML = `<strong>${titulo}</strong>${desc}`;
   counter.textContent = `${lbIndex + 1} / ${fotos.length}`;
 }
 
