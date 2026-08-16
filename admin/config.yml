@@ -1,7 +1,6 @@
 backend:
-  name: github
-  repo: usuario/repositorio # Reemplazar con tu usuario/repositorio de GitHub (ej: mi-usuario/fiduca)
-  branch: main # Rama principal donde se guardarán los cambios
+  name: git-gateway
+  branch: main
 
 local_backend: true
 

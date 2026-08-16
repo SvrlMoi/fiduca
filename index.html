@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script defer src="https://cloud.umami.is/script.js" data-website-id="ccf536f8-50f4-4fff-8bbd-48a8a7bbe34c">
   </script>
   
@@ -585,6 +586,17 @@ Universidades para el Desarrollo <em> Sostenible e Inclusivo </em><br>en la Regi
 <script src="Estilos/scripts.js"></script>
 <script>
   lucide.createIcons();
+</script>
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
 </script>
 </body>
 </html>
