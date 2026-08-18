@@ -497,7 +497,7 @@
     "ver_todas_noticias_es": "Ver todas las noticias →",
     "ver_todas_noticias_en": "View all news →",
     "agenda_label_es": "Agenda",
-    "agenda_label_en": "Agenda",
+    "agenda_label_en": "Schedule",
     "agenda_titulo_es": "Próximos Eventos",
     "agenda_titulo_en": "Upcoming Events",
     "construccion_titulo_es": "Sección en construcción",
@@ -511,7 +511,37 @@
     "erasmus_desc1_es": "FIDUCA forma parte del programa <strong>Erasmus+</strong>, la iniciativa de la Unión Europea para apoyar la educación, la formación, la juventud y el deporte en todo el mundo. A través de su acción de <strong>Capacity Building in Higher Education</strong>, el proyecto recibe financiación para fortalecer la cooperación entre universidades de Centroamérica y Europa.",
     "erasmus_desc1_en": "FIDUCA is part of the <strong>Erasmus+</strong> program, the European Union initiative to support education, training, youth, and sport worldwide. Through its <strong>Capacity Building in Higher Education</strong> action, the project receives funding to strengthen cooperation between Central American and European universities.",
     "erasmus_desc2_es": "Erasmus+ promueve la innovación, la inclusión social y la modernización de los sistemas educativos.",
-    "erasmus_desc2_en": "Erasmus+ promotes innovation, social inclusion, and modernization of education systems."
+    "erasmus_desc2_en": "Erasmus+ promotes innovation, social inclusion, and modernization of education systems.",
+    "ev_proximo_es": "Próximo evento",
+    "ev_proximo_en": "Next event",
+    "ev_no_proximo_es": "No hay eventos próximos programados por el momento.",
+    "ev_no_proximo_en": "No upcoming events scheduled at the moment.",
+    "ev_todos_es": "Todos",
+    "ev_todos_en": "All",
+    "ev_talleres_es": "Talleres",
+    "ev_talleres_en": "Workshops",
+    "ev_reuniones_es": "Reuniones",
+    "ev_reuniones_en": "Meetings",
+    "ev_webinars_es": "Webinars",
+    "ev_webinars_en": "Webinars",
+    "ev_vacio_cat_es": "No hay eventos programados en esta categoría por ahora.",
+    "ev_vacio_cat_en": "No events scheduled in this category for now.",
+    "ev_calendario_es": "Calendario",
+    "ev_calendario_en": "Calendar",
+    "cal_dom_es": "Dom",
+    "cal_dom_en": "Sun",
+    "cal_lun_es": "Lun",
+    "cal_lun_en": "Mon",
+    "cal_mar_es": "Mar",
+    "cal_mar_en": "Tue",
+    "cal_mie_es": "Mié",
+    "cal_mie_en": "Wed",
+    "cal_jue_es": "Jue",
+    "cal_jue_en": "Thu",
+    "cal_vie_es": "Vie",
+    "cal_vie_en": "Fri",
+    "cal_sab_es": "Sáb",
+    "cal_sab_en": "Sat"
   },
   "resultados": {
     "hero_label_es": "Resultados del Proyecto",
@@ -642,4 +672,3 @@
     "imp_didactico_meta_en": "Goal: 8 curricular modules · WP3"
   }
 }
-
