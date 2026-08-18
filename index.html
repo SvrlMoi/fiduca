@@ -233,9 +233,11 @@
 <div class="page-wrapper">
 
 <nav>
-  <div class="logo-wrap">
-    <img src="Estilos/img/LOGO-UE-Full_color.png" alt="UE_logo" style="height:90px; width:auto;">
-    <img src="Estilos/img/logo-fiduca-full-color.png" alt="FIDUCA_logo" style="height:90px; width:auto;">
+    <div class="logo-wrap">
+    <img src="Estilos/img/LOGO-UE-Full_color.png" alt="UE_logo">
+          <a href="index.html" style="display:inline-block;">
+<img src="Estilos/img/logo-fiduca-full-color.png" alt="FIDUCA_logo">
+  </a>
   </div>
   <ul class="nav-links">
     <li><a href="#" class="activo" data-i18n="navegacion.inicio">Proyecto</a></li>
@@ -430,73 +432,454 @@ Universidades para el Desarrollo <em> Sostenible e Inclusivo </em><br>en la Regi
 <section style="padding: 60px 60px 80px; font-family: 'Baloo 2', sans-serif;">
 
   <div style="margin-bottom: 36px;">
-    <span style="display:inline-block; font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#7F77DD; margin-bottom:6px;" data-i18n="inicio.agenda_label">Agenda</span>
+    <span style="display:inline-block; font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--purple); margin-bottom:6px;" data-i18n="inicio.agenda_label">Agenda</span>
     <h2 class="section-title" data-i18n="inicio.agenda_titulo">Próximos Eventos</h2>
   </div>
 
-  <div style="border: 1.5px dashed #AFA9EC; border-radius: 18px; background: #EEEDFE33; padding: 48px 40px; display: flex; flex-direction: column; align-items: center; gap: 20px; text-align: center;">
-
-    <!-- Ícono animado -->
-    <div style="width:72px; height:72px; border-radius:50%; background:#EEEDFE; display:flex; align-items:center; justify-content:center; animation: fiduca-pulse 2.4s ease-in-out infinite;">
-      <i data-lucide="calendar-clock" style="color:#534AB7; width:34px; height:34px;"></i>
+  <div id="ev-countdown-wrap" class="ev-countdown">
+    <div>
+      <span class="ev-countdown-tag"><i data-lucide="zap" style="width:12px;height:12px;"></i> <span data-i18n="inicio.ev_proximo">Próximo evento</span></span>
+      <h3 id="ev-countdown-titulo" class="ev-countdown-titulo"></h3>
+      <p id="ev-countdown-meta" class="ev-countdown-meta"></p>
     </div>
+    <div id="ev-countdown-timer" class="ev-countdown-timer"></div>
+  </div>
 
-    <h3 style="font-size:20px; font-weight:800; color:#3C3489; margin:0;" data-i18n="inicio.construccion_titulo">Sección en construcción</h3>
-    <p style="font-size:15px; color:#666; margin:0; max-width:520px; line-height:1.6;" data-i18n="inicio.construccion_desc">
-      Pronto podrás consultar aquí el calendario completo de eventos, talleres y reuniones del consorcio FIDUCA. Cada tarjeta incluirá fecha, horario, lugar y acceso a los detalles del evento.
-    </p>
+  <div id="ev-countdown-vacio" class="ev-countdown-vacio">
+    <i data-lucide="calendar-check" style="width:20px;height:20px;"></i>
+    <span data-i18n="inicio.ev_no_proximo">No hay eventos próximos programados por el momento.</span>
+  </div>
 
-    <!-- Preview borrosa -->
-    <div style="width:100%;">
-      <div style="font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#7F77DD; margin-bottom:10px;">Vista previa de lo que verás</div>
-      <div style="display:grid; grid-template-columns: repeat(3,1fr); gap:16px;">
+  <div class="ev-filtros">
+    <button class="ev-filtro is-activo" data-tipo="todos" onclick="fiducaFiltrarEventos(this,'todos')" data-i18n="inicio.ev_todos">Todos</button>
+    <button class="ev-filtro" data-tipo="taller" onclick="fiducaFiltrarEventos(this,'taller')"><i data-lucide="hammer" style="width:14px;height:14px;"></i> <span data-i18n="inicio.ev_talleres">Talleres</span></button>
+    <button class="ev-filtro" data-tipo="reunion" onclick="fiducaFiltrarEventos(this,'reunion')"><i data-lucide="users" style="width:14px;height:14px;"></i> <span data-i18n="inicio.ev_reuniones">Reuniones</span></button>
+    <button class="ev-filtro" data-tipo="webinar" onclick="fiducaFiltrarEventos(this,'webinar')"><i data-lucide="video" style="width:14px;height:14px;"></i> <span data-i18n="inicio.ev_webinars">Webinars</span></button>
+  </div>
 
-        <div style="background:#fff; border: 0.5px solid #AFA9EC; border-radius:12px; padding:16px; text-align:left; opacity:0.5; filter:blur(1.5px); pointer-events:none; user-select:none;">
-          <span style="display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:700; color:#534AB7; background:#EEEDFE; padding:3px 10px; border-radius:999px; margin-bottom:10px;">
-            <i data-lucide="calendar" style="width:11px;height:11px;"></i> 18 Jun 2026
-          </span>
-          <h4 style="font-size:13px; font-weight:700; margin:0 0 6px; line-height:1.4;">Taller de diagnóstico participativo — Comunidades Ngäbe</h4>
-          <p style="font-size:11px; color:#888; margin:0;">📍 Chiriquí, Panamá · 9:00 AM</p>
-        </div>
+  <div id="ev-grid" class="ev-grid"></div>
 
-        <div style="background:#fff; border: 0.5px solid #AFA9EC; border-radius:12px; padding:16px; text-align:left; opacity:0.5; filter:blur(1.5px); pointer-events:none; user-select:none;">
-          <span style="display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:700; color:#534AB7; background:#EEEDFE; padding:3px 10px; border-radius:999px; margin-bottom:10px;">
-            <i data-lucide="calendar" style="width:11px;height:11px;"></i> 25 Jun 2026
-          </span>
-          <h4 style="font-size:13px; font-weight:700; margin:0 0 6px; line-height:1.4;">Segunda reunión transnacional del consorcio FIDUCA</h4>
-          <p style="font-size:11px; color:#888; margin:0;">📍 San José, Costa Rica · Todo el día</p>
-        </div>
-
-        <div style="background:#fff; border: 0.5px solid #AFA9EC; border-radius:12px; padding:16px; text-align:left; opacity:0.5; filter:blur(1.5px); pointer-events:none; user-select:none;">
-          <span style="display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:700; color:#534AB7; background:#EEEDFE; padding:3px 10px; border-radius:999px; margin-bottom:10px;">
-            <i data-lucide="calendar" style="width:11px;height:11px;"></i> 10 Jul 2026
-          </span>
-          <h4 style="font-size:13px; font-weight:700; margin:0 0 6px; line-height:1.4;">Webinar: Innovación indígena y modelos de emprendimiento</h4>
-          <p style="font-size:11px; color:#888; margin:0;">📍 En línea · 10:00 AM</p>
-        </div>
-
+  <div id="ev-vacio" class="ev-vacio">
+    <i data-lucide="calendar-x" style="color:var(--purple); width:34px; height:34px;"></i>
+    <p data-i18n="inicio.ev_vacio_cat">No hay eventos programados en esta categoría por ahora.</p>
+  </div>
+<div class="ev-cal-wrap reveal">
+    <div class="ev-cal-header">
+      <span class="section-label" style="margin:0;" data-i18n="inicio.ev_calendario">Calendario</span>
+      <div class="ev-cal-nav">
+        <button onclick="fiducaCalMes(-1)" aria-label="Mes anterior"><i data-lucide="chevron-left"></i></button>
+        <h4 id="ev-cal-titulo"></h4>
+        <button onclick="fiducaCalMes(1)" aria-label="Mes siguiente"><i data-lucide="chevron-right"></i></button>
       </div>
     </div>
-
-    <!-- Badge -->
-    <span style="display:inline-flex; align-items:center; gap:7px; background:#3C3489; color:#fff; font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:8px 20px; border-radius:999px; margin-top:4px;">
-      <i data-lucide="clock" style="width:13px;height:13px;"></i>
-      Disponible próximamente
-    </span>
-
+    <div class="ev-cal-diassemana">
+      <span data-i18n="inicio.cal_dom">Dom</span><span data-i18n="inicio.cal_lun">Lun</span><span data-i18n="inicio.cal_mar">Mar</span><span data-i18n="inicio.cal_mie">Mié</span><span data-i18n="inicio.cal_jue">Jue</span><span data-i18n="inicio.cal_vie">Vie</span><span data-i18n="inicio.cal_sab">Sáb</span>
+    </div>
+    <div id="ev-cal-grid" class="ev-cal-grid"></div>
   </div>
 
 </section>
+</section>
 
 <style>
-@keyframes fiduca-pulse {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.07); opacity: 0.85; }
+/* ── AGENDA / EVENTOS ── */
+.ev-countdown,
+.ev-filtros,
+.ev-grid,
+.ev-card,
+.ev-vacio,
+.ev-countdown-vacio {
+  opacity: 1 !important;
+  filter: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  transform: none !important;
 }
-@media (max-width: 768px) {
-  .ev-preview-grid { grid-template-columns: 1fr !important; }
+/* ── CALENDARIO ── */
+.ev-cal-wrap {
+  margin-top: 34px;
+  border: none;
+  border-radius: 20px;
+  padding: 26px;
+  background: #fff;
+  box-shadow: 0 4px 22px rgba(60,52,137,0.08);
+}
+.ev-cal-header {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 14px; margin-bottom: 20px;
+  background: linear-gradient(120deg, color-mix(in srgb, var(--purple) 12%, white), color-mix(in srgb, var(--teal) 14%, white));
+  border-radius: 14px;
+  padding: 14px 20px;
+}
+.ev-cal-nav { display: flex; align-items: center; gap: 16px; }
+.ev-cal-nav h4 {
+  min-width: 170px; text-align: center;
+  font-size: 20px; font-weight: 800; color: var(--navy); margin: 0;
+  text-transform: capitalize; letter-spacing: -0.01em;
+}
+.ev-cal-nav button {
+  border: none;
+  background: #fff; color: var(--purple);
+  width: 32px; height: 32px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all .2s ease;
+  box-shadow: 0 2px 8px rgba(60,52,137,0.15);
+}
+.ev-cal-nav button:hover { background: var(--purple); color: #fff; transform: translateY(-1px); }
+.ev-cal-nav button i { width: 16px; height: 16px; }
+
+.ev-cal-diassemana {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 8px;
+}
+.ev-cal-diassemana span {
+  text-align: center; font-size: 11px; font-weight: 800;
+  letter-spacing: .06em; text-transform: uppercase; color: var(--purple);
+  padding-bottom: 8px;
+}
+
+.ev-cal-grid {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+.ev-cal-dia {
+  min-height: 78px;
+  border-radius: 12px;
+  padding: 7px;
+  background: #F7F6FD;
+  border: 1.5px solid transparent;
+  display: flex; flex-direction: column; gap: 4px;
+  transition: transform .15s ease;
+}
+.ev-cal-dia.is-fuera { background: transparent; }
+.ev-cal-dia.is-hoy {
+  background: color-mix(in srgb, var(--purple) 14%, white);
+  border: 2px solid var(--purple);
+}
+.ev-cal-dia.tiene-evento {
+  background: color-mix(in srgb, var(--gold) 10%, white);
+  border-color: color-mix(in srgb, var(--gold) 35%, white);
+}
+.ev-cal-dia.tiene-evento.is-hoy {
+  background: color-mix(in srgb, var(--purple) 16%, white);
+  border-color: var(--purple);
+}
+.ev-cal-dia:hover:not(.is-fuera) { transform: translateY(-2px); }
+
+.ev-cal-num { font-size: 12px; font-weight: 800; color: #999; }
+.ev-cal-dia.is-hoy .ev-cal-num { color: var(--purple); }
+.ev-cal-dia.tiene-evento .ev-cal-num { color: var(--navy); }
+.ev-cal-dia.is-fuera .ev-cal-num { color: #eee; }
+
+.ev-cal-evento {
+  font-size: 10px; font-weight: 800; color: #fff;
+  border-radius: 6px; padding: 3px 6px;
+  line-height: 1.3; cursor: default;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.ev-cal-evento.ev-tipo-taller  { background: var(--gold); }
+.ev-cal-evento.ev-tipo-reunion { background: var(--navy); }
+.ev-cal-evento.ev-tipo-webinar { background: var(--teal); color: var(--navy); }
+.ev-cal-evento.es-continuacion {
+  opacity: 0.7;
+  text-align: center;
+}
+@media (max-width: 640px) {
+  .ev-cal-wrap    { padding: 16px; }
+  .ev-cal-header  { padding: 12px 14px; }
+  .ev-cal-nav     { width: 100%; justify-content: space-between; gap: 8px; }
+  .ev-cal-nav h4  { min-width: 0; flex: 1; font-size: 15px; }
+  .ev-cal-nav button { width: 28px; height: 28px; flex-shrink: 0; }
+  .ev-cal-grid    { gap: 4px; }
+  .ev-cal-dia     { min-height: 58px; padding: 4px; border-radius: 8px; }
+  .ev-cal-diassemana span { font-size: 9px; padding-bottom: 4px; }
+  .ev-cal-evento  { font-size: 0; padding: 0; height: 7px; border-radius: 50%; width: 7px; box-shadow: none; }
+}
+.ev-countdown {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  background: linear-gradient(120deg, var(--navy), var(--purple));
+  border-radius: 18px;
+  padding: 26px 32px;
+  margin-bottom: 28px;
+  color: #fff;
+}
+.ev-countdown-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  background: rgba(255,255,255,.18); padding: 4px 12px; border-radius: 999px;
+}
+.ev-countdown-titulo { font-size: 19px; font-weight: 800; margin: 10px 0 4px; line-height: 1.3; }
+.ev-countdown-meta { font-size: 13px; opacity: .9; margin: 0; }
+.ev-countdown-timer { display: flex; gap: 12px; }
+.ev-countdown-num {
+  min-width: 62px; text-align: center;
+  background: rgba(255,255,255,.18); border-radius: 12px; padding: 10px 6px;
+}
+.ev-countdown-num strong { display: block; font-size: 22px; font-weight: 800; line-height: 1; }
+.ev-countdown-num span { display: block; font-size: 9px; letter-spacing: .08em; text-transform: uppercase; opacity: .85; margin-top: 4px; }
+
+.ev-countdown-vacio {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  background: color-mix(in srgb, var(--purple) 8%, white);
+  border: 1.5px dashed color-mix(in srgb, var(--purple) 35%, white);
+  color: var(--navy);
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 14px;
+  padding: 16px 20px;
+  margin-bottom: 28px;
+}
+.ev-countdown-vacio i { color: var(--purple); flex-shrink: 0; }
+
+.ev-filtros { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 26px; }
+.ev-filtro {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'Baloo 2', sans-serif; font-size: 13px; font-weight: 700;
+  color: var(--purple); background: #fff;
+  border: 1.5px solid color-mix(in srgb, var(--purple) 30%, white);
+  padding: 8px 18px; border-radius: 999px; cursor: pointer; transition: all .2s ease;
+}
+.ev-filtro:hover { background: color-mix(in srgb, var(--purple) 12%, white); }
+.ev-filtro.is-activo { background: var(--navy); border-color: var(--navy); color: #fff; }
+
+.ev-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.ev-card {
+  background: #fff; border: 1.5px solid color-mix(in srgb, var(--purple) 20%, white); border-radius: 14px;
+  padding: 18px; text-align: left; transition: transform .2s ease, box-shadow .2s ease;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.ev-card:hover { transform: translateY(-3px) !important; box-shadow: 0 10px 24px rgba(60,52,137,0.15); }
+.ev-card.is-pasado { opacity: .6 !important; }
+.ev-card-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.ev-badge-fecha {
+  display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 700;
+  color: var(--purple); background: color-mix(in srgb, var(--purple) 12%, white); padding: 3px 10px; border-radius: 999px;
+}
+.ev-badge-tipo { font-size: 10px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; padding: 3px 10px; border-radius: 999px; color: #fff; }
+.ev-tipo-taller  { background: var(--gold); }
+.ev-tipo-reunion { background: var(--navy); }
+.ev-tipo-webinar { background: var(--teal); color: var(--navy); }
+.ev-card h4 { font-size: 14px; font-weight: 700; margin: 0; line-height: 1.4; color: var(--navy); }
+.ev-card .ev-meta { font-size: 12px; color: #888; margin: 0; }
+
+.ev-vacio {
+  display: none; border: 1.5px dashed color-mix(in srgb, var(--purple) 35%, white);
+  background: color-mix(in srgb, var(--purple) 5%, white);
+  border-radius: 18px; padding: 48px 40px; text-align: center;
+}
+.ev-vacio p { font-size: 15px; color: #666; margin: 14px 0 0; }
+
+@media (max-width: 900px) {
+  .ev-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .ev-grid { grid-template-columns: 1fr; }
+  .ev-countdown { flex-direction: column; align-items: flex-start; }
 }
 </style>
+
+<script>
+/* ── AGENDA FIDUCA: datos de eventos ──
+   fecha: "YYYY-MM-DDTHH:MM:SS-05:00" (hora de Panamá)
+   tipo:  "taller" | "reunion" | "webinar"          */
+const fiducaEventos = [
+  {
+    fecha: "2026-09-22T09:00:00-05:00",
+    fechaFin: "2026-09-24T17:00:00-05:00",
+    tipo: "reunion",
+    titulo: "Reunión del consorcio FIDUCA",
+    lugar: "Madrid, España",
+    hora: "9:00 AM – 5:00 PM"
+  },
+    {
+    fecha: "2026-05-11T09:00:00-05:00",
+    fechaFin: "2026-05-11T17:00:00-05:00",
+    tipo: "reunion",
+    titulo: "Lanzamiento Nacional de FIDUCA en Panamá",
+    lugar: "Ciudad de Panamá, Panamá",
+    hora: "10:30 AM – 12:00 PM"
+  },
+{
+  fecha: "2026-02-10T09:00:00-05:00",
+  fechaFin: "2026-02-13T17:00:00-05:00",
+  tipo: "reunion",
+  titulo: "KOM FIDUCA COSTA RICA",
+  lugar: "San José, Costa Rica",
+},
+];
+
+const fiducaTipoLabel = { taller: "Taller", reunion: "Reunión", webinar: "Webinar" };
+let fiducaFiltroActivo = "todos";
+let fiducaCountdownInterval = null;
+
+function fiducaFormatearFecha(iso) {
+  const d = new Date(iso);
+  return d.toLocaleDateString('es-PA', { day: '2-digit', month: 'short', year: 'numeric' }).replace('.', '');
+}
+
+function fiducaRenderEventos() {
+  const grid = document.getElementById('ev-grid');
+  const vacio = document.getElementById('ev-vacio');
+  if (!grid) return;
+
+  const ahora = new Date();
+const ordenados = [...fiducaEventos].sort((a, b) => {
+  const aPasado = new Date(a.fechaFin || a.fecha) < ahora;
+  const bPasado = new Date(b.fechaFin || b.fecha) < ahora;
+  if (aPasado !== bPasado) return aPasado ? -1 : 1;
+  return new Date(a.fecha) - new Date(b.fecha);
+});  const visibles = ordenados.filter(ev => fiducaFiltroActivo === 'todos' || ev.tipo === fiducaFiltroActivo);
+
+  grid.innerHTML = visibles.map(ev => {
+    const esPasado = new Date(ev.fecha) < ahora;
+    return `
+      <div class="ev-card ${esPasado ? 'is-pasado' : ''}" data-tipo="${ev.tipo}">
+        <div class="ev-card-top">
+          <span class="ev-badge-fecha"><i data-lucide="calendar" style="width:11px;height:11px;"></i> ${fiducaFormatearFecha(ev.fecha)}</span>
+          <span class="ev-badge-tipo ev-tipo-${ev.tipo}">${fiducaTipoLabel[ev.tipo]}</span>
+        </div>
+        <h4>${ev.titulo}</h4>
+        <p class="ev-meta"> ${ev.lugar} · ${ev.hora}</p>
+      </div>
+    `;
+  }).join('');
+
+  vacio.style.display = visibles.length === 0 ? 'block' : 'none';
+  grid.style.display = visibles.length === 0 ? 'none' : 'grid';
+
+  if (window.lucide) lucide.createIcons();
+}
+
+function fiducaFiltrarEventos(btn, tipo) {
+  fiducaFiltroActivo = tipo;
+  document.querySelectorAll('.ev-filtro').forEach(b => b.classList.remove('is-activo'));
+  btn.classList.add('is-activo');
+  fiducaRenderEventos();
+}
+
+function fiducaIniciarCountdown() {
+  const wrap = document.getElementById('ev-countdown-wrap');
+  const vacio = document.getElementById('ev-countdown-vacio');
+  const titulo = document.getElementById('ev-countdown-titulo');
+  const meta = document.getElementById('ev-countdown-meta');
+  const timer = document.getElementById('ev-countdown-timer');
+  if (!wrap) return;
+
+  const proximo = [...fiducaEventos]
+    .filter(ev => new Date(ev.fecha) > new Date())
+    .sort((a, b) => new Date(a.fecha) - new Date(b.fecha))[0];
+
+  if (!proximo) {
+    wrap.style.display = 'none';
+    vacio.style.display = 'flex';
+    clearInterval(fiducaCountdownInterval);
+    return;
+  }
+
+  vacio.style.display = 'none';
+  wrap.style.display = 'flex';
+  titulo.textContent = proximo.titulo;
+  meta.textContent = ` ${proximo.lugar} · ${fiducaFormatearFecha(proximo.fecha)} · ${proximo.hora}`;
+
+  function tick() {
+    const diff = new Date(proximo.fecha) - new Date();
+    if (diff <= 0) { fiducaIniciarCountdown(); return; }
+    const dias = Math.floor(diff / 86400000);
+    const horas = Math.floor((diff % 86400000) / 3600000);
+    const mins = Math.floor((diff % 3600000) / 60000);
+    const segs = Math.floor((diff % 60000) / 1000);
+    timer.innerHTML = `
+      <div class="ev-countdown-num"><strong>${dias}</strong><span>días</span></div>
+      <div class="ev-countdown-num"><strong>${horas}</strong><span>horas</span></div>
+      <div class="ev-countdown-num"><strong>${mins}</strong><span>min</span></div>
+      <div class="ev-countdown-num"><strong>${segs}</strong><span>seg</span></div>
+    `;
+  }
+
+  clearInterval(fiducaCountdownInterval);
+  tick();
+  fiducaCountdownInterval = setInterval(tick, 1000);
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  fiducaRenderEventos();
+  fiducaIniciarCountdown();
+});
+/* ── CALENDARIO ── */
+let fiducaCalFecha = new Date();
+
+function fiducaCalMes(delta) {
+  fiducaCalFecha.setMonth(fiducaCalFecha.getMonth() + delta);
+  fiducaRenderCalendario();
+}
+
+function fiducaRenderCalendario() {
+  const grid = document.getElementById('ev-cal-grid');
+  const titulo = document.getElementById('ev-cal-titulo');
+  if (!grid) return;
+
+  const año = fiducaCalFecha.getFullYear();
+  const mes = fiducaCalFecha.getMonth();
+  const hoy = new Date();
+
+  titulo.textContent = fiducaCalFecha.toLocaleDateString('es-PA', { month: 'long', year: 'numeric' });
+
+  const primerDia = new Date(año, mes, 1);
+  const diasEnMes = new Date(año, mes + 1, 0).getDate();
+  const offsetInicio = primerDia.getDay();
+  const totalCeldas = Math.ceil((offsetInicio + diasEnMes) / 7) * 7;
+
+  const eventosPorDia = {};
+fiducaEventos.forEach(ev => {
+  const inicio = new Date(ev.fecha);
+  const fin = ev.fechaFin ? new Date(ev.fechaFin) : inicio;
+  const cursor = new Date(inicio.getFullYear(), inicio.getMonth(), inicio.getDate());
+  const finDia = new Date(fin.getFullYear(), fin.getMonth(), fin.getDate());
+
+  while (cursor <= finDia) {
+    if (cursor.getFullYear() === año && cursor.getMonth() === mes) {
+      const esInicio = cursor.getDate() === inicio.getDate() && cursor.getMonth() === inicio.getMonth();
+      const key = cursor.getDate();
+      (eventosPorDia[key] = eventosPorDia[key] || []).push({ ...ev, esInicio });
+    }
+    cursor.setDate(cursor.getDate() + 1);
+  }
+});
+
+  let html = '';
+  for (let i = 0; i < totalCeldas; i++) {
+    const numDia = i - offsetInicio + 1;
+    const esFuera = numDia < 1 || numDia > diasEnMes;
+    const esHoy = !esFuera && numDia === hoy.getDate() && mes === hoy.getMonth() && año === hoy.getFullYear();
+
+    if (esFuera) {
+      html += `<div class="ev-cal-dia is-fuera"></div>`;
+      continue;
+    }
+
+    const eventosDia = eventosPorDia[numDia] || [];
+    html += `
+      <div class="ev-cal-dia ${esHoy ? 'is-hoy' : ''}">
+        <span class="ev-cal-num">${numDia}</span>
+${eventosDia.map(ev => `<span class="ev-cal-evento ev-tipo-${ev.tipo} ${ev.esInicio ? '' : 'es-continuacion'}" title="${ev.titulo}">${ev.esInicio ? ev.titulo : '···'}</span>`).join('')}      </div>
+    `;
+  }
+
+  grid.innerHTML = html;
+}
+document.addEventListener('DOMContentLoaded', function () {
+  fiducaRenderEventos();
+  fiducaIniciarCountdown();
+  fiducaRenderCalendario();
+});
+</script>
 <hr class="purple-divider">
 
 <section class="erasmus-section">
