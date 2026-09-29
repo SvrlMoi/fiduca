@@ -108,7 +108,7 @@
 .evento-badge {
   width: 48px; height: 48px;
   border-radius: 12px;
-  background: linear-gradient(135deg, var(--green), var(--white));
+  background: var(--gold);
   display: flex; align-items: center; justify-content: center;
   font-size: 22px; flex-shrink: 0;
 }
@@ -268,8 +268,45 @@
   .galeria-grid { columns: 1; }
   .galeria-kpis { flex-direction: row; flex-wrap: wrap; }
   .galeria-kpi { min-width: 120px; flex: 1; }
-  .lightbox-nav { display: none; }
+  .lightbox-nav { width: 40px; height: 40px; }
+  .lightbox-prev { left: 8px; }
+  .lightbox-next { right: 8px; }
 }
+
+/* ══════════ GALERÍA v2 — estilos añadidos ══════════ */
+.galeria-item img:not(.loaded) { aspect-ratio: 4 / 3; object-fit: cover; }
+.galeria-item { transition: opacity .6s ease, transform .3s cubic-bezier(.4,0,.2,1), box-shadow .3s; }
+.galeria-item:focus-visible { outline: 3px solid var(--gold, #f0b429); outline-offset: 3px; }
+.evento-block + .evento-block { margin-top: 70px; }
+.galeria-placeholder .ph-icon, .galeria-placeholder svg { width: 32px; height: 32px; opacity: .4; }
+
+/* Lightbox: carga, error y transición entre fotos */
+.lightbox-img-wrap { position: relative; min-height: 280px; }
+.lightbox-img-wrap #lb-img { transition: opacity .2s ease; }
+.lightbox-img-wrap #lb-img:not([src]) { visibility: hidden; }
+.lightbox-img-wrap.loading #lb-img { opacity: .3; }
+.lightbox-img-wrap.error #lb-img { display: none; }
+.lb-spinner {
+  display: none; position: absolute; top: 50%; left: 50%;
+  width: 44px; height: 44px; margin: -22px 0 0 -22px;
+  border: 4px solid rgba(255,255,255,.2); border-top-color: #fff;
+  border-radius: 50%; animation: lbSpin .8s linear infinite;
+}
+.lightbox-img-wrap.loading .lb-spinner { display: block; }
+@keyframes lbSpin { to { transform: rotate(360deg); } }
+.lb-error {
+  display: none; position: absolute; inset: 0;
+  flex-direction: column; align-items: center; justify-content: center;
+  gap: 14px; color: rgba(255,255,255,.75); font-size: 14px; text-align: center; padding: 20px;
+}
+.lightbox-img-wrap.error .lb-error { display: flex; }
+.lb-error button {
+  background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.3);
+  color: #fff; padding: 8px 20px; border-radius: 20px; cursor: pointer;
+  font-family: inherit; font-size: 13px;
+}
+.lb-error button:hover { background: rgba(69,210,197,.3); }
+.lightbox-overlay.active .lightbox-inner { animation: none; }
 </style>
 </head>
 <body>
@@ -327,204 +364,35 @@
 </div>
 
 
-<!-- FILTROS -->
-<div class="galeria-filter-wrap reveal from-up" style="transition-delay:0.1s">
+<!-- FILTROS (los botones de cada evento se generan solos desde EVENTOS en el <script> de abajo) -->
+<div class="galeria-filter-wrap reveal from-up" id="galeria-filtros" style="transition-delay:0.1s">
   <span class="filter-label" data-i18n="galeria.filtrar_label">Filtrar por evento</span>
-  <button class="filter-btn active" onclick="filtrarGaleria(this, 'todos')" data-i18n="galeria.filtro_todos">Todos</button>
-  <button class="filter-btn" onclick="filtrarGaleria(this, 'kom-cr')">KOM Costa Rica</button>
+  <button class="filter-btn active" type="button" data-filtro="todos" data-i18n="galeria.filtro_todos">Todos</button>
 </div>
 
-<!-- GALERÍA PRINCIPAL -->
-<section class="galeria-section">
-
-  <!-- EVENTO: KOM Costa Rica -->
-  <div class="evento-block" data-evento="kom-cr" id="bloque-kom-cr">
-    <div class="evento-header reveal from-left">
-      <div class="evento-badge">🇨🇷</div>
-      <div class="evento-meta">
-        <h3 data-i18n="galeria.kom_titulo">Kick-off Meeting — Costa Rica</h3>
-        <p data-i18n="galeria.kom_desc">Primer encuentro presencial del consorcio FIDUCA · Enero 2026 · Costa Rica</p>
-      </div>
-      <span class="evento-count" id="count-kom-cr" data-i18n="galeria.kom_count">10 fotos</span>
-    </div>
-
-    <div class="galeria-grid" id="grid-kom-cr">
-
-      <!-- Foto 1 -->
-      <div class="galeria-item wide reveal" style="transition-delay:0.05s"
-           onclick="openLightbox('kom-cr', 0)">
-        <img src="Estilos/img/Fotos noticias/Foto Grupal CTEC KOM CR.jpeg"
-             alt="Foto grupal KOM Costa Rica"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="galeria-placeholder" style="display:none;">
-          <i data-lucide="camara"></i>
-          Foto grupal — KOM Costa Rica
-        </div>
-        <div class="galeria-overlay">
-          <div class="galeria-overlay-icon"><i data-lucide="zoom-in" style="width:16px;height:16px;color:#fff;"></i></div>
-          <span class="galeria-overlay-text" data-i18n="galeria.foto1_overlay">Foto grupal del consorcio · KOM Costa Rica</span>
-        </div>
-      </div>
-
-      <!-- Foto 2 -->
-      <div class="galeria-item wide reveal" style="transition-delay:0.05s"
-           onclick="openLightbox('kom-cr', 1)">
-        <img src="Estilos/img/eventos/KOM Costa Rica/Foto de Integrantes del Comité de Gestión FIDUCA.jpeg"
-             alt="Foto integrantes Comité de Gestión"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="galeria-placeholder" style="display:none;">
-          <i data-lucide="camara"></i>
-          Foto integrantes del Comité de Gestión
-        </div>
-        <div class="galeria-overlay">
-          <div class="galeria-overlay-icon"><i data-lucide="zoom-in" style="width:16px;height:16px;color:#fff;"></i></div>
-          <span class="galeria-overlay-text" data-i18n="galeria.foto2_overlay">Foto integrantes del Comité de Gestión</span>
-        </div>
-      </div>
-
-      <!-- Foto 3 -->
-      <div class="galeria-item wide reveal" style="transition-delay:0.05s"
-           onclick="openLightbox('kom-cr', 2)">
-        <img src="Estilos/img/eventos/KOM Costa Rica/Foto Grupal KOM CR.jpg"
-             alt="Consorcio FIDUCA"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="galeria-placeholder" style="display:none;">
-          <i data-lucide="camara"></i>
-          Consorcio FIDUCA
-        </div>
-        <div class="galeria-overlay">
-          <div class="galeria-overlay-icon"><i data-lucide="zoom-in" style="width:16px;height:16px;color:#fff;"></i></div>
-          <span class="galeria-overlay-text" data-i18n="galeria.foto3_overlay">Consorcio FIDUCA</span>
-        </div>
-      </div>
-
-      <!-- Foto 4 -->
-      <div class="galeria-item wide reveal" style="transition-delay:0.05s"
-           onclick="openLightbox('kom-cr', 3)">
-        <img src="Estilos/img/eventos/KOM Costa Rica/Foto grupal Territorio Malecu.JPG"
-             alt="malecu"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="galeria-placeholder" style="display:none;">
-          <i data-lucide="camara"></i>
-          Foto Grupal Territorio Maleku
-        </div>
-        <div class="galeria-overlay">
-          <div class="galeria-overlay-icon"><i data-lucide="zoom-in" style="width:16px;height:16px;color:#fff;"></i></div>
-          <span class="galeria-overlay-text" data-i18n="galeria.foto4_overlay">Foto Grupal Territorio Maleku</span>
-        </div>
-      </div>
-      
-      <!-- Foto 5 -->
-      <div class="galeria-item wide reveal" style="transition-delay:0.05s"
-           onclick="openLightbox('kom-cr', 4)">
-        <img src="Estilos/img/eventos/KOM Costa Rica/IMG_8112.jpeg"
-             alt="Foto de Consorcio FIDUCA"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="galeria-placeholder" style="display:none;">
-          <i data-lucide="camara"></i>
-          Foto Grupal
-        </div>
-        <div class="galeria-overlay">
-          <div class="galeria-overlay-icon"><i data-lucide="zoom-in" style="width:16px;height:16px;color:#fff;"></i></div>
-          <span class="galeria-overlay-text" data-i18n="galeria.foto5_overlay">Foto de Consorcio FIDUCA</span>
-        </div>
-      </div>
-
-      <!-- Foto 6 -->
-      <div class="galeria-item wide reveal" style="transition-delay:0.05s"
-           onclick="openLightbox('kom-cr', 5)">
-        <img src="Estilos/img/eventos/KOM Costa Rica/Ritual de Fogata Territorio Malecu.JPG"
-             alt="Ritual Fogata Territorio Maleku"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="galeria-placeholder" style="display:none;">
-          <i data-lucide="camara"></i>
-          Ritual Fogata Territorio Maleku
-        </div>
-        <div class="galeria-overlay">
-          <div class="galeria-overlay-icon"><i data-lucide="zoom-in" style="width:16px;height:16px;color:#fff;"></i></div>
-          <span class="galeria-overlay-text" data-i18n="galeria.foto6_overlay">Ritual Fogata Territorio Maleku</span>
-        </div>
-      </div>
-
-      <!-- Foto 7 -->
-      <div class="galeria-item wide reveal" style="transition-delay:0.05s"
-           onclick="openLightbox('kom-cr', 6)">
-        <img src="Estilos/img/eventos/KOM Costa Rica/Taller de Plantas Territorio Malecu.JPG"
-             alt="Taller de Plantas Medicinales Territorio Maleku"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="galeria-placeholder" style="display:none;">
-          <i data-lucide="camara"></i>
-          Taller de Plantas Medicinales Territorio Maleku
-        </div>
-        <div class="galeria-overlay">
-          <div class="galeria-overlay-icon"><i data-lucide="zoom-in" style="width:16px;height:16px;color:#fff;"></i></div>
-          <span class="galeria-overlay-text" data-i18n="galeria.foto7_overlay">Taller de Plantas Medicinales Territorio Maleku</span>
-        </div>
-      </div>
-
-      <!-- Foto 8 -->
-      <div class="galeria-item wide reveal" style="transition-delay:0.05s"
-           onclick="openLightbox('kom-cr', 7)">
-        <img src="Estilos/img/eventos/KOM Costa Rica/Turismo sostenible.jpeg"
-             alt="turismo sostenible"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="galeria-placeholder" style="display:none;">
-          <i data-lucide="camara"></i>
-          Turismo Sostenible
-        </div>
-        <div class="galeria-overlay">
-          <div class="galeria-overlay-icon"><i data-lucide="zoom-in" style="width:16px;height:16px;color:#fff;"></i></div>
-          <span class="galeria-overlay-text" data-i18n="galeria.foto8_overlay">Turismo Sostenible</span>
-        </div>
-      </div>
-
-      <!-- Foto 9 -->
-      <div class="galeria-item wide reveal" style="transition-delay:0.05s"
-           onclick="openLightbox('kom-cr', 8)">
-        <img src="Estilos/img/eventos/KOM Costa Rica/Plantas.jpeg"
-             alt="taller plantas 2"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="galeria-placeholder" style="display:none;">
-          <i data-lucide="camara"></i>
-          Taller de Plantas Medicinales
-        </div>
-        <div class="galeria-overlay">
-          <div class="galeria-overlay-icon"><i data-lucide="zoom-in" style="width:16px;height:16px;color:#fff;"></i></div>
-          <span class="galeria-overlay-text" data-i18n="galeria.foto9_overlay">Taller de Plantas Medicinales</span>
-        </div>
-      </div>
-
-      <!-- Foto 10 -->
-      <div class="galeria-item wide reveal" style="transition-delay:0.05s"
-           onclick="openLightbox('kom-cr', 9)">
-        <img src="Estilos/img/eventos/KOM Costa Rica/Presentacion proyecto.jpeg"
-             alt="presentacion proyecto"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="galeria-placeholder" style="display:none;">
-          <i data-lucide="camara"></i>
-          Presentación del Proyecto
-        </div>
-        <div class="galeria-overlay">
-          <div class="galeria-overlay-icon"><i data-lucide="zoom-in" style="width:16px;height:16px;color:#fff;"></i></div>
-          <span class="galeria-overlay-text" data-i18n="galeria.foto10_overlay">Presentación del Proyecto</span>
-        </div>
-      </div>
-      
+<!-- GALERÍA PRINCIPAL (los bloques de evento y sus fotos se generan solos desde EVENTOS en el <script> de abajo) -->
+<section class="galeria-section" id="galeria-contenedor">
   <div class="galeria-empty" id="galeria-empty">
-      <i data-lucide="camara"></i>
+    <i data-lucide="camera"></i>
     <p data-i18n="comun.galeria_sin_fotos">No hay fotos disponibles para este filtro.</p>
   </div>
-
 </section>
 <hr class="purple-divider">
 
 <!-- LIGHTBOX -->
-<div class="lightbox-overlay" id="lightbox-overlay" onclick="closeLightboxOnBg(event)">
-  <button class="lightbox-close" onclick="closeLightbox()" aria-label="Cerrar" title="Cerrar">✕</button>
-  <button class="lightbox-nav lightbox-prev" onclick="navLightbox(-1)">‹</button>
-  <button class="lightbox-nav lightbox-next" onclick="navLightbox(1)">›</button>
+<div class="lightbox-overlay" id="lightbox-overlay" role="dialog" aria-modal="true" aria-label="Galería de fotos">
+  <button class="lightbox-close" id="lb-close" type="button" aria-label="Cerrar">✕</button>
+  <button class="lightbox-nav lightbox-prev" id="lb-prev" type="button" aria-label="Foto anterior">‹</button>
+  <button class="lightbox-nav lightbox-next" id="lb-next" type="button" aria-label="Foto siguiente">›</button>
   <div class="lightbox-inner">
-    <div class="lightbox-img-wrap" id="lightbox-img-wrap"></div>
+    <div class="lightbox-img-wrap" id="lightbox-img-wrap">
+      <img id="lb-img" alt="">
+      <div class="lb-spinner" id="lb-spinner"></div>
+      <div class="lb-error" id="lb-error">
+        <span id="lb-error-msg">No se pudo cargar esta imagen.</span>
+        <button type="button" id="lb-retry">Reintentar</button>
+      </div>
+    </div>
     <div class="lightbox-caption" id="lightbox-caption"></div>
   </div>
   <div class="lightbox-counter" id="lightbox-counter"></div>
@@ -593,99 +461,286 @@
 <script src="Estilos/scripts.js"></script>
 <script>
 
-const galeriaData = {
-  'kom-cr': [
-    { src: 'Estilos/img/Fotos noticias/Foto Grupal CTEC KOM CR.jpeg', titulo_es: 'Foto grupal del consorcio', titulo_en: 'Consortium Group Photo', desc_es: 'Integrantes del consorcio FIDUCA durante el Kick-off Meeting en Costa Rica · Enero 2026', desc_en: 'FIDUCA consortium members during the Kick-off Meeting in Costa Rica · January 2026' },
-    { src: 'Estilos/img/eventos/KOM Costa Rica/Foto de Integrantes del Comité de Gestión FIDUCA.jpeg', titulo_es: 'Foto integrantes del Comité de Gestión', titulo_en: 'Management Committee Members', desc_es: 'Miembros del Comité de Gestión reunidos para definir la gobernanza del proyecto FIDUCA', desc_en: 'Management Committee members meeting to establish FIDUCA project governance' },
-    { src: 'Estilos/img/eventos/KOM Costa Rica/Foto Grupal KOM CR.jpg', titulo_es: 'Consorcio FIDUCA', titulo_en: 'FIDUCA Consortium', desc_es: 'Representantes de las 12 instituciones socias durante las sesiones plenarias en Costa Rica', desc_en: 'Representatives of the 12 partner institutions during plenary sessions in Costa Rica' },
-    { src: 'Estilos/img/eventos/KOM Costa Rica/Foto grupal Territorio Malecu.JPG', titulo_es: 'Foto Grupal Territorio Maleku', titulo_en: 'Group Photo Maleku Territory', desc_es: 'Visita de campo y encuentro con la comunidad del Territorio Indígena Maleku', desc_en: 'Field visit and gathering with the community of the Maleku Indigenous Territory' },
-    { src: 'Estilos/img/eventos/KOM Costa Rica/IMG_8112.jpeg', titulo_es: 'Foto de Consorcio FIDUCA', titulo_en: 'FIDUCA Consortium Photo', desc_es: 'Equipo de investigadores y coordinadores de las universidades socias', desc_en: 'Team of researchers and coordinators from partner universities' },
-    { src: 'Estilos/img/eventos/KOM Costa Rica/Ritual de Fogata Territorio Malecu.JPG', titulo_es: 'Ritual Fogata Territorio Maleku', titulo_en: 'Campfire Ritual Maleku Territory', desc_es: 'Ceremonia ancestral de bienvenida compartida por los líderes de la comunidad Maleku', desc_en: 'Ancestral welcoming ceremony shared by leaders of the Maleku community' },
-    { src: 'Estilos/img/eventos/KOM Costa Rica/Taller de Plantas Territorio Malecu.JPG', titulo_es: 'Taller de Plantas Medicinales Territorio Maleku', titulo_en: 'Medicinal Plants Workshop Maleku Territory', desc_es: 'Intercambio de saberes tradicionales sobre botánica y medicina comunitaria', desc_en: 'Exchange of traditional knowledge on community botany and medicine' },
-    { src: 'Estilos/img/eventos/KOM Costa Rica/Turismo sostenible.jpeg', titulo_es: 'Turismo Sostenible', titulo_en: 'Sustainable Tourism', desc_es: 'Exploración de iniciativas de etnoturismo y emprendimiento juvenil comunitario', desc_en: 'Exploration of ethno-tourism and community youth entrepreneurship initiatives' },
-    { src: 'Estilos/img/eventos/KOM Costa Rica/Plantas.jpeg', titulo_es: 'Taller de Plantas Medicinales', titulo_en: 'Medicinal Plants Workshop', desc_es: 'Demostración de productos naturales elaborados por emprendedoras locales', desc_en: 'Demonstration of natural products crafted by local women entrepreneurs' },
-    { src: 'Estilos/img/eventos/KOM Costa Rica/Presentacion proyecto.jpeg', titulo_es: 'Presentación del Proyecto', titulo_en: 'Project Presentation', desc_es: 'Presentación institucional de las metas y paquetes de trabajo de FIDUCA', desc_en: 'Institutional presentation of FIDUCA goals and work packages' }
-  ]
-};
+(function () {
+  'use strict';
 
-/* Estado del lightbox */
-let lbEvento = null;
-let lbIndex  = 0;
+  const EVENTOS = [
+    {
+      id: 'FIDUCA ESP',
+      icono: '🇪🇸',
+      filtro_es: 'Reunión España',                       
+      filtro_en: 'Meeting in Spain',
+      titulo_es: 'Segunda reunión presencial — Madrid, España',
+      titulo_en: 'Second in-person meeting — Madrid, Spain',
+      desc_es: 'Segundo encuentro presencial del consorcio FIDUCA · Septiembre 2026 · España',
+      desc_en: 'Second in-person gathering of the FIDUCA consortium · September 2026 · Spain',
+      carpeta: 'Estilos/img/eventos/Reunión España/',
+      fotos: [
+        { src: 'Estilos/img/eventos/Reunión España/foto_consorcio_completo_Madrid.jpg', titulo_es: 'Foto grupal del consorcio', titulo_en: 'Consortium Group Photo', desc_es: 'Integrantes del consorcio FIDUCA durante la reunión presencial en Madrid · Septiembre 2026', desc_en: 'FIDUCA consortium members during the in-person meeting in Madrid · September 2026' },
+        { archivo: 'Trabajando.jpg', titulo_es: 'Consorcio FIDUCA trabajando', titulo_en: 'Management Committee Members', desc_es: 'Miembros del Comité de Gestión reunidos para definir la gobernanza del proyecto FIDUCA', desc_en: 'Management Committee members meeting to establish FIDUCA project governance' },
+        { archivo: 'ExplicacionPropositos.jpg', titulo_es: 'Propósitos de la reunión', titulo_en: 'Meeting Objectives', desc_es: 'Presentación de los propósitos y productos esperados de la reunión presencial del consorcio FIDUCA', desc_en: 'Presentation of the objectives and expected outcomes of the FIDUCA consortium in-person meeting' },
+        { archivo: 'FIDUCA_vestimentaTipica.jpeg', titulo_es: 'Vestimenta típica', titulo_en: 'Traditional Attire', desc_es: 'Integrantes del consorcio FIDUCA con vestimenta típica panameña durante la reunión en Madrid', desc_en: 'FIDUCA consortium members wearing traditional Panamanian attire during the Madrid meeting' },
+        { archivo: 'FIDUCA_vestimentaTipica2.jpeg', titulo_es: 'Identidad cultural del consorcio', titulo_en: 'Consortium Cultural Identity', desc_es: 'Miembros del consorcio compartiendo su vestimenta típica en la reunión presencial en Madrid', desc_en: 'Consortium members sharing their traditional attire at the in-person meeting in Madrid' },
+        { archivo: 'fiducaEnIDTUPM.jpg', titulo_es: 'FIDUCA en itdUPM', titulo_en: 'FIDUCA at itdUPM', desc_es: 'Presentación del itdUPM sobre el fortalecimiento de la dimensión social de la academia ante el consorcio', desc_en: 'itdUPM presentation on reinforcing the social dimension of academia to the consortium' },
+        { archivo: 'IMG_20260924_183212_1.jpg', titulo_es: 'Foto grupal en itdUPM', titulo_en: 'Group Photo at itdUPM', desc_es: 'Integrantes del consorcio junto al Centro de Innovación en Tecnología para el Desarrollo Humano (itdUPM) · Septiembre 2026', desc_en: 'Consortium members outside the Innovation and Technology for Human Development Centre (itdUPM) · September 2026' },
+        { archivo: 'presentaciónComunidades_Izalku.jpg', titulo_es: 'Presentación de comunidades: Izalco (Itzalku)', titulo_en: 'Community Presentation: Izalco (Itzalku)', desc_es: 'Presentación de las generalidades de la zona de Izalco (Itzalku), El Salvador, ante los miembros del consorcio', desc_en: 'Presentation of the general characteristics of the Izalco (Itzalku) area, El Salvador, to consortium members' },
+        { archivo: 'presentaciónComunidades_Maleku.jpg', titulo_es: 'Presentación de comunidades: Pueblo Maleku', titulo_en: 'Community Presentation: Maleku People', desc_es: 'Presentación de las generalidades del territorio indígena Maleku (Guatuso), Costa Rica', desc_en: 'Presentation of the general characteristics of the Maleku (Guatuso) indigenous territory, Costa Rica' },
+        { archivo: 'PresentacionComunidades_Quetzaltenango.jpg', titulo_es: 'Presentación de comunidades: Quetzaltenango y Totonicapán', titulo_en: 'Community Presentation: Quetzaltenango and Totonicapán', desc_es: 'Presentación sobre los territorios indígenas de Quetzaltenango y Totonicapán, Guatemala', desc_en: 'Presentation on the indigenous territories of Quetzaltenango and Totonicapán, Guatemala' },
+        { archivo: 'PresentaciónUSO.jpg', titulo_es: 'Presentación de la Universidad de Sonsonate', titulo_en: 'University of Sonsonate Presentation', desc_es: 'Equipo de la Universidad de Sonsonate (El Salvador) presentando las zonas de trabajo del WP3', desc_en: 'University of Sonsonate (El Salvador) team presenting the WP3 work zones' },
+        { archivo: 'USO_CamisasFIDUCA.jpg', titulo_es: 'Equipo de la Universidad de Sonsonate', titulo_en: 'University of Sonsonate Team', desc_es: 'Integrantes de la Universidad de Sonsonate con las camisas oficiales del proyecto FIDUCA', desc_en: 'University of Sonsonate members wearing the official FIDUCA project shirts' },
+        { archivo: 'Trabajando2.jpg', titulo_es: 'Trabajo en equipo', titulo_en: 'Teamwork', desc_es: 'Miembros del consorcio revisando en conjunto los avances de la sesión de trabajo', desc_en: 'Consortium members jointly reviewing progress during the working session' },
+        { archivo: 'trabajando3.jpg', titulo_es: 'Mesa de trabajo', titulo_en: 'Working Table', desc_es: 'Grupo de trabajo elaborando de forma colaborativa los documentos del proyecto', desc_en: 'Working group collaboratively drafting project documents' },
+        { archivo: 'trabajando4.jpg', titulo_es: 'Sesión de trabajo del consorcio', titulo_en: 'Consortium Working Session', desc_es: 'Integrantes del consorcio coordinando tareas durante la reunión en Madrid', desc_en: 'Consortium members coordinating tasks during the Madrid meeting' },
+        { archivo: 'UNED_Madrid.jpg', titulo_es: 'Equipo de la UNED', titulo_en: 'UNED Team', desc_es: 'Integrantes de la UNED trabajando durante la reunión presencial del consorcio en Madrid', desc_en: 'UNED members working during the consortium in-person meeting in Madrid' },
+      ]
+    },
 
-/* ── FILTRO ── */
-function filtrarGaleria(btn, evento) {
-  document.querySelectorAll('.galeria-filter-wrap .filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
+    {
+      id: 'kom-cr',
+      icono: '🇨🇷',
+      filtro_es: 'KOM Costa Rica',
+      filtro_en: 'KOM Costa Rica',
+      titulo_es: 'Kick-off Meeting — Costa Rica',
+      titulo_en: 'Kick-off Meeting — Costa Rica',
+      desc_es: 'Primer encuentro presencial del consorcio FIDUCA · Enero 2026 · Costa Rica',
+      desc_en: 'First in-person gathering of the FIDUCA consortium · January 2026 · Costa Rica',
+      carpeta: 'Estilos/img/eventos/KOM Costa Rica/',
+      fotos: [
+        { src: 'Estilos/img/eventos/KOM Costa Rica/FotoGrupal_CTEC.jpeg', titulo_es: 'Foto grupal del consorcio', titulo_en: 'Consortium Group Photo', desc_es: 'Integrantes del consorcio FIDUCA durante el Kick-off Meeting en Costa Rica · Enero 2026', desc_en: 'FIDUCA consortium members during the Kick-off Meeting in Costa Rica · January 2026' },
+        { archivo: 'Comite_Gestion.jpeg', titulo_es: 'Foto integrantes del Comité de Gestión', titulo_en: 'Management Committee Members', desc_es: 'Miembros del Comité de Gestión reunidos para definir la gobernanza del proyecto FIDUCA', desc_en: 'Management Committee members meeting to establish FIDUCA project governance' },
+        { archivo: 'Foto Grupal KOM CR.jpg', titulo_es: 'Consorcio FIDUCA', titulo_en: 'FIDUCA Consortium', desc_es: 'Representantes de las 12 instituciones socias durante las sesiones plenarias en Costa Rica', desc_en: 'Representatives of the 12 partner institutions during plenary sessions in Costa Rica' },
+        { archivo: 'Foto grupal Territorio Malecu.JPG', titulo_es: 'Foto Grupal Territorio Maleku', titulo_en: 'Group Photo Maleku Territory', desc_es: 'Visita de campo y encuentro con la comunidad del Territorio Indígena Maleku', desc_en: 'Field visit and gathering with the community of the Maleku Indigenous Territory' },
+        { archivo: 'IMG_8112.jpeg', titulo_es: 'Foto de Consorcio FIDUCA', titulo_en: 'FIDUCA Consortium Photo', desc_es: 'Equipo de investigadores y coordinadores de las universidades socias', desc_en: 'Team of researchers and coordinators from partner universities' },
+        { archivo: 'Ritual de Fogata Territorio Malecu.JPG', titulo_es: 'Ritual Fogata Territorio Maleku', titulo_en: 'Campfire Ritual Maleku Territory', desc_es: 'Ceremonia ancestral de bienvenida compartida por los líderes de la comunidad Maleku', desc_en: 'Ancestral welcoming ceremony shared by leaders of the Maleku community' },
+        { archivo: 'Taller de Plantas Territorio Malecu.JPG', titulo_es: 'Taller de Plantas Medicinales Territorio Maleku', titulo_en: 'Medicinal Plants Workshop Maleku Territory', desc_es: 'Intercambio de saberes tradicionales sobre botánica y medicina comunitaria', desc_en: 'Exchange of traditional knowledge on community botany and medicine' },
+        { archivo: 'Turismo sostenible.jpeg', titulo_es: 'Turismo Sostenible', titulo_en: 'Sustainable Tourism', desc_es: 'Exploración de iniciativas de etnoturismo y emprendimiento juvenil comunitario', desc_en: 'Exploration of ethno-tourism and community youth entrepreneurship initiatives' },
+        { archivo: 'Plantas.jpeg', titulo_es: 'Taller de Plantas Medicinales', titulo_en: 'Medicinal Plants Workshop', desc_es: 'Demostración de productos naturales elaborados por emprendedoras locales', desc_en: 'Demonstration of natural products crafted by local women entrepreneurs' },
+        { archivo: 'Presentacion proyecto.jpeg', titulo_es: 'Presentación del Proyecto', titulo_en: 'Project Presentation', desc_es: 'Presentación institucional de las metas y paquetes de trabajo de FIDUCA', desc_en: 'Institutional presentation of FIDUCA goals and work packages' }
+      ]
+    }
+  ];
 
-  const bloques = document.querySelectorAll('.evento-block');
-  let visible = 0;
+  /* ── 2. TEXTOS DE INTERFAZ ────────────────────────────────────── */
+  const TXT = {
+    es: { foto: 'foto', fotos: 'fotos', cargando: 'Cargando…', error: 'No se pudo cargar esta imagen.', reintentar: 'Reintentar', cerrar: 'Cerrar', ant: 'Foto anterior', sig: 'Foto siguiente', noDisp: 'Imagen no disponible', ampliar: 'Ampliar foto' },
+    en: { foto: 'photo', fotos: 'photos', cargando: 'Loading…', error: 'This image could not be loaded.', reintentar: 'Retry', cerrar: 'Close', ant: 'Previous photo', sig: 'Next photo', noDisp: 'Image unavailable', ampliar: 'Enlarge photo' }
+  };
+  const lang = () => (document.documentElement.lang === 'en' ? 'en' : 'es');
+  const t = k => TXT[lang()][k];
+  const pick = (o, k) => (lang() === 'en' ? (o[k + '_en'] || o[k + '_es']) : o[k + '_es']) || '';
+  /* Codifica cada tramo de la ruta: espacios, tildes, # y ? ya no rompen la URL */
+  const url = ruta => ruta.split('/').map(encodeURIComponent).join('/');
+  const $ = id => document.getElementById(id);
 
-  bloques.forEach(bloque => {
-    const show = evento === 'todos' || bloque.dataset.evento === evento;
-    bloque.style.display = show ? '' : 'none';
-    if (show) visible++;
-  });
+  /* ── 3. NORMALIZAR DATOS ──────────────────────────────────────── */
+  const eventos = EVENTOS
+    .filter(e => e.fotos && e.fotos.length)
+    .map(e => ({
+      ...e,
+      fotos: e.fotos.map(f => ({ ...f, url: url(f.src || (e.carpeta || '') + f.archivo) }))
+    }));
 
-  document.getElementById('galeria-empty').style.display = visible === 0 ? 'block' : 'none';
-}
+  /* ── 4. CONSTRUIR LA PÁGINA ───────────────────────────────────── */
+  function el(tag, props, hijos) {
+    const n = document.createElement(tag);
+    Object.entries(props || {}).forEach(([k, v]) => {
+      if (k === 'class') n.className = v; else if (k === 'text') n.textContent = v; else n.setAttribute(k, v);
+    });
+    (hijos || []).forEach(h => n.appendChild(h));
+    return n;
+  }
+  const icono = (nombre, estilo) => el('i', { 'data-lucide': nombre, style: estilo || '' });
+  const refrescarIconos = () => { if (window.lucide && lucide.createIcons) lucide.createIcons(); };
 
-/* ── LIGHTBOX ── */
-function openLightbox(evento, idx) {
-  lbEvento = evento;
-  lbIndex  = idx;
-  renderLightbox();
-  document.getElementById('lightbox-overlay').classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-
-function renderLightbox() {
-  const fotos = galeriaData[lbEvento];
-  const foto  = fotos[lbIndex];
-  const wrap  = document.getElementById('lightbox-img-wrap');
-  const cap   = document.getElementById('lightbox-caption');
-  const counter = document.getElementById('lightbox-counter');
-  const lang = localStorage.getItem('idiomaActivo') || 'es';
-
-  const titulo = lang === 'en' ? (foto.titulo_en || foto.titulo_es) : foto.titulo_es;
-  const desc = lang === 'en' ? (foto.desc_en || foto.desc_es) : foto.desc_es;
-  const placeholderText = lang === 'en' ? 'Image available soon' : 'Imagen próximamente disponible';
-
-  if (foto.src) {
-    wrap.innerHTML = `<img src="${foto.src}" alt="${titulo}">`;
-  } else {
-    wrap.innerHTML = `
-      <div class="lightbox-placeholder">
-      <i data-lucide="camara"></i>
-        <span>${placeholderText}</span>
-      </div>`;
-    if (typeof lucide !== 'undefined') lucide.createIcons();
+  function placeholder(texto) {
+    return el('div', { class: 'galeria-placeholder' }, [icono('camera'), el('span', { text: texto })]);
   }
 
-  cap.innerHTML = `<strong>${titulo}</strong>${desc}`;
-  counter.textContent = `${lbIndex + 1} / ${fotos.length}`;
-}
+  const contenedor = $('galeria-contenedor');
+  const barraFiltros = $('galeria-filtros');
+  const btnTodos = barraFiltros.querySelector('[data-filtro="todos"]');
+  const bloques = [];   // { ev, root, h3, p, count, btn, fotos:[{data, overlayText, img}] }
 
-function closeLightbox() {
-  document.getElementById('lightbox-overlay').classList.remove('active');
-  document.body.style.overflow = '';
-}
+  eventos.forEach(ev => {
+    const b = { ev, fotos: [] };
 
-function closeLightboxOnBg(e) {
-  if (e.target === document.getElementById('lightbox-overlay')) closeLightbox();
-}
+    b.h3 = el('h3');
+    b.p = el('p');
+    b.count = el('span', { class: 'evento-count' });
+    const header = el('div', { class: 'evento-header reveal from-left' }, [
+      el('div', { class: 'evento-badge', text: ev.icono || '📷' }),
+      el('div', { class: 'evento-meta' }, [b.h3, b.p]),
+      b.count
+    ]);
 
-function navLightbox(dir) {
-  const fotos = galeriaData[lbEvento];
-  lbIndex = (lbIndex + dir + fotos.length) % fotos.length;
-  renderLightbox();
-}
+    const grid = el('div', { class: 'galeria-grid' });
+    ev.fotos.forEach((f, i) => {
+      const img = el('img', { loading: 'lazy', decoding: 'async', src: f.url });
+      img.addEventListener('load', () => img.classList.add('loaded'));
+      img.addEventListener('error', () => {
+        const ph = placeholder('');
+        img.replaceWith(ph);
+        item.placeholderEl = ph;
+        actualizarTextos();
+        refrescarIconos();
+      });
+      const overlayText = el('span', { class: 'galeria-overlay-text' });
+      const overlay = el('div', { class: 'galeria-overlay' }, [
+        el('div', { class: 'galeria-overlay-icon' }, [icono('zoom-in', 'width:16px;height:16px;color:#fff;')]),
+        overlayText
+      ]);
+      const item = el('a', { class: 'galeria-item wide reveal', href: f.url, role: 'button' }, [img, overlay]);
+      item.addEventListener('click', e => { e.preventDefault(); abrir(b, i, item); });
+      grid.appendChild(item);
+      b.fotos.push({ data: f, overlayText, img, item });
+      if (typeof revealObserver !== 'undefined') revealObserver.observe(item);
+    });
 
-document.addEventListener('keydown', e => {
-  if (!document.getElementById('lightbox-overlay').classList.contains('active')) return;
-  if (e.key === 'Escape')      closeLightbox();
-  if (e.key === 'ArrowRight')  navLightbox(1);
-  if (e.key === 'ArrowLeft')   navLightbox(-1);
-});
+    b.root = el('div', { class: 'evento-block', 'data-evento': ev.id, id: 'bloque-' + ev.id }, [header, grid]);
+    contenedor.insertBefore(b.root, $('galeria-empty'));
+    if (typeof revealObserver !== 'undefined') revealObserver.observe(header);
+
+    b.btn = el('button', { class: 'filter-btn', type: 'button', 'data-filtro': ev.id });
+    barraFiltros.appendChild(b.btn);
+    bloques.push(b);
+  });
+
+  $('galeria-empty').style.display = eventos.length ? 'none' : 'block';
+
+  /* ── 5. FILTRO ────────────────────────────────────────────────── */
+  function filtrar(id) {
+    barraFiltros.querySelectorAll('.filter-btn').forEach(x => x.classList.toggle('active', x.dataset.filtro === id));
+    bloques.forEach(b => { b.root.style.display = (id === 'todos' || b.ev.id === id) ? '' : 'none'; });
+  }
+  barraFiltros.addEventListener('click', e => {
+    const btn = e.target.closest('.filter-btn');
+    if (btn) filtrar(btn.dataset.filtro);
+  });
+
+  /* ── 6. TEXTOS (se repintan al cambiar de idioma) ─────────────── */
+  function actualizarTextos() {
+    let totalFotos = 0;
+    bloques.forEach(b => {
+      const n = b.ev.fotos.length;
+      totalFotos += n;
+      b.h3.textContent = pick(b.ev, 'titulo');
+      b.p.textContent = pick(b.ev, 'desc');
+      b.count.textContent = n + ' ' + (n === 1 ? t('foto') : t('fotos'));
+      b.btn.textContent = pick(b.ev, 'filtro') || pick(b.ev, 'titulo');
+      b.fotos.forEach(f => {
+        const titulo = pick(f.data, 'titulo');
+        f.overlayText.textContent = titulo;
+        f.item.setAttribute('aria-label', t('ampliar') + ': ' + titulo);
+        if (f.img.isConnected) f.img.alt = titulo;
+        if (f.item.querySelector('.galeria-placeholder span')) f.item.querySelector('.galeria-placeholder span').textContent = titulo || t('noDisp');
+      });
+    });
+    const kE = $('kpi-eventos'), kF = $('kpi-fotos');
+    if (kE) kE.textContent = eventos.length;
+    if (kF) kF.textContent = totalFotos;
+    $('lb-close').setAttribute('aria-label', t('cerrar'));
+    $('lb-prev').setAttribute('aria-label', t('ant'));
+    $('lb-next').setAttribute('aria-label', t('sig'));
+    $('lb-error-msg').textContent = t('error');
+    $('lb-retry').textContent = t('reintentar');
+    if (ov.classList.contains('active')) pintarTextosLightbox();
+  }
+
+  /* ── 7. LIGHTBOX ──────────────────────────────────────────────── */
+  const ov = $('lightbox-overlay'), wrap = $('lightbox-img-wrap'), img = $('lb-img');
+  let items = [], idx = 0, token = 0, ultimoFoco = null;
+  const cargadas = new Set();
+
+  /* Descarga la imagen ANTES de mostrarla: sin pantalla negra ni imagen a medias. */
+  function cargar(u) {
+    return new Promise(res => {
+      if (cargadas.has(u)) return res(true);
+      const im = new Image();
+      im.onload = () => { cargadas.add(u); res(true); };
+      im.onerror = () => res(false);
+      im.src = u;
+    });
+  }
+
+  function pintarTextosLightbox() {
+    const f = items[idx].data;
+    const titulo = pick(f, 'titulo'), desc = pick(f, 'desc');
+    const cap = $('lightbox-caption');
+    cap.textContent = '';
+    cap.appendChild(el('strong', { text: titulo }));
+    cap.appendChild(document.createTextNode(desc));
+    img.alt = titulo;
+    $('lightbox-counter').textContent = (idx + 1) + ' / ' + items.length;
+  }
+
+  async function mostrar(i) {
+    const n = items.length;
+    idx = (i + n) % n;
+    const mio = ++token;                       // si el usuario cambia de foto, se descarta la anterior
+    pintarTextosLightbox();
+    wrap.classList.remove('error');
+    wrap.classList.add('loading');
+    const u = items[idx].data.url;
+    const bien = await cargar(u);
+    if (mio !== token) return;                 // llegó tarde: ya hay otra foto pedida
+    if (bien) {
+      img.src = u;
+      try { await img.decode(); } catch (e) { /* si decode() falla, el navegador la pinta igual */ }
+      if (mio !== token) return;
+    }
+    wrap.classList.remove('loading');
+    if (bien) {
+      if (n > 1) { cargar(items[(idx + 1) % n].data.url); cargar(items[(idx - 1 + n) % n].data.url); }  // precarga vecinas
+    } else {
+      wrap.classList.add('error');
+    }
+  }
+
+  function abrir(bloque, i, disparador) {
+    items = bloque.fotos;
+    ultimoFoco = disparador;
+    img.removeAttribute('src');
+    ov.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    $('lb-close').focus();
+    mostrar(i);
+  }
+  function cerrar() {
+    token++;
+    ov.classList.remove('active');
+    document.body.style.overflow = '';
+    if (ultimoFoco) ultimoFoco.focus();
+  }
+  const nav = d => { if (ov.classList.contains('active') && items.length) mostrar(idx + d); };
+
+  $('lb-close').addEventListener('click', cerrar);
+  $('lb-prev').addEventListener('click', () => nav(-1));
+  $('lb-next').addEventListener('click', () => nav(1));
+  $('lb-retry').addEventListener('click', () => mostrar(idx));
+  ov.addEventListener('click', e => { if (e.target === ov) cerrar(); });
+
+  document.addEventListener('keydown', e => {
+    if (!ov.classList.contains('active')) return;
+    if (e.key === 'Escape') cerrar();
+    else if (e.key === 'ArrowRight') { e.preventDefault(); nav(1); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); nav(-1); }
+  });
+
+  /* Deslizar con el dedo en móvil */
+  let x0 = null;
+  ov.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+  ov.addEventListener('touchend', e => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0; x0 = null;
+    if (Math.abs(dx) > 50) nav(dx < 0 ? 1 : -1);
+  });
+
+  /* ── 8. IDIOMA + ARRANQUE ─────────────────────────────────────── */
+  /* scripts.js cambia <html lang> al pulsar ES|EN: lo escuchamos para repintar. */
+  new MutationObserver(actualizarTextos).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+  actualizarTextos();
+  refrescarIconos();
+})();
 </script>
 <script>
   lucide.createIcons();
