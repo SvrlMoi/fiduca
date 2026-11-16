@@ -235,6 +235,101 @@
   .search-box input { width: 160px; }
   .doc-card.video-card { grid-column: 1; }
 }
+/* ── PUBLICACIÓN DESTACADA ── */
+.doc-card.pub-feature {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 0.9fr 1.3fr;
+  padding: 0;
+  overflow: hidden;
+  border: none;
+  border-radius: 22px;
+  background: var(--white);
+  box-shadow: 0 10px 40px rgba(65,9,56,0.10);
+}
+.doc-card.pub-feature:hover { transform: translateY(-4px); box-shadow: 0 18px 50px rgba(65,9,56,0.16); }
+
+.pub-visual { position: relative; min-height: 420px; overflow: hidden; }
+.pub-visual img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; transition: transform .6s ease;
+}
+.pub-feature:hover .pub-visual img { transform: scale(1.06); }
+.pub-visual::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(160deg, rgba(145,17,126,0.45) 0%, transparent 55%, rgba(65,9,56,0.55) 100%);
+}
+.pub-chip {
+  position: absolute; top: 20px; left: 20px; z-index: 2;
+  display: inline-flex; align-items: center; gap: 8px;
+  background: #0A66C2; color: #fff;
+  font-size: 12px; font-weight: 700; letter-spacing: .04em;
+  padding: 7px 14px; border-radius: 999px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+}
+
+.pub-content {
+  position: relative;
+  padding: 48px 52px;
+  display: flex; flex-direction: column; justify-content: center; gap: 18px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(234,117,4,0.10), transparent 45%),
+    radial-gradient(circle at 0% 100%, rgba(69,210,197,0.14), transparent 45%),
+    var(--white);
+}
+.pub-content::before {
+  content: '“';
+  position: absolute; top: 6px; right: 36px;
+  font-size: 150px; font-weight: 900; line-height: 1;
+  color: var(--purple); opacity: 0.08; pointer-events: none;
+}
+.pub-kicker {
+  align-self: flex-start;
+  font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--gold);
+  padding-bottom: 6px; border-bottom: 3px solid var(--gold);
+}
+.pub-title {
+  font-size: clamp(26px, 3vw, 40px); font-weight: 800;
+  line-height: 1.15; color: var(--navy); margin: 0;
+}
+.pub-title em {
+  font-style: normal; color: var(--purple);
+}
+.pub-lead {
+  font-size: 16px; line-height: 1.8; color: var(--slate);
+  margin: 0; padding-left: 18px;
+  border-left: 4px solid var(--teal);
+}
+.pub-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 16px;
+  margin-top: 8px; padding-top: 20px; border-top: 1px solid var(--line);
+}
+.pub-author { display: flex; align-items: center; gap: 12px; }
+.pub-avatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, var(--purple), var(--gold));
+  color: #fff; font-weight: 800; font-size: 14px;
+}
+.pub-author strong { display: block; font-size: 14px; color: var(--navy); }
+.pub-author small  { font-size: 12px; color: var(--slate); opacity: .75; }
+.pub-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--navy); color: #fff; text-decoration: none;
+  font-size: 14px; font-weight: 700;
+  padding: 12px 22px; border-radius: 999px;
+  transition: background .25s, transform .25s, gap .25s;
+}
+.pub-cta i { width: 16px; height: 16px; }
+.pub-cta:hover { background: var(--purple); gap: 12px; transform: translateY(-2px); }
+
+@media (max-width: 900px) {
+  .doc-card.pub-feature { grid-template-columns: 1fr; }
+  .pub-visual { min-height: 240px; }
+  .pub-content { padding: 32px 24px; }
+}
 </style>
 </head>
 <body>
@@ -272,8 +367,8 @@
     </div>
     <div class="rec-kpi-grid">
       <div class="rec-kpi reveal" style="transition-delay:0.10s">
-        <div class="rec-kpi-num">0</div>
-        <div class="rec-kpi-label" data-i18n="recursos.kpi_materiales">Materiales<br>y Guías</div>
+        <div class="rec-kpi-num">1</div>
+        <div class="rec-kpi-label" data-i18n="recursos.kpi_materiales">Artículos<br>y Guías</div>
       </div>
       <div class="rec-kpi reveal" style="transition-delay:0.20s">
         <div class="rec-kpi-num">1</div>
@@ -384,12 +479,37 @@
 
     <div class="docs-grid" id="grid-investigaciones">
 
-      <div class="empty-resources">
-         <i data-lucide="arrows-up-from-line"></i>
-        <h4 data-i18n="recursos.proximamente_titulo">Próximamente</h4>
-        <p data-i18n="recursos.proximamente_desc">Las investigaciones y publicaciones del proyecto estarán disponibles aquí a medida que avance el proyecto.</p>
-      </div>
+            <!-- PUBLICACIÓN DESTACADA: LinkedIn -->
+      <article class="doc-card pub-feature reveal" data-titulo="Emprender para crecer o emprender para permanecer Alberto Tejero LinkedIn artículo Malecu">
+        <div class="pub-visual">
+          <img src="Estilos/img/Fotos noticias/Taller de Plantas Territorio Malecu (1).jpg" alt="Taller de plantas en territorio Malecu">
+          <span class="pub-chip">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+            <span data-i18n="recursos.pub1_chip">Artículo · LinkedIn</span>
+          </span>
+        </div>
 
+        <div class="pub-content">
+          <span class="pub-kicker" data-i18n="recursos.pub1_kicker">Reflexión · Emprendimiento indígena</span>
+          <h3 class="pub-title" data-i18n="recursos.pub1_titulo">¿Emprender para crecer o emprender para <em>permanecer</em>?</h3>
+
+          <p class="pub-lead" data-i18n="recursos.pub1_desc">Cuando pensamos en una persona emprendedora, probablemente imaginamos a alguien que tiene una idea, busca clientes, consigue financiación y trata de hacer crecer un negocio. Es una imagen habitual del emprendimiento. Pero, ¿funciona igual esta lógica en cualquier lugar?</p>
+
+          <div class="pub-footer">
+            <div class="pub-author">
+              <span class="pub-avatar">AT</span>
+              <div>
+                <strong>Alberto Tejero López</strong>
+                <small data-i18n="recursos.pub1_fecha">8 de noviembre de 2026 · UPM</small>
+              </div>
+            </div>
+            <a href="https://www.linkedin.com/pulse/emprender-para-crecer-o-permanecer-alberto-tejero-lopez-phd-w9dge/" target="_blank" rel="noopener" class="pub-cta">
+              <span data-i18n="recursos.pub1_btn">Leer artículo completo</span>
+              <i data-lucide="arrow-up-right"></i>
+            </a>
+          </div>
+        </div>
+      </article>
     </div>
   </section>
 </div>
